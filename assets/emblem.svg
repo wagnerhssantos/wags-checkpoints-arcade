@@ -1,0 +1,56 @@
+<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#3a2a6d"/>
+      <stop offset="100%" stop-color="#160f33"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff3c4"/>
+      <stop offset="35%" stop-color="#e8b93e"/>
+      <stop offset="65%" stop-color="#a97417"/>
+      <stop offset="100%" stop-color="#7a4e0c"/>
+    </linearGradient>
+    <linearGradient id="goldThin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff8dd"/>
+      <stop offset="100%" stop-color="#c8901f"/>
+    </linearGradient>
+  </defs>
+
+  <circle cx="150" cy="150" r="148" fill="url(#bg)" stroke="url(#gold)" stroke-width="6"/>
+  <circle cx="150" cy="150" r="130" fill="none" stroke="url(#goldThin)" stroke-width="2" stroke-dasharray="2 6"/>
+
+  <g stroke="url(#goldThin)" stroke-width="2" opacity="0.8">
+    <line x1="150" y1="14" x2="150" y2="30"/>
+    <line x1="150" y1="270" x2="150" y2="286"/>
+    <line x1="14" y1="150" x2="30" y2="150"/>
+    <line x1="270" y1="150" x2="286" y2="150"/>
+    <line x1="52" y1="52" x2="63" y2="63"/>
+    <line x1="248" y1="52" x2="237" y2="63"/>
+    <line x1="52" y1="248" x2="63" y2="237"/>
+    <line x1="248" y1="248" x2="237" y2="237"/>
+  </g>
+
+  <ellipse cx="150" cy="158" rx="98" ry="112" fill="url(#gold)" stroke="#3a2a6d" stroke-width="4"/>
+  <ellipse cx="150" cy="158" rx="82" ry="96" fill="#1c1440"/>
+
+  <g fill="none" stroke="url(#gold)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 92 118 L 112 205 L 138 150 L 150 205 L 176 118"/>
+  </g>
+  <g fill="#7ef7e6">
+    <circle cx="92" cy="118" r="5"/>
+    <circle cx="176" cy="118" r="5"/>
+    <circle cx="138" cy="150" r="4"/>
+  </g>
+
+  <path d="M 74 96 Q 150 70 226 96 L 218 110 Q 150 88 82 110 Z" fill="url(#gold)" stroke="#3a2a6d" stroke-width="2"/>
+
+  <path d="M 78 222 Q 150 250 222 222 L 222 240 Q 150 264 78 240 Z" fill="url(#gold)" stroke="#3a2a6d" stroke-width="2"/>
+  <text x="150" y="240" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" fill="#1c1440" letter-spacing="1">WAGS</text>
+
+  <g fill="#e8b93e" opacity="0.9">
+    <circle cx="150" cy="40" r="4"/>
+    <circle cx="150" cy="260" r="4"/>
+    <circle cx="40" cy="150" r="4"/>
+    <circle cx="260" cy="150" r="4"/>
+  </g>
+</svg>
