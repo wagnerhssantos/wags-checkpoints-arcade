@@ -144,7 +144,7 @@
 <div class="wrap">
 
   <div class="topbar">
-    <img src="assets/uai-mascot.png" alt="UAI, mascote do Time Wags">
+    <img src="assets/uai-mascot.b64.txt" alt="UAI, mascote do Time Wags" id="mascotImg">
     <img class="emblem" src="assets/emblem.svg" alt="Emblema Time Wags">
   </div>
   <h1 class="arcade-title">WAGS CHECKPOINTS</h1>
@@ -199,6 +199,10 @@
 </div>
 
 <script>
+fetch('assets/uai-mascot.b64.txt').then(r=>r.text()).then(b64=>{
+  document.getElementById('mascotImg').src = 'data:image/png;base64,' + b64.trim();
+}).catch(()=>{});
+
 async function load(){
   try{
     const res = await fetch('data/scoreboard.json', { cache: 'no-store' });
