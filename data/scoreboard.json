@@ -1,91 +1,163 @@
 {
-  "curMonth": "2026-08-01",
-  "prevMonth": "2026-07-01",
+  "month": "2026-08",
+  "monthLabel": "08/26",
+  "weeks": ["Semana 32", "Semana 33", "Semana 34", "Semana 35"],
+  "weekRanges": ["01-07/08", "08-14/08", "15-21/08", "22-28/08"],
+  "generatedAt": "2026-08-28 (snapshot manual, ver README)",
   "results": [
     {
-      "agent": "maycon.cardoso",
-      "total": 285,
-      "cur": { "pts": 35, "flags": { "excelencia": true, "tnpsPhone": true }, "bossEligible": false, "scoreLevel": "Medium", "tnpsChat": 50.0, "tnpsPhone": 100.0, "adherence": 0.7496132897603486 },
-      "prev": { "pts": 250, "flags": { "excelencia": true, "aderencia": true, "tnpsPhone": true, "top": true, "primeiroTop": true, "chama": true, "wowCount": 3 } }
-    },
-    {
       "agent": "giulia.machado",
-      "total": 220,
-      "cur": { "pts": 120, "flags": { "excelencia": true, "tnpsChat": true, "tnpsPhone": true, "top": true }, "bossEligible": true, "scoreLevel": "Top", "tnpsChat": 85.29411764705883, "tnpsPhone": 93.33333333333333, "adherence": 0.6811418439716311 },
-      "prev": { "pts": 100, "flags": { "excelencia": true, "tnpsPhone": true, "top": true } }
-    },
-    {
-      "agent": "caren.paraiso",
-      "total": 215,
-      "cur": { "pts": 15, "flags": { "excelencia": true }, "bossEligible": false, "scoreLevel": "Medium", "tnpsChat": 66.66666666666666, "tnpsPhone": null, "adherence": 0.7856842818428186 },
-      "prev": { "pts": 200, "flags": { "excelencia": true, "tnpsChat": true, "top": true, "primeiroTop": true } }
+      "total": 200,
+      "level": "DIAMANTE",
+      "excelencia": { "weekly": [10, 15, 20, 25], "total": 70, "cleanWeeks": [true, true, true, true] },
+      "aderencia": { "monthlyPct": 0.6566, "pts": 0 },
+      "tnps": { "chat": 86.84, "phone": 93.75, "avg": 90.3, "pts": 50 },
+      "wow": { "count": 0, "pts": 0, "chama": false },
+      "bossBattle": true,
+      "estreiaTop": false
     },
     {
       "agent": "thiago.guedes",
-      "total": 175,
-      "cur": { "pts": 95, "flags": { "excelencia": true, "aderencia": true, "tnpsPhone": true, "high": true }, "bossEligible": false, "scoreLevel": "High", "tnpsChat": 70.0, "tnpsPhone": 90.9090909090909, "adherence": 0.8865247715247717 },
-      "prev": { "pts": 80, "flags": { "excelencia": true, "aderencia": true, "tnpsPhone": true, "high": true } }
-    },
-    {
-      "agent": "lucas.cassimiro",
-      "total": 165,
-      "cur": { "pts": 80, "flags": { "excelencia": true, "tnpsPhone": true, "high": true }, "bossEligible": false, "scoreLevel": "High", "tnpsChat": 66.66666666666666, "tnpsPhone": 87.5, "adherence": 0.7882328042328042 },
-      "prev": { "pts": 85, "flags": { "excelencia": true, "tnpsChat": true, "top": true } }
-    },
-    {
-      "agent": "lucrecia.santos",
-      "total": 160,
-      "cur": { "pts": 80, "flags": { "excelencia": true, "top": true }, "bossEligible": false, "scoreLevel": "Top", "tnpsChat": null, "tnpsPhone": null, "adherence": 0.7564191232048376 },
-      "prev": { "pts": 80, "flags": { "excelencia": true, "top": true } }
-    },
-    {
-      "agent": "andresa.britto",
-      "total": 145,
-      "cur": { "pts": 60, "flags": { "excelencia": true, "high": true }, "bossEligible": false, "scoreLevel": "High", "tnpsChat": 74.4186046511628, "tnpsPhone": null, "adherence": 0.6953235162873718 },
-      "prev": { "pts": 85, "flags": { "excelencia": true, "tnpsChat": true, "top": true } }
-    },
-    {
-      "agent": "marcelo.calixto",
-      "total": 140,
-      "cur": { "pts": 65, "flags": { "excelencia": true, "tnpsPhone": true, "high": true }, "bossEligible": false, "scoreLevel": "High", "tnpsChat": 62.16216216216216, "tnpsPhone": 93.75, "adherence": 0.814663888888889 },
-      "prev": { "pts": 75, "flags": { "excelencia": true, "chama": true, "wowCount": 5 } }
-    },
-    {
-      "agent": "gabrielle.macedo",
-      "total": 130,
-      "cur": { "pts": 15, "flags": { "aderencia": true }, "bossEligible": false, "scoreLevel": "Medium", "tnpsChat": 63.1578947368421, "tnpsPhone": 78.26086956521739, "adherence": 0.8529670063076177 },
-      "prev": { "pts": 115, "flags": { "excelencia": true, "aderencia": true, "tnpsChat": true, "top": true } }
+      "total": 150,
+      "level": "DIAMANTE",
+      "excelencia": { "weekly": [10, 15, 20, 25], "total": 70, "cleanWeeks": [true, true, true, true] },
+      "aderencia": { "monthlyPct": 0.8829, "pts": 70 },
+      "tnps": { "chat": 71.43, "phone": 91.67, "avg": 81.55, "pts": 10 },
+      "wow": { "count": 0, "pts": 0, "chama": false },
+      "bossBattle": false,
+      "estreiaTop": false
     },
     {
       "agent": "angela.julia",
-      "total": 105,
-      "cur": { "pts": 25, "flags": { "excelencia": true, "aderencia": true }, "bossEligible": false, "scoreLevel": "Low", "tnpsChat": 59.09090909090909, "tnpsPhone": 58.333333333333336, "adherence": 0.8628551336146273 },
-      "prev": { "pts": 80, "flags": { "excelencia": true, "tnpsChat": true, "high": true } }
+      "total": 140,
+      "level": "OURO",
+      "excelencia": { "weekly": [10, 15, 20, 25], "total": 70, "cleanWeeks": [true, true, true, true] },
+      "aderencia": { "monthlyPct": 0.854, "pts": 70 },
+      "tnps": { "chat": 52.0, "phone": 66.67, "avg": 59.33, "pts": 0 },
+      "wow": { "count": 0, "pts": 0, "chama": false },
+      "bossBattle": false,
+      "estreiaTop": false
     },
     {
-      "agent": "kissila.oliveira",
+      "agent": "maycon.cardoso",
+      "total": 110,
+      "level": "OURO",
+      "excelencia": { "weekly": [10, 15, 20, 25], "total": 70, "cleanWeeks": [true, true, true, true] },
+      "aderencia": { "monthlyPct": 0.7645, "pts": 0 },
+      "tnps": { "chat": 70.0, "phone": 100.0, "avg": 85.0, "pts": 20 },
+      "wow": { "count": 2, "pts": 20, "chama": false },
+      "bossBattle": false,
+      "estreiaTop": false
+    },
+    {
+      "agent": "gabrielle.macedo",
       "total": 105,
-      "cur": { "pts": 15, "flags": { "excelencia": true }, "bossEligible": false, "scoreLevel": "Medium", "tnpsChat": 70.83333333333334, "tnpsPhone": 66.66666666666666, "adherence": 0.8421810699588476 },
-      "prev": { "pts": 90, "flags": { "excelencia": true, "aderencia": true, "tnpsPhone": true, "chama": true, "wowCount": 3 } }
+      "level": "OURO",
+      "excelencia": { "weekly": [10, 15, 0, 10], "total": 35, "cleanWeeks": [true, true, false, true] },
+      "aderencia": { "monthlyPct": 0.8561, "pts": 70 },
+      "tnps": { "chat": 65.0, "phone": 78.95, "avg": 71.98, "pts": 0 },
+      "wow": { "count": 0, "pts": 0, "chama": false },
+      "bossBattle": false,
+      "estreiaTop": false
     },
     {
       "agent": "randal.savino",
-      "total": 75,
-      "cur": { "pts": 50, "flags": { "excelencia": true, "aderencia": true, "tnpsPhone": true }, "bossEligible": false, "scoreLevel": "Medium", "tnpsChat": 70.83333333333334, "tnpsPhone": 96.42857142857143, "adherence": 0.8534868788386375 },
-      "prev": { "pts": 25, "flags": { "excelencia": true, "aderencia": true } }
+      "total": 100,
+      "level": "OURO",
+      "excelencia": { "weekly": [10, 15, 20, 25], "total": 70, "cleanWeeks": [true, true, true, true] },
+      "aderencia": { "monthlyPct": 0.8449, "pts": 0 },
+      "tnps": { "chat": 67.65, "phone": 96.88, "avg": 82.26, "pts": 20 },
+      "wow": { "count": 1, "pts": 10, "chama": false },
+      "bossBattle": false,
+      "estreiaTop": false
     },
     {
       "agent": "guilherme.zunareli",
-      "total": 70,
-      "cur": { "pts": 35, "flags": { "excelencia": true, "tnpsChat": true }, "bossEligible": false, "scoreLevel": "Medium", "tnpsChat": 100.0, "tnpsPhone": 33.33333333333333, "adherence": 0.6614980158730158 },
-      "prev": { "pts": 35, "flags": { "excelencia": true, "tnpsPhone": true } }
+      "total": 90,
+      "level": "PRATA",
+      "excelencia": { "weekly": [10, 15, 20, 25], "total": 70, "cleanWeeks": [true, true, true, true] },
+      "aderencia": { "monthlyPct": 0.6804, "pts": 0 },
+      "tnps": { "chat": 100.0, "phone": 66.67, "avg": 83.33, "pts": 20 },
+      "wow": { "count": 0, "pts": 0, "chama": false },
+      "bossBattle": false,
+      "estreiaTop": false
+    },
+    {
+      "agent": "lucrecia.santos",
+      "total": 90,
+      "level": "PRATA",
+      "excelencia": { "weekly": [10, 15, 20, 25], "total": 70, "cleanWeeks": [true, true, true, true] },
+      "aderencia": { "monthlyPct": 0.7564, "pts": 0 },
+      "tnps": { "chat": null, "phone": null, "avg": null, "pts": 20, "noChannel": true },
+      "wow": { "count": 0, "pts": 0, "chama": false },
+      "bossBattle": false,
+      "estreiaTop": false
+    },
+    {
+      "agent": "marcelo.calixto",
+      "total": 90,
+      "level": "PRATA",
+      "excelencia": { "weekly": [10, 15, 20, 25], "total": 70, "cleanWeeks": [true, true, true, true] },
+      "aderencia": { "monthlyPct": 0.808, "pts": 0 },
+      "tnps": { "chat": 65.0, "phone": 95.0, "avg": 80.0, "pts": 10 },
+      "wow": { "count": 1, "pts": 10, "chama": false },
+      "bossBattle": false,
+      "estreiaTop": false
+    },
+    {
+      "agent": "andresa.britto",
+      "total": 80,
+      "level": "PRATA",
+      "excelencia": { "weekly": [10, 15, 20, 25], "total": 70, "cleanWeeks": [true, true, true, true] },
+      "aderencia": { "monthlyPct": 0.6762, "pts": 0 },
+      "tnps": { "chat": 78.57, "phone": null, "avg": 78.57, "pts": 10 },
+      "wow": { "count": 0, "pts": 0, "chama": false },
+      "bossBattle": false,
+      "estreiaTop": false
     },
     {
       "agent": "angelica.almeida",
-      "total": 50,
-      "cur": { "pts": 15, "flags": { "excelencia": true }, "bossEligible": false, "scoreLevel": "Medium", "tnpsChat": 75.0, "tnpsPhone": 63.63636363636363, "adherence": 0.6785634920634921 },
-      "prev": { "pts": 35, "flags": { "excelencia": true, "tnpsChat": true } }
+      "total": 80,
+      "level": "PRATA",
+      "excelencia": { "weekly": [10, 15, 20, 25], "total": 70, "cleanWeeks": [true, true, true, true] },
+      "aderencia": { "monthlyPct": 0.6639, "pts": 0 },
+      "tnps": { "chat": 61.9, "phone": 63.64, "avg": 62.77, "pts": 0 },
+      "wow": { "count": 1, "pts": 10, "chama": false },
+      "bossBattle": false,
+      "estreiaTop": false
+    },
+    {
+      "agent": "kissila.oliveira",
+      "total": 80,
+      "level": "PRATA",
+      "excelencia": { "weekly": [10, 15, 20, 25], "total": 70, "cleanWeeks": [true, true, true, true] },
+      "aderencia": { "monthlyPct": 0.8339, "pts": 0 },
+      "tnps": { "chat": 72.0, "phone": 66.67, "avg": 69.33, "pts": 0 },
+      "wow": { "count": 1, "pts": 10, "chama": false },
+      "bossBattle": false,
+      "estreiaTop": false
+    },
+    {
+      "agent": "lucas.cassimiro",
+      "total": 80,
+      "level": "PRATA",
+      "excelencia": { "weekly": [10, 15, 20, 25], "total": 70, "cleanWeeks": [true, true, true, true] },
+      "aderencia": { "monthlyPct": 0.7968, "pts": 0 },
+      "tnps": { "chat": 63.89, "phone": 92.86, "avg": 78.37, "pts": 10 },
+      "wow": { "count": 0, "pts": 0, "chama": false },
+      "bossBattle": false,
+      "estreiaTop": false
+    },
+    {
+      "agent": "caren.paraiso",
+      "total": 70,
+      "level": "PRATA",
+      "excelencia": { "weekly": [10, 15, 20, 25], "total": 70, "cleanWeeks": [true, true, true, true] },
+      "aderencia": { "monthlyPct": 0.7713, "pts": 0 },
+      "tnps": { "chat": 65.52, "phone": null, "avg": 65.52, "pts": 0 },
+      "wow": { "count": 0, "pts": 0, "chama": false },
+      "bossBattle": false,
+      "estreiaTop": false
     }
-  ],
-  "generatedAt": "2026-08-24 23:02 UTC (snapshot manual, ver README)"
+  ]
 }
