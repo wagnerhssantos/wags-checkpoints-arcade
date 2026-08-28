@@ -20,8 +20,9 @@ O nome fica salvo no navegador (localStorage) — dá pra trocar de jogador pelo
 - **Aderência**: aderência ao fone > 85% = +10 pts, com o mesmo streak (10→15→20→25).
 - **tNPS chat + phone**: média do mês > 75 = +10; > 82 = +20; > 90 = +50 (vale a maior faixa, não
   cumulativo). Quem não atua em chat/phone recebe +20 se estiver limpo de qualidade no mês.
-- **Skip / Unanswered Calls / Transfer indevido / Expired jobs**: ainda **não conectados** — ver
-  limitações abaixo.
+- **Skip**: < 5% = +10; < 7% = +5; > 9% = -5. **Unanswered Calls**: < 2% = +10; < 5% = +5; > 10% =
+  -5 (só conta pra quem atua em phone). **Transfer indevido**: < 3% = +10. **Expired jobs**: < 3% =
+  +10. Todas as 4 usam o resultado FINAL do mês (não têm streak semanal).
 - **Primeiro Top Performer**: 1ª vez na carreira do agente como Top — badge "Estreia Top" (evento
   único, sem pontos).
 - **WoW**: +10 pts por WoW aprovada.
@@ -31,12 +32,13 @@ O nome fica salvo no navegador (localStorage) — dá pra trocar de jogador pelo
 
 ## Limitações conhecidas (importante)
 
-- **Skip rate, Unanswered Calls, Transfer indevido e Expired jobs**: pesquisei no Databricks
-  (`usr.cx_golden_layer`) e não encontrei uma fonte semanal e por agente confiável para o Time Wags
-  dentro do tempo disponível — `nucel_skip` não tem coluna de data, `transfer_indevido_chat_summary`
-  só existe agregado por squad, e `unanswered_calls`/`sla_wt` precisam de mais investigação para
-  mapear corretamente os agentes do squad. Essas 4 métricas aparecem no site como "em breve" e
-  não pontuam ainda. Se você souber a tabela certa, me diga o nome que eu conecto.
+- **Skip / Transfer indevido / Expired jobs**: conectados via `etl.br__dataset.cx_canonical_activities`
+  (mesma base usada em relatórios de performance do time — colunas `agent`, `status`,
+  `is_transfer_indevido`), considerando o resultado final do mês (agosto/26).
+- **Unanswered Calls**: conectado via `usr.cx_golden_layer.unanswered_calls`
+  (`queue_event__actor`, `ringing`, `no_answer`). Só vale para quem atua no canal phone — quem não
+  tem nenhuma linha nessa tabela no mês aparece como "sem canal" e não pontua nem penaliza nessa
+  métrica (é o caso de andresa.britto, caren.paraiso e lucrecia.santos em agosto/26).
 - **Aderência semanal**: não achei uma tabela de aderência ao fone com granularidade semanal para
   o Time Wags (`view_aderencia_final` não cobre esse squad). Por ora, uso a aderência **mensal** do
   Databricks (`usr.csinnovation.csiagentsmetricsoficial`) repetida nas semanas do mês.

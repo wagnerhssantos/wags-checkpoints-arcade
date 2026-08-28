@@ -3,7 +3,8 @@
 Gera data/scoreboard.json para o site UAI MODO TURBO (ex-WAGS CHECKPOINTS).
 
 Motor de pontos v2 — considera SOMENTE o mes corrente, com granularidade
-semanal para Excelencia e Aderencia, e mensal para tNPS / WoW / badges.
+semanal para Excelencia e Aderencia, e mensal para tNPS / WoW / badges /
+Skip / Unanswered Calls / Transfer indevido / Expired jobs.
 
 Fontes:
 - Databricks (usr.csinnovation.csiagentsmetricsoficial) via Statement Execution API:
@@ -13,16 +14,20 @@ Fontes:
   6. Erros Ops (Vigente) (coluna E = analista, L = Semana, M = Mes).
 - Planilha "Base Faisca" (WoWs), timestamp + email do Xmart.
 
+- Skip / Transfer indevido / Expired: `etl.br__dataset.cx_canonical_activities`
+  (colunas `agent`, `status`, `is_transfer_indevido`), filtrado por
+  `actor_affiliation = 'nubank'` e mes corrente. Resultado FINAL do mes
+  (nao ha streak semanal para essas 4 metricas).
+- Unanswered Calls: `usr.cx_golden_layer.unanswered_calls` (colunas
+  `queue_event__actor`, `ringing`, `no_answer`), so se aplica a quem atua
+  no canal phone -- quem nao tem nenhuma linha nessa tabela no mes fica
+  marcado como "sem canal" e nao pontua nem penaliza nessa metrica.
+
 LIMITACOES CONHECIDAS (documentadas tambem no README):
 - Ainda nao ha fonte semanal de aderencia ao fone para o Time Wags
   (view_aderencia_final e outras tabelas do cx_golden_layer nao cobrem
   esse squad). Por isso a Aderencia usa o % MENSAL do Databricks repetido
   nas 4 semanas do mes, com o mesmo streak (10/15/20/25).
-- Skip rate, Unanswered Calls, Transfer indevido e Expired jobs por agente
-  e por semana ainda nao tem uma fonte de dados conectada e confiavel para
-  o Time Wags (nucel_skip nao tem coluna de data; transfer_indevido so
-  existe agregado por squad). Essas 4 metricas ficam com 0 pts ate
-  conectarmos a base certa.
 - O alinhamento de linha da aba "6. Erros Ops (Vigente)" e ocasionalmente
   instavel; quando isso acontece, o incidente e atribuido a semana mais
   proxima com evidencia (fail-soft), igual ja acontecia na v1.
@@ -53,7 +58,19 @@ STREAK_PTS = [10, 15, 20, 25]  # semana 1,2,3,4+ (cap)
 ADERENCIA_THRESHOLD = 0.85
 BOSS_CHAT_THRESHOLD = 82
 BOSS_PHONE_THRESHOLD = 85
-LEVELS = [(150, "DIAMANTE"), (100, "OURO"), (70, "PRATA"), (0, "BRONZE")]
+LEVELS = [(180, "DIAMANTE"), (120, "OURO"), (80, "PRATA"), (0, "BRONZE")]
+
+
+def tiered_points(pct, bands):
+    """bands: lista de (limite, pts) em ordem do mais restrito pro mais frouxo,
+    seguida opcionalmente de (limite_penalidade, pts_penalidade) com pts negativo."""
+    for limit, pts in bands:
+        if pts > 0 and pct < limit:
+            return pts
+    for limit, pts in bands:
+        if pts < 0 and pct > limit:
+            return pts
+    return 0
 
 
 def databricks_query(sql):
@@ -169,6 +186,45 @@ def main():
         }
     months_sorted = sorted({m for (_a, m) in rows_by_agent.keys()})
     roster = sorted({a for (a, m) in rows_by_agent.keys() if m == cur_month_iso})
+    roster_emails = [f"{a}@nubank.com.br" for a in roster]
+
+    month_start = cur_month_iso
+    month_end = today.strftime("%Y-%m-%d")
+    email_list_sql = ",".join(f"'{e}'" for e in roster_emails)
+
+    ops_rows = databricks_query(
+        "SELECT agent, COUNT(dist_key) AS total_interactions, "
+        "SUM(CASE WHEN status = 'skipped' THEN 1 ELSE 0 END) AS skipped, "
+        "SUM(CASE WHEN is_transfer_indevido = 1 THEN 1 ELSE 0 END) AS transfer_indevido, "
+        "SUM(CASE WHEN status = 'expired' THEN 1 ELSE 0 END) AS expired "
+        "FROM etl.br__dataset.cx_canonical_activities "
+        f"WHERE DATE(local_start_time) BETWEEN '{month_start}' AND '{month_end}' "
+        "AND actor_affiliation = 'nubank' AND source_id NOT LIKE '%lineu%' "
+        "AND NOT (activity_type IN ('email','backoffice') AND status = 'expired') "
+        "AND activity_type IN ('chat','email','inbound_call','backoffice') "
+        f"AND agent IN ({email_list_sql}) GROUP BY agent"
+    )
+    ops_by_agent = {}
+    for r in ops_rows:
+        agent = r["agent"].split("@")[0]
+        total = int(r["total_interactions"] or 0)
+        ops_by_agent[agent] = {
+            "skip_pct": round(int(r["skipped"] or 0) * 100.0 / total, 2) if total else None,
+            "transfer_pct": round(int(r["transfer_indevido"] or 0) * 100.0 / total, 2) if total else None,
+            "expired_pct": round(int(r["expired"] or 0) * 100.0 / total, 2) if total else None,
+        }
+
+    unanswered_rows = databricks_query(
+        "SELECT queue_event__actor AS agent, SUM(ringing) AS ringing, SUM(no_answer) AS no_answer "
+        "FROM usr.cx_golden_layer.unanswered_calls "
+        f"WHERE local_event_date BETWEEN '{month_start}' AND '{month_end}' "
+        f"AND queue_event__actor IN ({email_list_sql}) GROUP BY queue_event__actor"
+    )
+    unanswered_by_agent = {}
+    for r in unanswered_rows:
+        agent = r["agent"].split("@")[0]
+        ringing = int(r["ringing"] or 0)
+        unanswered_by_agent[agent] = round(int(r["no_answer"] or 0) * 100.0 / ringing, 2) if ringing else None
 
     # incidentes por (agent, "Semana N") -- Qualidade + Reclamacoes + Erros Ops
     incidents_by_week = {}
@@ -286,7 +342,21 @@ def main():
         )
         estreia_top = score_level == "Top" and not was_top_before
 
-        total = excelencia_total + aderencia_pts + tnps_pts + wow_pts + (80 if boss_battle else 0)
+        ops = ops_by_agent.get(agent, {})
+        skip_pct = ops.get("skip_pct")
+        transfer_pct = ops.get("transfer_pct")
+        expired_pct = ops.get("expired_pct")
+        unanswered_pct = unanswered_by_agent.get(agent)
+
+        skip_pts = tiered_points(skip_pct, [(5, 10), (7, 5), (9, -5)]) if skip_pct is not None else 0
+        unanswered_pts = (
+            tiered_points(unanswered_pct, [(2, 10), (5, 5), (10, -5)]) if unanswered_pct is not None else 0
+        )
+        transfer_pts = 10 if (transfer_pct is not None and transfer_pct < 3) else 0
+        expired_pts = 10 if (expired_pct is not None and expired_pct < 3) else 0
+        ops_total = skip_pts + unanswered_pts + transfer_pts + expired_pts
+
+        total = excelencia_total + aderencia_pts + tnps_pts + wow_pts + ops_total + (80 if boss_battle else 0)
 
         results.append({
             "agent": agent,
@@ -302,6 +372,13 @@ def main():
                 "noChannel": no_channel,
             },
             "wow": {"count": wow_count, "pts": wow_pts, "chama": chama},
+            "ops": {
+                "skip": {"pct": skip_pct, "pts": skip_pts},
+                "unanswered": {"pct": unanswered_pct, "pts": unanswered_pts, "noChannel": unanswered_pct is None},
+                "transferIndevido": {"pct": transfer_pct, "pts": transfer_pts},
+                "expired": {"pct": expired_pct, "pts": expired_pts},
+                "total": ops_total,
+            },
             "bossBattle": boss_battle,
             "estreiaTop": estreia_top,
         })

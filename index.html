@@ -145,6 +145,7 @@
               <th>#</th><th>Xmart</th><th>Nível</th><th>Total</th>
               <th>Sem 1</th><th>Sem 2</th><th>Sem 3</th><th>Sem 4</th>
               <th>Aderência</th><th>tNPS</th><th>WoW</th>
+              <th>Skip</th><th>Unans.</th><th>Transfer</th><th>Expired</th>
             </tr>
           </thead>
           <tbody id="fullTableBody"></tbody>
@@ -169,7 +170,7 @@
         <p><b>Streak Excelência</b> — semanas consecutivas limpas valem mais: semana 2 = 15, semana 3 = 20, semana 4+ = 25 (cap 25). Um apontamento zera a sequência.</p>
         <p><b>Aderência</b> — aderência ao fone acima de 85%: +10 pts, com o mesmo streak (10→15→20→25). <span class="pending">Aproximação: hoje só temos aderência mensal, então aplicamos o mesmo % nas 4 semanas — quando a base de aderência semanal estiver disponível, isso fica mais preciso.</span></p>
         <p><b>tNPS chat + phone</b> — média do mês acima de 75 = +10; acima de 82 = +20; acima de 90 = +50 (não cumulativos, vale a maior faixa atingida). Mensal. Quem não atua em chat/phone recebe +20 se não tiver nenhum apontamento de qualidade no mês.</p>
-        <p><b>Skip, Unanswered Calls, Transfer indevido, Expired jobs</b> — <span class="pending">em breve: essas métricas semanais ainda não têm uma fonte de dados conectada para o Time Wags. Assim que localizarmos a base certa, entram no motor de pontos.</span></p>
+        <p><b>Skip</b> — abaixo de 5% = +10 pts; abaixo de 7% = +5 pts; acima de 9% = -5 pts. <b>Unanswered Calls</b> — abaixo de 2% = +10 pts; abaixo de 5% = +5 pts; acima de 10% = -5 pts (só para quem atua em phone). <b>Transfer indevido</b> — abaixo de 3% = +10 pts. <b>Expired jobs</b> — abaixo de 3% = +10 pts. <span class="pending">Considerando o resultado final do mês (não streak semanal).</span></p>
         <p><b>Primeiro Top Performer</b> — 1ª vez na carreira do agente como Top: badge "Estreia Top" (evento único, sem pontos).</p>
         <p><b>WoW</b> — a cada WoW aprovada: +10 pts.</p>
         <p><b>Chama do Encantamento</b> — 3+ WoWs aprovadas no mês: +40, +10 por WoW extra. Mensal.</p>
@@ -272,6 +273,7 @@ function render(data){
       return `<td class="wk ${clean ? 'ok' : 'bad'}">${pts}</td>`;
     }).join('');
     const tnpsLabel = r.tnps.noChannel ? 'sem canal' : (r.tnps.avg !== null ? r.tnps.avg.toFixed(1) : '-');
+    const opsCell = (m) => m.noChannel ? `sem canal` : `${m.pct}% (${m.pts})`;
     tr.innerHTML = `
       <td>${i+1}</td>
       <td class="name-cell">${titleCase(r.agent)}</td>
@@ -281,6 +283,10 @@ function render(data){
       <td>${r.aderencia.pts}</td>
       <td>${tnpsLabel} (${r.tnps.pts})</td>
       <td>${r.wow.count} (${r.wow.pts})</td>
+      <td>${opsCell(r.ops.skip)}</td>
+      <td>${opsCell(r.ops.unanswered)}</td>
+      <td>${opsCell(r.ops.transferIndevido)}</td>
+      <td>${opsCell(r.ops.expired)}</td>
     `;
     tbody.appendChild(tr);
   });
