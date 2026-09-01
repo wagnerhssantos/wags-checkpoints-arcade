@@ -33,6 +33,8 @@
     text-align:center; padding:20px;
   }
   #gate img.mascot-big, #greeting img.mascot-big{ width:140px; image-rendering:pixelated; filter:drop-shadow(0 0 18px var(--magenta)); }
+  #gate img.mascot-big{ animation: float 3s ease-in-out infinite; }
+  @keyframes float{ 0%,100%{ transform:translateY(0px); } 50%{ transform:translateY(-16px); } }
   .insert-text{ font-family:'Press Start 2P',monospace; color:var(--yellow); font-size:16px; letter-spacing:1px; }
   #nameForm{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
   #nameInput{
@@ -254,25 +256,30 @@ function render(data){
   document.getElementById('mainPanels').style.display = 'block';
   document.getElementById('periodPlate').textContent = 'PERÍODO: ' + data.monthLabel + ' — ' + (data.competitionScope || '');
   const banner = document.getElementById('dataBanner');
-  banner.textContent = '📅 Dados até ' + fmtDate(data.dataAsOf) + '. ' + (data.dataAsOfNote || '');
+  banner.textContent = '📅 ' + (data.dataAsOfNote || ('Dados até ' + fmtDate(data.dataAsOf) + '.'));
 
-  const results = data.results.slice().sort((a,b)=> b.total - a.total);
+  const results = data.results.slice().sort((a,b)=> (b.total - a.total) || titleCase(a.agent).localeCompare(titleCase(b.agent)));
+  const hasScores = results.some(r => r.total > 0);
 
   const podium = document.getElementById('podium');
   const medals = ['p1','p2','p3'];
   const order = [1,0,2];
   podium.innerHTML = '';
-  order.forEach(idx=>{
-    const r = results[idx];
-    if(!r) return;
-    const div = document.createElement('div');
-    div.className = 'card ' + medals[idx];
-    div.innerHTML = `<div class="rank">${idx+1}º LUGAR</div>
-      <div class="name">${titleCase(r.agent)}</div>
-      <div class="lvl">${r.level}</div>
-      <div class="pts">${r.total} PTS</div>`;
-    podium.appendChild(div);
-  });
+  if(!hasScores){
+    podium.innerHTML = '<div class="pending" style="font-size:16px;">Aguardando a 1ª apuração — ninguém no pódio ainda.</div>';
+  } else {
+    order.forEach(idx=>{
+      const r = results[idx];
+      if(!r) return;
+      const div = document.createElement('div');
+      div.className = 'card ' + medals[idx];
+      div.innerHTML = `<div class="rank">${idx+1}º LUGAR</div>
+        <div class="name">${titleCase(r.agent)}</div>
+        <div class="lvl">${r.level}</div>
+        <div class="pts">${r.total} PTS</div>`;
+      podium.appendChild(div);
+    });
+  }
 
   const tbody = document.getElementById('fullTableBody');
   tbody.innerHTML = '';

@@ -4,7 +4,7 @@
   "competitionScope": "Competição válida apenas para setembro/2026",
   "closedMondays": [],
   "dataAsOf": "2026-09-01",
-  "dataAsOfNote": "Setembro começou hoje (01/09) e o ETL do Databricks ainda não processou o dia. Nenhuma segunda-feira fechou ainda (1º fechamento semanal: 07/09/2026). O placar está zerado e vai sendo populado automaticamente a partir de agora pelo check diário das 9h.",
+  "dataAsOfNote": "Primeira atualização do placar: 07/09/2026.",
   "generatedAt": "2026-09-01 (snapshot inicial da competição de setembro)",
   "results": [
     { "agent": "giulia.machado", "group": "geral", "total": 0, "level": "BRONZE", "excelencia": { "weekly": [], "total": 0 }, "tnps": { "chat": [], "chatPts": 0, "phone": [], "phonePts": 0, "applicable": { "chat": true, "phone": true } }, "ops": { "skip": { "pct": null, "pts": 0 }, "unanswered": { "pct": null, "pts": 0, "applicable": true }, "transferIndevido": { "pct": null, "pts": 0 }, "expired": { "pct": null, "pts": 0 }, "timeSpent": { "minutes": null, "pts": 0, "applicable": false }, "total": 0 }, "wow": { "count": 0, "pts": 0, "chama": false }, "engagement": { "pts": 0 }, "bossBattle": { "weekly": false, "monthly": false }, "estreiaTop": false },
