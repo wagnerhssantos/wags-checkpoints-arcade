@@ -2,16 +2,58 @@
 """
 Gera data/scoreboard.json para o site UAI MODO TURBO (Time Wags).
 
-MOTOR DE PONTOS v3 -- competicao valida SOMENTE para setembro/2026.
+MOTOR DE PONTOS v4 -- competicao valida SOMENTE para setembro/2026.
 Fechamentos semanais sempre na segunda-feira (semana de referencia = a que
 acabou de fechar). Metricas mensais (Skip/Unanswered/Transfer/Expired/Time
 Spent) usam o resultado acumulado do mes corrente até hoje (nao ha streak
 semanal nessas 4/5).
 
+## v4 -- recalibracao de justica entre grupos (01/09/2026)
+
+A v3 dava a cada grupo (geral / so chat / backoffice) um teto MAXIMO de
+pontos diferente por semana e por mes -- quem atuava nos dois canais podia
+chegar a 75 pts/semana e 40 pts/mes, enquanto "so chat" parava em 60/31 e
+"backoffice" em 55/30, mesmo com nota perfeita. Ou seja, o grupo que faz o
+trabalho mais "invisivel" tinha o teto mais baixo, o que nao e justo se
+todo mundo disputa o mesmo placar.
+
+Principio da v4: "redistribuicao de canal" -- cada agente tem uma cota
+FIXA de pontos por metrica-familia (qualidade de atendimento / skip) e,
+se ele so opera em UM canal daquela familia, o canal que ele tem passa a
+valer o DOBRO (equivalente a soma dos dois canais de quem atua nos dois).
+Isso fecha o teto exatamente, sem inventar um "bonus" solto e sem mexer
+na logica de Excelencia (que agora e igual pra todo mundo, pois nao tem
+nada a ver com canal).
+
+Tetos unificados (todos os grupos, mesmos valores):
+  SEMANAL: Excelencia (25 max) + tNPS (40 max, dividido ou nao entre
+  canais) + Engajamento (10) = 75 pts/semana.
+  MENSAL: Skip (20 max, dividido ou nao com Unanswered) + Transfer (10)
+  + Expired (10) = 40 pts/mes (+ Unanswered 10 max embutido no Skip pra
+  quem nao atende phone).
+
+- GERAL (chat + phone): tNPS chat (max 20) + tNPS phone (max 20) = 40.
+  Skip (max 10) + Unanswered (max 10) = 20 "familia skip".
+- SO CHAT (nao atua phone): tNPS chat DOBRADO (max 40, bandas
+  10/20/30/40). Skip DOBRADO (max 20, bandas 20/10/4/-4) pra compensar a
+  ausencia de Unanswered.
+- SO PHONE (nao atua chat) [grupo hoje vazio, mantido por simetria]: tNPS
+  phone DOBRADO (max 40). Skip padrao (mantem Unanswered normal).
+- BACKOFFICE (nao atua chat nem phone): tNPS nao se aplica -- o espaco de
+  40 pts/semana vira Time Spent com bandas graduadas (<5min=40,
+  5-7min=25, 7-9min=10, >=9min=0). Skip DOBRADO (max 20) pra compensar a
+  ausencia de Unanswered. Excelencia deixa de ser "em dobro" (agora e
+  igual à geral -- Excelencia mede conduta, nao canal).
+
+Boss Battle e badges (Estreia Top, Prêmio UAI de Qualidade, Desbravador
+de Desafios, Prêmio UAI Sô) permanecem como estavam na v3 -- Boss Battle
+ainda nao esta implementado (ver README, secao "Limitacoes conhecidas"),
+entao os campos ficam sempre False ate uma proxima passada.
+
 ## Fontes de dados
 
 - Excelencia / streak: planilha "Central de Inteligencia de CSI 2026"
-  (abas 4.Qualidade, 5.Reclamacoes, 6.Erros Ops) -- mesma logica da v2.
+  (abas 4.Qualidade, 5.Reclamacoes, 6.Erros Ops) -- mesma logica da v2/v3.
 - tNPS chat / tNPS phone (SEMANAL, fecha segunda): etl.br__dataset.cx_metrics_tnps_resolutivity
   join etl.br__dataset.cx_canonical_activities (last_agent), filtrando
   channel = 'chat' ou channel = 'inbound_call', survey_type='Human',
@@ -22,6 +64,9 @@ semanal nessas 4/5).
   status, is_transfer_indevido, mount_time_spent, net_time_spent).
   Formula de Time Spent confirmada em cx-analyst/references/metrics-targets.md:
   AVG(CASE WHEN mount_time_spent>0 THEN mount_time_spent ELSE net_time_spent END).
+  Time Spent so tem grao mensal (nao ha query semanal real ainda) -- o
+  valor semanal e uma media do mes ate hoje, multiplicada pelo numero de
+  segundas ja fechadas (mesma limitacao ja documentada na v3).
 - Unanswered Calls (MENSAL): usr.cx_golden_layer.unanswered_calls
   (queue_event__actor, ringing, no_answer). So conta pra quem atua em phone.
 - WoW: planilha "Base Faisca H22026", aba "(Automatizacao) WoWs Faisca".
@@ -50,15 +95,18 @@ os grupos existem no motor e ficam vazios até algum agente se encaixar.
   mensal (+10/+5/+2/0); Transfer indevido mensal (+10 se <3%); Expired
   mensal (+10 se <3%).
 - SO CHAT (nao atua phone): desconsidera Unanswered e tNPS Phone; tNPS
-  Chat com banda elevada (6/11/16/25); Skip com banda elevada
-  (11/6/3/-5); mantem Transfer/Expired gerais.
-- BACKOFFICE PURO (nao atua chat nem phone): Excelencia +20/sem (streak
-  igual); desconsidera tNPS e Unanswered; Skip geral; Time Spent semanal
-  (<7min = +10/sem); mantem Transfer/Expired gerais.
+  Chat DOBRADO (10/20/30/40); Skip DOBRADO (20/10/4/-4); mantem
+  Transfer/Expired gerais.
+- SO PHONE (nao atua chat): desconsidera tNPS Chat; tNPS Phone DOBRADO
+  (10/20/30/40); Skip padrao (mantem Unanswered normal); mantem
+  Transfer/Expired gerais.
+- BACKOFFICE PURO (nao atua chat nem phone): Excelencia igual a geral
+  (streak 10/15/20/25); desconsidera tNPS e Unanswered; Skip DOBRADO
+  (20/10/4/-4); Time Spent semanal com bandas graduadas
+  (<5min=40, <7min=25, <9min=10, >=9min=0); mantem Transfer/Expired gerais.
 - TODOS: Chama do Encantamento (3+ WoWs no mes = +40, +10/extra);
   Engajamento nos canais (+10/semana para quem mais participou); Boss
-  Battle semana (+20, top da semana com tNPS chat e phone >=85 na semana);
-  Boss Battle mes (+50, mesma logica mensal).
+  Battle semana (+20) e mes (+50) -- AINDA NAO IMPLEMENTADO, ver README.
 
 Secrets/variaveis de ambiente esperadas (GitHub Secrets), caso rodado via
 Actions (fluxo alternativo -- o fluxo principal agora e a tarefa agendada
@@ -100,25 +148,34 @@ CHANNEL_TIME = "C0AK68688EQ"       # #os_incriveis_csi
 CHANNEL_WOW = "C090RS3739N"        # #wow_csi
 CHANNEL_INFORMA = "C0209GG9GQ7"    # #cx-csi-informa
 
-# Bandas de tNPS semanal (padrao -- chat e phone da populacao geral)
+# ---- Bandas de tNPS semanal (v4: tetos unificados em 75 pts/semana) ----
+# Geral: tNPS chat (max 20) + tNPS phone (max 20) = 40 "familia tNPS".
 TNPS_BANDS_GERAL = [(70, 5), (75, 10), (80.01, 15), (85, 20)]
-# Banda elevada de tNPS chat para quem so atua em chat (compensacao)
-TNPS_BANDS_CHAT_ONLY = [(70, 6), (75, 11), (80.01, 16), (85, 25)]
+# So chat / so phone: um unico canal cobre a familia inteira -> bandas em
+# dobro (compensacao exata, nao um bonus solto).
+TNPS_BANDS_UM_CANAL = [(70, 10), (75, 20), (80.01, 30), (85, 40)]
 
-STREAK_PTS = [10, 15, 20, 25]  # semana 1,2,3,4+ (cap)
-EXCELENCIA_BASE_GERAL = 10
-EXCELENCIA_BASE_BACKOFFICE = 20
+STREAK_PTS = [10, 15, 20, 25]  # semana 1,2,3,4+ (cap) -- igual pra todo mundo
+EXCELENCIA_BASE = 10
 
+# ---- Bandas de Skip mensal (v4: familia skip unificada em 20 pts/mes) ----
+# Geral: Skip (max 10) + Unanswered (max 10) = 20 "familia skip".
 SKIP_BANDS_GERAL = [(5, 10), (7, 5), (9, 2), (9, -2)]
-SKIP_BANDS_ELEVADO = [(5, 11), (7, 6), (9, 3), (9, -5)]
+# Quem nao tem Unanswered (so chat / backoffice): Skip cobre a familia
+# inteira -> bandas em dobro.
+SKIP_BANDS_DOBRADO = [(5, 20), (7, 10), (9, 4), (9, -4)]
 UNANSWERED_BANDS = [(2, 10), (5, 5), (8, 2)]  # acima de 8% = 0 (sem penalidade)
 TRANSFER_THRESHOLD = 3
 EXPIRED_THRESHOLD = 3
-TIME_SPENT_THRESHOLD_MIN = 7  # minutos, so para grupo backoffice puro
+
+# Time Spent (so backoffice): bandas graduadas que ocupam o espaco de 40
+# pts/semana que os outros grupos tiram do tNPS. Minutos = media do mes
+# corrente (proxy semanal -- ver limitacao na docstring).
+TIME_SPENT_BANDS = [(5, 40), (7, 25), (9, 10)]  # >=9min = 0
 
 BOSS_WEEKLY_PTS = 20
 BOSS_MONTHLY_PTS = 50
-BOSS_TNPS_THRESHOLD = 85  # tNPS chat e phone >= 85 (faixa maxima)
+BOSS_TNPS_THRESHOLD = 85  # tNPS >= 85 (faixa maxima) no(s) canal(is) do agente
 
 LEVELS = [(300, "DIAMANTE"), (180, "OURO"), (90, "PRATA"), (0, "BRONZE")]
 # Thresholds provisorios para a 1a semana de competicao -- recalibrar
@@ -317,7 +374,8 @@ def main():
                 if total == 0:
                     continue
                 tnps = round((int(r["promotores"]) - int(r["detratores"])) / total * 100, 1)
-                bands = TNPS_BANDS_CHAT_ONLY if (canal == "chat" and agent in CHAT_ONLY) else TNPS_BANDS_GERAL
+                um_canal_so = (canal == "chat" and agent in CHAT_ONLY) or (canal == "phone" and agent in PHONE_ONLY)
+                bands = TNPS_BANDS_UM_CANAL if um_canal_so else TNPS_BANDS_GERAL
                 pts = tnps_band_points(tnps, bands)
                 tnps_weekly.setdefault(agent, {"chat": [], "phone": []})[canal].append({"tnps": tnps, "pts": pts})
     except Exception as e:
@@ -377,7 +435,6 @@ def main():
     results = []
     for agent in ROSTER:
         grp = group_of(agent)
-        base_excelencia = EXCELENCIA_BASE_BACKOFFICE if grp == "backoffice" else EXCELENCIA_BASE_GERAL
 
         weekly_excelencia = []
         streak = 0
@@ -387,13 +444,13 @@ def main():
             if is_clean:
                 streak += 1
                 mult = STREAK_PTS[min(streak, 4) - 1] / STREAK_PTS[0]
-                weekly_excelencia.append(round(base_excelencia * mult))
+                weekly_excelencia.append(round(EXCELENCIA_BASE * mult))
             else:
                 streak = 0
                 weekly_excelencia.append(0)
         excelencia_total = sum(weekly_excelencia)
 
-        tnps_chat_pts = 0 if grp in ("backoffice",) else sum(w["pts"] for w in tnps_weekly.get(agent, {}).get("chat", []))
+        tnps_chat_pts = 0 if grp in ("backoffice", "phone_only") else sum(w["pts"] for w in tnps_weekly.get(agent, {}).get("chat", []))
         tnps_phone_pts = 0 if grp in ("backoffice", "chat_only") else sum(w["pts"] for w in tnps_weekly.get(agent, {}).get("phone", []))
 
         ops = ops_by_agent.get(agent, {})
@@ -401,16 +458,17 @@ def main():
         transfer_pct = ops.get("transfer_pct")
         expired_pct = ops.get("expired_pct")
         time_spent_min = ops.get("avg_time_spent_min")
-        unanswered_pct = None if grp == "chat_only" else unanswered_by_agent.get(agent)
+        unanswered_pct = None if grp in ("chat_only", "backoffice") else unanswered_by_agent.get(agent)
 
-        skip_bands = SKIP_BANDS_ELEVADO if grp == "chat_only" else SKIP_BANDS_GERAL
+        # Skip dobrado pra quem nao tem Unanswered (compensacao exata da familia "skip")
+        skip_bands = SKIP_BANDS_DOBRADO if grp in ("chat_only", "backoffice") else SKIP_BANDS_GERAL
         skip_pts = tiered_points(skip_pct, skip_bands)
         unanswered_pts = tiered_points(unanswered_pct, UNANSWERED_BANDS) if unanswered_pct is not None else 0
         transfer_pts = 10 if (transfer_pct is not None and transfer_pct < TRANSFER_THRESHOLD) else 0
         expired_pts = 10 if (expired_pct is not None and expired_pct < EXPIRED_THRESHOLD) else 0
         time_spent_pts = 0
-        if grp == "backoffice" and time_spent_min is not None and time_spent_min < TIME_SPENT_THRESHOLD_MIN:
-            time_spent_pts = 10 * len(closed_mondays)
+        if grp == "backoffice" and time_spent_min is not None:
+            time_spent_pts = tiered_points(time_spent_min, TIME_SPENT_BANDS) * len(closed_mondays)
 
         wow_count = wow_total.get(agent, 0)
         chama = wow_count >= 3
@@ -442,11 +500,11 @@ def main():
                 "chatPts": tnps_chat_pts,
                 "phone": tnps_weekly.get(agent, {}).get("phone", []),
                 "phonePts": tnps_phone_pts,
-                "applicable": {"chat": grp != "backoffice", "phone": grp not in ("backoffice", "chat_only")},
+                "applicable": {"chat": grp not in ("backoffice", "phone_only"), "phone": grp not in ("backoffice", "chat_only")},
             },
             "ops": {
                 "skip": {"pct": skip_pct, "pts": skip_pts},
-                "unanswered": {"pct": unanswered_pct, "pts": unanswered_pts, "applicable": grp != "chat_only"},
+                "unanswered": {"pct": unanswered_pct, "pts": unanswered_pts, "applicable": grp not in ("chat_only", "backoffice")},
                 "transferIndevido": {"pct": transfer_pct, "pts": transfer_pts},
                 "expired": {"pct": expired_pct, "pts": expired_pts},
                 "timeSpent": {"minutes": time_spent_min, "pts": time_spent_pts, "applicable": grp == "backoffice"},
@@ -454,7 +512,7 @@ def main():
             },
             "wow": {"count": wow_count, "pts": wow_pts, "chama": chama},
             "engagement": {"pts": engagement_pts},
-            "bossBattle": {"weekly": False, "monthly": False},  # calculado depois de ordenar
+            "bossBattle": {"weekly": False, "monthly": False},  # ainda nao implementado -- ver README
             "estreiaTop": False,
         })
 
