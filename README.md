@@ -45,7 +45,7 @@ regra geral. **Time Spent** (novo, semanal): média de tempo de atendimento abai
 
 - **WoW**: +10 pts por WoW aprovada. **Chama do Encantamento**: 3+ WoWs no mês = +40, +10/extra.
 - **Engajamento nos canais** (semanal): quem mais comentou e incentivou o time na semana nos canais
-  #os_incríveis_csi, #copa_canguru_wow2026 e #cx-csi-informa ganha +10 pts.
+  #os_incríveis_csi, #wow_csi e #cx-csi-informa ganha +10 pts.
 - **Boss Battle da semana**: Top Performer da semana com tNPS chat e phone ≥85 na semana: +20 pts.
   **Boss Battle do mês**: mesma lógica, apurada no mês: +50 pts.
 
@@ -65,7 +65,7 @@ regra geral. **Time Spent** (novo, semanal): média de tempo de atendimento abai
 | Skip / Transfer indevido / Expired / Time Spent | `etl.br__dataset.cx_canonical_activities` (`status`, `is_transfer_indevido`, `mount_time_spent`, `net_time_spent`) | Mensal (acumulado até hoje) |
 | Unanswered Calls | `usr.cx_golden_layer.unanswered_calls` (`queue_event__actor`, `ringing`, `no_answer`) | Mensal (acumulado até hoje) |
 | WoW | Planilha "Base Faísca H22026" | Mensal (acumulado) |
-| Engajamento nos canais | Slack — #os_incríveis_csi (`C0AK68688EQ`), #copa_canguru_wow2026 (`C0B6H07JLEA`), #cx-csi-informa (`C0209GG9GQ7`) | Semanal |
+| Engajamento nos canais | Slack — #os_incríveis_csi (`C0AK68688EQ`), #wow_csi (`C090RS3739N`), #cx-csi-informa (`C0209GG9GQ7`) | Semanal |
 
 ## Limitações conhecidas e decisões em aberto
 

@@ -27,7 +27,7 @@ semanal nessas 4/5).
 - WoW: planilha "Base Faisca H22026", aba "(Automatizacao) WoWs Faisca".
 - Engajamento nos canais (SEMANAL): contagem de mensagens/comentarios do
   agente nos 3 canais Slack do time -- #os_incriveis_csi (C0AK68688EQ),
-  #copa_canguru_wow2026 (C0B6H07JLEA) e #cx-csi-informa (C0209GG9GQ7).
+  #wow_csi (C090RS3739N) e #cx-csi-informa (C0209GG9GQ7).
   O agente com mais interacoes na semana ganha +10. Este script NAO tem
   acesso as ferramentas MCP de Slack (roda fora do Cowork) -- espera um
   arquivo `data/engagement_override.json` com {"semana_iso": {"agent": qtd}}
@@ -97,7 +97,7 @@ NO_CHANNEL = set()          # nenhum agente hoje (backoffice puro)
 
 # Canais Slack usados no calculo de Engajamento
 CHANNEL_TIME = "C0AK68688EQ"       # #os_incriveis_csi
-CHANNEL_WOW = "C0B6H07JLEA"        # #copa_canguru_wow2026
+CHANNEL_WOW = "C090RS3739N"        # #wow_csi
 CHANNEL_INFORMA = "C0209GG9GQ7"    # #cx-csi-informa
 
 # Bandas de tNPS semanal (padrao -- chat e phone da populacao geral)
