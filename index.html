@@ -23,14 +23,10 @@
     background:repeating-linear-gradient(0deg, rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 1px, transparent 2px, transparent 4px);
     mix-blend-mode:overlay;
   }
-  .crt-vignette{
-    position:fixed; inset:0; pointer-events:none; z-index:49;
-    box-shadow: inset 0 0 160px rgba(0,0,0,0.85);
-  }
+  .crt-vignette{ position:fixed; inset:0; pointer-events:none; z-index:49; box-shadow: inset 0 0 160px rgba(0,0,0,0.85); }
   h1,h2,h3,.pixel{ font-family:'Press Start 2P',monospace; }
   .blink{ animation:blink 1s steps(1) infinite; }
   @keyframes blink{ 50%{ opacity:0; } }
-  /* GATE / SPLASH */
   #gate, #greeting{
     position:fixed; inset:0; z-index:100; display:flex; flex-direction:column;
     align-items:center; justify-content:center; gap:28px; background:var(--bg);
@@ -53,22 +49,23 @@
   .arcade-btn:active{ border-bottom-width:0; margin-top:4px; }
   #greeting h2{ color:var(--green); font-size:18px; line-height:1.8; max-width:640px; }
   #greeting .sub{ color:var(--cyan); font-size:22px; }
-  /* MAIN CONTENT */
-  #content{ display:none; max-width:980px; margin:0 auto; padding:24px 16px 60px; position:relative; z-index:1; }
+  #content{ display:none; max-width:1080px; margin:0 auto; padding:24px 16px 60px; position:relative; z-index:1; }
   .topbar{ display:flex; align-items:center; justify-content:center; gap:16px; margin-bottom:8px; }
   .topbar img{ width:56px; image-rendering:pixelated; }
   .topbar h1{ font-size:26px; color:var(--yellow); text-shadow:3px 3px 0 var(--magenta); margin:0; }
-  .period-plate{ text-align:center; color:var(--cyan); font-size:22px; margin-bottom:24px; }
+  .period-plate{ text-align:center; color:var(--cyan); font-size:22px; margin-bottom:6px; }
+  .data-banner{
+    text-align:center; color:var(--yellow); font-size:16px; background:#100a2c;
+    border:2px dashed var(--panel-border); border-radius:4px; padding:10px 14px; margin-bottom:22px;
+    max-width:760px; margin-left:auto; margin-right:auto;
+  }
   .panel{
     background:var(--panel); border:3px solid var(--panel-border); border-radius:4px;
     padding:18px 20px; margin-bottom:22px; box-shadow:0 0 24px rgba(107,63,217,0.35);
   }
   .panel h2{ font-size:15px; color:var(--yellow); margin:0 0 16px; }
   .podium{ display:flex; justify-content:center; align-items:flex-end; gap:14px; flex-wrap:wrap; }
-  .podium .card{
-    background:#100a2c; border:2px solid var(--panel-border); border-radius:4px; padding:14px 18px;
-    text-align:center; min-width:150px;
-  }
+  .podium .card{ background:#100a2c; border:2px solid var(--panel-border); border-radius:4px; padding:14px 18px; text-align:center; min-width:150px; }
   .podium .card.p1{ border-color:var(--yellow); order:2; transform:scale(1.08); }
   .podium .card.p2{ order:1; }
   .podium .card.p3{ order:3; }
@@ -76,26 +73,23 @@
   .podium .name{ font-size:22px; color:#fff; margin:6px 0; }
   .podium .lvl{ font-size:12px; letter-spacing:1px; color:var(--cyan); font-family:'Press Start 2P',monospace; }
   .podium .pts{ font-size:26px; color:var(--green); }
-  table{ width:100%; border-collapse:collapse; font-size:18px; }
-  th,td{ padding:8px 6px; text-align:center; border-bottom:1px solid rgba(255,255,255,0.12); }
-  th{ color:var(--yellow); font-family:'Press Start 2P',monospace; font-size:9px; }
+  table{ width:100%; border-collapse:collapse; font-size:16px; }
+  th,td{ padding:7px 5px; text-align:center; border-bottom:1px solid rgba(255,255,255,0.12); }
+  th{ color:var(--yellow); font-family:'Press Start 2P',monospace; font-size:8px; }
   td.name-cell{ text-align:left; color:#fff; }
   .lvl-badge{ font-family:'Press Start 2P',monospace; font-size:8px; padding:3px 6px; border-radius:3px; }
   .lvl-DIAMANTE{ background:var(--cyan); color:#002; }
   .lvl-OURO{ background:var(--yellow); color:#221; }
   .lvl-PRATA{ background:#b9c2d0; color:#111; }
   .lvl-BRONZE{ background:#a5682a; color:#fff; }
-  .wk{ font-size:15px; }
-  .wk.ok{ color:var(--green); }
-  .wk.bad{ color:var(--red); }
+  .na{ color:#5b567a; }
   .badges-list{ list-style:none; padding:0; margin:0; font-size:18px; }
   .badges-list li{ padding:6px 0; border-bottom:1px dashed rgba(255,255,255,0.15); }
   .badge-tag{ color:var(--magenta); font-family:'Press Start 2P',monospace; font-size:9px; margin-right:8px; }
   .boss-card{ text-align:center; }
-  .boss-hp{ width:100%; max-width:360px; margin:12px auto; height:18px; background:#100a2c; border:2px solid var(--red); border-radius:3px; overflow:hidden; }
-  .boss-hp-fill{ height:100%; background:var(--red); width:100%; }
   .rules-list{ font-size:17px; line-height:1.7; }
   .rules-list b{ color:var(--cyan); }
+  .rules-list h3{ font-size:13px; color:var(--magenta); margin:18px 0 8px; }
   .pending{ color:#8a86a8; font-style:italic; font-size:16px; }
   footer{ text-align:center; color:#8a86a8; font-size:15px; margin-top:30px; }
   #errorBox, #loadingBox{ text-align:center; color:var(--yellow); font-size:20px; margin-top:60px; }
@@ -126,6 +120,7 @@
     <h1>UAI MODO TURBO</h1>
   </div>
   <div class="period-plate" id="periodPlate">carregando período...</div>
+  <div class="data-banner" id="dataBanner"></div>
 
   <div id="loadingBox">CARREGANDO PLACAR...</div>
   <div id="errorBox" style="display:none;"></div>
@@ -137,15 +132,15 @@
     </div>
 
     <div class="panel">
-      <h2>PLACAR COMPLETO — SÓ MÊS ATUAL</h2>
+      <h2>PLACAR COMPLETO — SETEMBRO/2026</h2>
       <div style="overflow-x:auto;">
         <table id="fullTable">
           <thead>
             <tr>
               <th>#</th><th>Xmart</th><th>Nível</th><th>Total</th>
-              <th>Sem 1</th><th>Sem 2</th><th>Sem 3</th><th>Sem 4</th>
-              <th>Aderência</th><th>tNPS</th><th>WoW</th>
+              <th>Excelência</th><th>tNPS Chat</th><th>tNPS Phone</th>
               <th>Skip</th><th>Unans.</th><th>Transfer</th><th>Expired</th>
+              <th>Time Spent</th><th>Engaj.</th><th>WoW</th>
             </tr>
           </thead>
           <tbody id="fullTableBody"></tbody>
@@ -154,27 +149,38 @@
     </div>
 
     <div class="panel">
-      <h2>BADGES DO MÊS</h2>
+      <h2>BADGES E PRÊMIOS DO MÊS</h2>
       <ul class="badges-list" id="badgesList"></ul>
     </div>
 
-    <div class="panel boss-card">
-      <h2>BOSS BATTLE</h2>
-      <div id="bossContent"></div>
-    </div>
-
     <div class="panel">
-      <h2>REGRAS DO JOGO</h2>
+      <h2>REGRAS DO JOGO — SETEMBRO/2026</h2>
       <div class="rules-list">
-        <p><b>Excelência</b> — semana sem apontamento de qualidade, complaint ou erro operacional: +10 pts. Semanal.</p>
-        <p><b>Streak Excelência</b> — semanas consecutivas limpas valem mais: semana 2 = 15, semana 3 = 20, semana 4+ = 25 (cap 25). Um apontamento zera a sequência.</p>
-        <p><b>Aderência</b> — aderência ao fone acima de 85%: +10 pts, com o mesmo streak (10→15→20→25). <span class="pending">Aproximação: hoje só temos aderência mensal, então aplicamos o mesmo % nas 4 semanas — quando a base de aderência semanal estiver disponível, isso fica mais preciso.</span></p>
-        <p><b>tNPS chat + phone</b> — média do mês acima de 75 = +10; acima de 82 = +20; acima de 90 = +50 (não cumulativos, vale a maior faixa atingida). Mensal. Quem não atua em chat/phone recebe +20 se não tiver nenhum apontamento de qualidade no mês.</p>
-        <p><b>Skip</b> — abaixo de 5% = +10 pts; abaixo de 7% = +5 pts; acima de 9% = -5 pts. <b>Unanswered Calls</b> — abaixo de 2% = +10 pts; abaixo de 5% = +5 pts; acima de 10% = -5 pts (só para quem atua em phone). <b>Transfer indevido</b> — abaixo de 3% = +10 pts. <b>Expired jobs</b> — abaixo de 3% = +10 pts. <span class="pending">Considerando o resultado final do mês (não streak semanal).</span></p>
-        <p><b>Primeiro Top Performer</b> — 1ª vez na carreira do agente como Top: badge "Estreia Top" (evento único, sem pontos).</p>
-        <p><b>WoW</b> — a cada WoW aprovada: +10 pts.</p>
-        <p><b>Chama do Encantamento</b> — 3+ WoWs aprovadas no mês: +40, +10 por WoW extra. Mensal.</p>
-        <p><b>Boss Battle</b> — só para quem é Top Performer e tem os dois tNPS (chat e phone) acima da meta no mês: +80 pts + badge "Caçador de Chefões". Mensal.</p>
+        <p><span class="pending">Competição válida apenas para setembro/2026. Fechamentos semanais sempre na segunda-feira. Métricas mensais (Skip, Unanswered Calls, Transfer indevido, Expired jobs, Time Spent) usam o resultado acumulado do mês até hoje.</span></p>
+
+        <h3>Regras gerais (quem atua em chat e phone)</h3>
+        <p><b>Excelência</b> — semana sem apontamento de qualidade, complaint ou erro operacional: +10 pts. <b>Streak</b>: semana 2 = 15, semana 3 = 20, semana 4+ = 25 (cap 25). Um apontamento zera a sequência.</p>
+        <p><b>tNPS Chat</b> e <b>tNPS Phone</b> (fechamento semanal, toda segunda) — 70 a 74,99 = +5; 75 a 80 = +10; 80,01 a 85 = +15; 85 a 100 = +20 (vale a maior faixa da semana).</p>
+        <p><b>Skip</b> (resultado final do mês) — abaixo de 5% = +10; 5,01% a 7% = +5; 7,01% a 9% = +2; acima de 9% = -2.</p>
+        <p><b>Unanswered Calls</b> (resultado final do mês, só quem atua em phone) — abaixo de 2% = +10; 2,01% a 5% = +5; 5,01% a 8% = +2; acima de 8% = 0.</p>
+        <p><b>Transfer indevido</b> (mês) — abaixo de 3% = +10. <b>Expired jobs</b> (mês) — abaixo de 3% = +10.</p>
+
+        <h3>Quem não atua em phone (só chat)</h3>
+        <p>Desconsidera Unanswered Calls e tNPS Phone. <b>tNPS Chat</b> com faixa elevada: 70 a 74,99 = +6; 75 a 80 = +11; 80,01 a 85 = +16; 85 a 100 = +25. <b>Skip</b> com faixa elevada: abaixo de 5% = +11; 5,01% a 7% = +6; 7,01% a 9% = +3; acima de 9% = -5. Transfer indevido e Expired seguem a regra geral.</p>
+
+        <h3>Quem não atua em chat nem phone (backoffice)</h3>
+        <p><b>Excelência</b> em +20 pts por semana (streak igual, 15/20/25 cap 25). Desconsidera tNPS e Unanswered Calls. Skip segue a regra geral. <b>Time Spent</b> — média semanal de atendimento abaixo de 7 minutos: +10 pts/semana. Transfer indevido e Expired seguem a regra geral.</p>
+
+        <h3>Regras para todos</h3>
+        <p><b>WoW</b> — cada WoW aprovada: +10 pts. <b>Chama do Encantamento</b> — 3+ WoWs no mês: +40, +10 por WoW extra.</p>
+        <p><b>Engajamento nos canais</b> — quem mais comentou e incentivou o time na semana nos canais #os_incríveis_csi, #copa_canguru_wow2026 e #cx-csi-informa ganha +10 pts.</p>
+        <p><b>Boss Battle da semana</b> — Top Performer da semana com tNPS chat e phone acima de 85 na semana: +20 pts. <b>Boss Battle do mês</b> — mesma lógica, apurada no mês: +50 pts.</p>
+
+        <h3>Badges e prêmios</h3>
+        <p><b>Estreia Top</b> — 1ª vez na carreira do agente como Top Performer (evento único, sem pontos).</p>
+        <p><b>Prêmio UAI de Qualidade</b> — todos que não tiverem apontamento de qualidade na semana e tiverem alta volumetria.</p>
+        <p><b>Desbravador de Desafios</b> — menor Skip da semana.</p>
+        <p><b>Prêmio UAI Sô</b> ("a gente gosta é de conversar") — menor Unanswered Calls da semana.</p>
       </div>
     </div>
   </div>
@@ -189,6 +195,11 @@ const STORAGE_KEY = 'uai_modo_turbo_player';
 
 function titleCase(agentLocal){
   return agentLocal.split('.').map(p => p.charAt(0).toUpperCase() + p.slice(1)).join(' ');
+}
+function fmtDate(iso){
+  if(!iso) return '';
+  const [y,m,d] = iso.split('-');
+  return `${d}/${m}/${y}`;
 }
 
 function showGate(){
@@ -228,7 +239,6 @@ document.getElementById('changeNameBtn').addEventListener('click', function(){
   if(saved){ showGreeting(saved); }else{ showGate(); }
 })();
 
-// mascote via base64 (evita ambiguidade de upload binário no GitHub)
 fetch('assets/uai-mascot.b64.txt').then(r=>r.text()).then(b64=>{
   const src = 'data:image/png;base64,' + b64.trim();
   ['mascotImgGate','mascotImgGreet','mascotImg'].forEach(id=>{
@@ -242,14 +252,15 @@ function levelClass(lvl){ return 'lvl-' + lvl; }
 function render(data){
   document.getElementById('loadingBox').style.display = 'none';
   document.getElementById('mainPanels').style.display = 'block';
-  document.getElementById('periodPlate').textContent = 'PERÍODO: ' + data.monthLabel + ' (mês corrente, considerando apenas o mês atual)';
+  document.getElementById('periodPlate').textContent = 'PERÍODO: ' + data.monthLabel + ' — ' + (data.competitionScope || '');
+  const banner = document.getElementById('dataBanner');
+  banner.textContent = '📅 Dados até ' + fmtDate(data.dataAsOf) + '. ' + (data.dataAsOfNote || '');
 
   const results = data.results.slice().sort((a,b)=> b.total - a.total);
 
-  // Podium
   const podium = document.getElementById('podium');
   const medals = ['p1','p2','p3'];
-  const order = [1,0,2]; // display 2nd,1st,3rd for classic podium layout
+  const order = [1,0,2];
   podium.innerHTML = '';
   order.forEach(idx=>{
     const r = results[idx];
@@ -263,76 +274,44 @@ function render(data){
     podium.appendChild(div);
   });
 
-  // Full table
   const tbody = document.getElementById('fullTableBody');
   tbody.innerHTML = '';
+  const naCell = () => `<td class="na">—</td>`;
   results.forEach((r,i)=>{
     const tr = document.createElement('tr');
-    const weekCells = r.excelencia.weekly.map((pts,wi)=>{
-      const clean = r.excelencia.cleanWeeks[wi];
-      return `<td class="wk ${clean ? 'ok' : 'bad'}">${pts}</td>`;
-    }).join('');
-    const tnpsLabel = r.tnps.noChannel ? 'sem canal' : (r.tnps.avg !== null ? r.tnps.avg.toFixed(1) : '-');
-    const opsCell = (m) => m.noChannel ? `sem canal` : `${m.pct}% (${m.pts})`;
+    const opsCell = (m) => (m && m.applicable === false) ? `<td class="na">—</td>` : `<td>${(m && m.pct != null) ? m.pct + '% ' : (m && m.minutes != null ? m.minutes + 'min ' : '')}(${m ? m.pts : 0})</td>`;
+    const tnpsChatCell = r.tnps.applicable.chat ? `<td>${r.tnps.chatPts}</td>` : naCell();
+    const tnpsPhoneCell = r.tnps.applicable.phone ? `<td>${r.tnps.phonePts}</td>` : naCell();
     tr.innerHTML = `
       <td>${i+1}</td>
       <td class="name-cell">${titleCase(r.agent)}</td>
       <td><span class="lvl-badge ${levelClass(r.level)}">${r.level}</span></td>
       <td><b>${r.total}</b></td>
-      ${weekCells}
-      <td>${r.aderencia.pts}</td>
-      <td>${tnpsLabel} (${r.tnps.pts})</td>
+      <td>${r.excelencia.total}</td>
+      ${tnpsChatCell}
+      ${tnpsPhoneCell}
+      ${opsCell(r.ops.skip)}
+      ${opsCell({...r.ops.unanswered})}
+      ${opsCell(r.ops.transferIndevido)}
+      ${opsCell(r.ops.expired)}
+      ${opsCell(r.ops.timeSpent)}
+      <td>${r.engagement.pts}</td>
       <td>${r.wow.count} (${r.wow.pts})</td>
-      <td>${opsCell(r.ops.skip)}</td>
-      <td>${opsCell(r.ops.unanswered)}</td>
-      <td>${opsCell(r.ops.transferIndevido)}</td>
-      <td>${opsCell(r.ops.expired)}</td>
     `;
     tbody.appendChild(tr);
   });
 
-  // Badges
   const badgesList = document.getElementById('badgesList');
   badgesList.innerHTML = '';
   let any = false;
   results.forEach(r=>{
-    if(r.estreiaTop){
-      any = true;
-      const li = document.createElement('li');
-      li.innerHTML = `<span class="badge-tag">★ ESTREIA TOP</span> ${titleCase(r.agent)}`;
-      badgesList.appendChild(li);
-    }
-    if(r.wow.chama){
-      any = true;
-      const li = document.createElement('li');
-      li.innerHTML = `<span class="badge-tag">⚡ CHAMA DO ENCANTAMENTO</span> ${titleCase(r.agent)} (${r.wow.count} WoWs)`;
-      badgesList.appendChild(li);
-    }
-    if(r.bossBattle){
-      any = true;
-      const li = document.createElement('li');
-      li.innerHTML = `<span class="badge-tag">👑 CAÇADOR DE CHEFÕES</span> ${titleCase(r.agent)}`;
-      badgesList.appendChild(li);
-    }
+    if(r.estreiaTop){ any = true; const li = document.createElement('li'); li.innerHTML = `<span class="badge-tag">★ ESTREIA TOP</span> ${titleCase(r.agent)}`; badgesList.appendChild(li); }
+    if(r.wow.chama){ any = true; const li = document.createElement('li'); li.innerHTML = `<span class="badge-tag">⚡ CHAMA DO ENCANTAMENTO</span> ${titleCase(r.agent)} (${r.wow.count} WoWs)`; badgesList.appendChild(li); }
+    if(r.bossBattle && r.bossBattle.weekly){ any = true; const li = document.createElement('li'); li.innerHTML = `<span class="badge-tag">👑 BOSS BATTLE DA SEMANA</span> ${titleCase(r.agent)}`; badgesList.appendChild(li); }
+    if(r.bossBattle && r.bossBattle.monthly){ any = true; const li = document.createElement('li'); li.innerHTML = `<span class="badge-tag">👑 BOSS BATTLE DO MÊS</span> ${titleCase(r.agent)}`; badgesList.appendChild(li); }
   });
   if(!any){
-    badgesList.innerHTML = '<li>Nenhum badge de evento único neste mês ainda — bora buscar!</li>';
-  }
-
-  // Boss battle panel
-  const bosses = results.filter(r=>r.bossBattle);
-  const bossContent = document.getElementById('bossContent');
-  if(bosses.length === 0){
-    bossContent.innerHTML = `<p>Nenhum chefão derrotado em ${data.monthLabel} ainda. Precisa ser Top Performer com os dois tNPS (chat e phone) acima da meta.</p>`;
-  }else{
-    bossContent.innerHTML = bosses.map(r => `
-      <div style="margin-bottom:16px;">
-        <div style="font-family:'Press Start 2P',monospace;font-size:12px;color:var(--yellow);">BOSS DE ${data.monthLabel}</div>
-        <div class="name" style="font-size:24px;">${titleCase(r.agent)}</div>
-        <div class="boss-hp"><div class="boss-hp-fill" style="width:0%"></div></div>
-        <div>tNPS chat ${r.tnps.chat} · tNPS phone ${r.tnps.phone} · +80 pts</div>
-      </div>
-    `).join('');
+    badgesList.innerHTML = '<li>Nenhum badge conquistado ainda em setembro — a competição começou hoje! Primeiro fechamento semanal: 07/09/2026.</li>';
   }
 }
 
