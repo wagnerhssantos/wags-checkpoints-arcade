@@ -7,7 +7,8 @@ com estética de videogame anos 90. Identidade visual: só o mascote (pão de qu
 fechamentos semanais (toda segunda-feira) para Excelência, tNPS e Engajamento, e resultado final
 do mês para Skip, Unanswered Calls, Transfer indevido, Expired jobs e Time Spent. Na v4, os tetos
 de pontos foram recalibrados pra ficarem iguais entre os grupos de agente (geral / só chat / só
-phone / backoffice) — ver "Regras do jogo" abaixo.
+phone / backoffice). Na v5, o Boss Battle passou a valer de verdade, com um critério de qualidade
+por média dos canais de cada grupo — ver "Regras do jogo" abaixo.
 
 ## Como funciona
 
@@ -69,12 +70,13 @@ regra geral.
 - **WoW**: +10 pts por WoW aprovada. **Chama do Encantamento**: 3+ WoWs no mês = +40, +10/extra.
 - **Engajamento nos canais** (semanal): quem mais comentou e incentivou o time na semana nos canais
   #os_incríveis_csi, #wow_csi e #cx-csi-informa ganha +10 pts.
-- **Boss Battle da semana**: Top Performer da semana com tNPS chat e phone ≥85 na semana: +20 pts.
-  **Boss Battle do mês**: mesma lógica, apurada no mês: +50 pts. **Ainda não implementado** no motor
-  de pontos (campo sempre `false` hoje) — e o critério como está escrito só é atingível por quem tem
-  os dois canais. Antes de ligar, precisa virar um critério por grupo (ex: "só chat" cumpre com tNPS
-  chat ≥85; backoffice cumpre com Time Spent na faixa máxima) pra não recriar o mesmo problema de
-  teto desigual que a v4 acabou de corrigir nos pontos.
+- **Boss Battle da semana**: Top Performer (proxy: maior soma de Excelência+tNPS na semana) que
+  também cumpra o critério de qualidade daquele grupo: +20 pts. **Boss Battle do mês**: mesma
+  lógica, mas com o agente de maior total acumulado no mês (incluindo Boss Battles semanais já
+  ganhas): +50 pts. **Critério de qualidade (v5, por média dos canais do grupo)**: geral = média
+  entre tNPS chat e tNPS phone ≥85; só chat = tNPS chat ≥85; só phone = tNPS phone ≥85; backoffice
+  (sem tNPS) = Time Spent na faixa máxima (<5min). Se o Top Performer da vez não cumprir o critério,
+  ninguém ganha o Boss Battle naquele período. Empate no placar é resolvido alfabeticamente.
 
 ### Badges e prêmios
 
@@ -96,11 +98,11 @@ regra geral.
 
 ## Limitações conhecidas e decisões em aberto
 
-- **Boss Battle (semana e mês) ainda não está implementado** no motor de pontos — os campos
-  `bossBattle.weekly`/`bossBattle.monthly` sempre retornam `false`. Além de implementar, o critério
-  precisa ser adaptado por grupo (hoje exige tNPS chat E phone ≥85, o que "só chat", "só phone" e
-  "backoffice" não conseguem cumprir de jeito nenhum — recriaria o mesmo problema de teto desigual
-  que a v4 acabou de corrigir nos pontos). Próxima passada recomendada.
+- **"Top Performer da semana" é um proxy**, não um campo oficial do Databricks (só existe Top
+  Performer mensal em `usr.csinnovation.csiagentsmetricsoficial`). O proxy usado é o agente com
+  maior soma de Excelência+tNPS naquela semana específica (Engajamento fica de fora — é métrica de
+  participação, não de qualidade de atendimento). Vale a pena revisar se um Top Performer oficial
+  semanal passar a existir na fonte de dados.
 - **Classificação de canal por agente** (geral / só chat / só phone / backoffice) é baseada no
   histórico de agosto/26 (quem tinha ou não linhas em `unanswered_calls`/tNPS phone). Hoje:
   andresa.britto, caren.paraiso e lucrecia.santos = só chat; nenhum agente identificado como
@@ -131,6 +133,19 @@ regra geral.
 - ~~Excelência em dobro só pro backoffice, sem justificativa clara~~ — corrigido: Excelência agora
   vale igual pra todo mundo; a compensação do backoffice vive inteira no Skip (dobrado) e no Time
   Spent (que ocupa o espaço do tNPS).
+
+### Resolvido na v5 (não é mais uma limitação)
+
+- ~~Boss Battle não implementado no motor de pontos~~ — corrigido: `compute_boss_battle()` em
+  `scripts/generate_scoreboard.py` calcula semana a semana (e o fechamento mensal) quem é o Top
+  Performer (proxy) e se cumpre o critério de qualidade do seu grupo, preenchendo
+  `bossBattle.weekly`/`bossBattle.monthly` com valores reais.
+- ~~Critério "tNPS chat E phone ≥85" impossível pra quem só tem um canal~~ — corrigido: o critério
+  agora é a MÉDIA dos canais aplicáveis ao grupo (ver seção "Regras do jogo" acima), o que unifica
+  a exigência do mesmo jeito que a v4 unificou os tetos de pontos.
+- Testado com dados sintéticos (não há fechamento real ainda — o primeiro é 07/09/2026): critério
+  de qualidade por média, substituição por Time Spent no backoffice, e desempate alfabético em caso
+  de empate no placar — todos verificados antes da publicação.
 
 ## Automação
 
