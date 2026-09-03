@@ -135,6 +135,7 @@
 
     <div class="panel">
       <h2>PLACAR COMPLETO — SETEMBRO/2026</h2>
+      <p class="pending">Cada coluna mostra apenas os PONTOS conquistados na métrica — os números da métrica em si ficam no acompanhamento individual com a sua liderança.</p>
       <div style="overflow-x:auto;">
         <table id="fullTable">
           <thead>
@@ -290,7 +291,7 @@ function render(data){
   const naCell = () => `<td class="na">—</td>`;
   results.forEach((r,i)=>{
     const tr = document.createElement('tr');
-    const opsCell = (m) => (m && m.applicable === false) ? `<td class="na">—</td>` : `<td>${(m && m.pct != null) ? m.pct + '% ' : (m && m.minutes != null ? m.minutes + 'min ' : '')}(${m ? m.pts : 0})</td>`;
+    const opsCell = (m) => (m && m.applicable === false) ? `<td class="na">—</td>` : `<td>${m ? m.pts : 0}</td>`;
     const tnpsChatCell = r.tnps.applicable.chat ? `<td>${r.tnps.chatPts}</td>` : naCell();
     const tnpsPhoneCell = r.tnps.applicable.phone ? `<td>${r.tnps.phonePts}</td>` : naCell();
     tr.innerHTML = `
@@ -307,7 +308,7 @@ function render(data){
       ${opsCell(r.ops.expired)}
       ${opsCell(r.ops.timeSpent)}
       <td>${r.engagement.pts}</td>
-      <td>${r.wow.count} (${r.wow.pts})</td>
+      <td>${r.wow.pts}</td>
     `;
     tbody.appendChild(tr);
   });
@@ -317,7 +318,7 @@ function render(data){
   let any = false;
   results.forEach(r=>{
     if(r.estreiaTop){ any = true; const li = document.createElement('li'); li.innerHTML = `<span class="badge-tag">★ ESTREIA TOP</span> ${titleCase(r.agent)}`; badgesList.appendChild(li); }
-    if(r.wow.chama){ any = true; const li = document.createElement('li'); li.innerHTML = `<span class="badge-tag">⚡ CHAMA DO ENCANTAMENTO</span> ${titleCase(r.agent)} (${r.wow.count} WoWs)`; badgesList.appendChild(li); }
+    if(r.wow.chama){ any = true; const li = document.createElement('li'); li.innerHTML = `<span class="badge-tag">⚡ CHAMA DO ENCANTAMENTO</span> ${titleCase(r.agent)}`; badgesList.appendChild(li); }
     if(r.bossBattle && r.bossBattle.weekly){ any = true; const li = document.createElement('li'); li.innerHTML = `<span class="badge-tag">👑 BOSS BATTLE DA SEMANA</span> ${titleCase(r.agent)}`; badgesList.appendChild(li); }
     if(r.bossBattle && r.bossBattle.monthly){ any = true; const li = document.createElement('li'); li.innerHTML = `<span class="badge-tag">👑 BOSS BATTLE DO MÊS</span> ${titleCase(r.agent)}`; badgesList.appendChild(li); }
   });
