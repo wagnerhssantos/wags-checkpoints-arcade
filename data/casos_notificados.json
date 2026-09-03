@@ -1,0 +1,7 @@
+{
+  "_doc": "Controle de casos (Skip / Transfer indevido / Expired jobs / Unanswered Calls) já enviados por DM aos agentes do Time Wags. Usado pela skill 'casos-metricas-dm-wags' para não repetir o mesmo caso em reports diferentes. Chave por caso: '<tipo>:<dist_key>' para casos de cx_canonical_activities e 'unans:<job__id>' para ligações não atendidas.",
+  "month": "2026-09",
+  "updatedAt": null,
+  "lastRunAt": null,
+  "sent": {}
+}
