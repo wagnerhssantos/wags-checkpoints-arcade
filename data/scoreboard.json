@@ -4,8 +4,8 @@
   "competitionScope": "Competição válida apenas para setembro/2026",
   "closedMondays": [],
   "dataAsOf": "2026-09-03",
-  "dataAsOfNote": "Métricas mensais (Skip, Transfer indevido, Expired, Time Spent) refletem 01/09 apenas — o ETL de etl.br__dataset.cx_canonical_activities ainda não processou 02/09 e 03/09. Unanswered Calls vai até 02/09. WoW acumulado até 03/09. Nenhuma segunda-feira de fechamento ocorreu ainda (a 1ª é 07/09), então Excelência, tNPS Chat/Phone, Engajamento nos canais e Boss Battle continuam zerados para todo mundo.",
-  "generatedAt": "2026-09-03 12:00 UTC",
+  "dataAsOfNote": "Métricas mensais (Skip, Transfer indevido, Expired, Time Spent) refletem 01/09 apenas — o ETL de etl.br__dataset.cx_canonical_activities ainda não processou 02/09 e 03/09 para o time. Unanswered Calls vai até 02/09. WoW acumulado até 03/09 (manhã). Nenhuma segunda-feira de fechamento ocorreu ainda (a 1ª é 07/09), então Excelência, tNPS Chat/Phone, Engajamento nos canais e Boss Battle continuam zerados para todo mundo.",
+  "generatedAt": "2026-09-03 14:08 UTC",
   "results": [
     {
       "agent": "randal.savino",
