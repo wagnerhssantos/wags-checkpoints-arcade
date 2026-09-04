@@ -4,373 +4,12 @@
   "competitionScope": "Competição válida apenas para setembro/2026",
   "closedMondays": [],
   "dataAsOf": "2026-09-04",
-  "dataAsOfNote": "Métricas mensais (Skip, Transfer indevido, Expired) e Time Spent vão até 02/09 — o ETL de cx_canonical_activities ainda não processou 03 e 04/09. Unanswered Calls vai até 03/09. WoW até 04/09. Excelência, tNPS semanal, Engajamento e Boss Battle da semana ainda estão zerados: o primeiro fechamento semanal é na segunda-feira 07/09/2026. maycon.cardoso ainda não tem nenhum registro no período.",
-  "generatedAt": "2026-09-04 12:00 UTC",
+  "generatedAt": "2026-09-04 14:42 UTC",
   "results": [
     {
-      "agent": "lucas.cassimiro",
-      "group": "geral",
-      "total": 45,
-      "level": "BRONZE",
-      "excelencia": {
-        "weekly": [],
-        "total": 0
-      },
-      "tnps": {
-        "chat": [],
-        "chatPts": 0,
-        "phone": [],
-        "phonePts": 0,
-        "applicable": {
-          "chat": true,
-          "phone": true
-        }
-      },
-      "ops": {
-        "skip": {
-          "pct": 2.33,
-          "pts": 10
-        },
-        "unanswered": {
-          "pct": 3.33,
-          "pts": 5,
-          "applicable": true
-        },
-        "transferIndevido": {
-          "pct": 0.0,
-          "pts": 10
-        },
-        "expired": {
-          "pct": 0.0,
-          "pts": 10
-        },
-        "timeSpent": {
-          "minutes": 5.36,
-          "pts": 0,
-          "applicable": false
-        },
-        "total": 35
-      },
-      "wow": {
-        "count": 1,
-        "pts": 10,
-        "chama": false
-      },
-      "engagement": {
-        "pts": 0
-      },
-      "bossBattle": {
-        "weekly": false,
-        "monthly": false,
-        "weeklyPts": 0,
-        "monthlyPts": 0
-      },
-      "estreiaTop": false
-    },
-    {
-      "agent": "gabrielle.macedo",
-      "group": "geral",
-      "total": 40,
-      "level": "BRONZE",
-      "excelencia": {
-        "weekly": [],
-        "total": 0
-      },
-      "tnps": {
-        "chat": [],
-        "chatPts": 0,
-        "phone": [],
-        "phonePts": 0,
-        "applicable": {
-          "chat": true,
-          "phone": true
-        }
-      },
-      "ops": {
-        "skip": {
-          "pct": 2.78,
-          "pts": 10
-        },
-        "unanswered": {
-          "pct": 0.0,
-          "pts": 10,
-          "applicable": true
-        },
-        "transferIndevido": {
-          "pct": 1.39,
-          "pts": 10
-        },
-        "expired": {
-          "pct": 0.0,
-          "pts": 10
-        },
-        "timeSpent": {
-          "minutes": 7.91,
-          "pts": 0,
-          "applicable": false
-        },
-        "total": 40
-      },
-      "wow": {
-        "count": 0,
-        "pts": 0,
-        "chama": false
-      },
-      "engagement": {
-        "pts": 0
-      },
-      "bossBattle": {
-        "weekly": false,
-        "monthly": false,
-        "weeklyPts": 0,
-        "monthlyPts": 0
-      },
-      "estreiaTop": false
-    },
-    {
-      "agent": "thiago.guedes",
-      "group": "geral",
-      "total": 35,
-      "level": "BRONZE",
-      "excelencia": {
-        "weekly": [],
-        "total": 0
-      },
-      "tnps": {
-        "chat": [],
-        "chatPts": 0,
-        "phone": [],
-        "phonePts": 0,
-        "applicable": {
-          "chat": true,
-          "phone": true
-        }
-      },
-      "ops": {
-        "skip": {
-          "pct": 5.26,
-          "pts": 5
-        },
-        "unanswered": {
-          "pct": 0.0,
-          "pts": 10,
-          "applicable": true
-        },
-        "transferIndevido": {
-          "pct": 0.0,
-          "pts": 10
-        },
-        "expired": {
-          "pct": 0.0,
-          "pts": 10
-        },
-        "timeSpent": {
-          "minutes": 7.08,
-          "pts": 0,
-          "applicable": false
-        },
-        "total": 35
-      },
-      "wow": {
-        "count": 0,
-        "pts": 0,
-        "chama": false
-      },
-      "engagement": {
-        "pts": 0
-      },
-      "bossBattle": {
-        "weekly": false,
-        "monthly": false,
-        "weeklyPts": 0,
-        "monthlyPts": 0
-      },
-      "estreiaTop": false
-    },
-    {
-      "agent": "angela.julia",
-      "group": "geral",
-      "total": 30,
-      "level": "BRONZE",
-      "excelencia": {
-        "weekly": [],
-        "total": 0
-      },
-      "tnps": {
-        "chat": [],
-        "chatPts": 0,
-        "phone": [],
-        "phonePts": 0,
-        "applicable": {
-          "chat": true,
-          "phone": true
-        }
-      },
-      "ops": {
-        "skip": {
-          "pct": 0.0,
-          "pts": 10
-        },
-        "unanswered": {
-          "pct": 0.0,
-          "pts": 10,
-          "applicable": true
-        },
-        "transferIndevido": {
-          "pct": 3.03,
-          "pts": 0
-        },
-        "expired": {
-          "pct": 0.0,
-          "pts": 10
-        },
-        "timeSpent": {
-          "minutes": 8.29,
-          "pts": 0,
-          "applicable": false
-        },
-        "total": 30
-      },
-      "wow": {
-        "count": 0,
-        "pts": 0,
-        "chama": false
-      },
-      "engagement": {
-        "pts": 0
-      },
-      "bossBattle": {
-        "weekly": false,
-        "monthly": false,
-        "weeklyPts": 0,
-        "monthlyPts": 0
-      },
-      "estreiaTop": false
-    },
-    {
-      "agent": "randal.savino",
-      "group": "geral",
-      "total": 30,
-      "level": "BRONZE",
-      "excelencia": {
-        "weekly": [],
-        "total": 0
-      },
-      "tnps": {
-        "chat": [],
-        "chatPts": 0,
-        "phone": [],
-        "phonePts": 0,
-        "applicable": {
-          "chat": true,
-          "phone": true
-        }
-      },
-      "ops": {
-        "skip": {
-          "pct": 1.82,
-          "pts": 10
-        },
-        "unanswered": {
-          "pct": 8.16,
-          "pts": 0,
-          "applicable": true
-        },
-        "transferIndevido": {
-          "pct": 5.45,
-          "pts": 0
-        },
-        "expired": {
-          "pct": 0.0,
-          "pts": 10
-        },
-        "timeSpent": {
-          "minutes": 9.43,
-          "pts": 0,
-          "applicable": false
-        },
-        "total": 20
-      },
-      "wow": {
-        "count": 1,
-        "pts": 10,
-        "chama": false
-      },
-      "engagement": {
-        "pts": 0
-      },
-      "bossBattle": {
-        "weekly": false,
-        "monthly": false,
-        "weeklyPts": 0,
-        "monthlyPts": 0
-      },
-      "estreiaTop": false
-    },
-    {
-      "agent": "angelica.almeida",
-      "group": "geral",
-      "total": 30,
-      "level": "BRONZE",
-      "excelencia": {
-        "weekly": [],
-        "total": 0
-      },
-      "tnps": {
-        "chat": [],
-        "chatPts": 0,
-        "phone": [],
-        "phonePts": 0,
-        "applicable": {
-          "chat": true,
-          "phone": true
-        }
-      },
-      "ops": {
-        "skip": {
-          "pct": 1.52,
-          "pts": 10
-        },
-        "unanswered": {
-          "pct": 0.0,
-          "pts": 10,
-          "applicable": true
-        },
-        "transferIndevido": {
-          "pct": 6.06,
-          "pts": 0
-        },
-        "expired": {
-          "pct": 3.03,
-          "pts": 0
-        },
-        "timeSpent": {
-          "minutes": 7.38,
-          "pts": 0,
-          "applicable": false
-        },
-        "total": 20
-      },
-      "wow": {
-        "count": 1,
-        "pts": 10,
-        "chama": false
-      },
-      "engagement": {
-        "pts": 0
-      },
-      "bossBattle": {
-        "weekly": false,
-        "monthly": false,
-        "weeklyPts": 0,
-        "monthlyPts": 0
-      },
-      "estreiaTop": false
-    },
-    {
-      "agent": "lucrecia.santos",
+      "agent": "andresa.britto",
       "group": "chat_only",
-      "total": 30,
+      "total": 0,
       "level": "BRONZE",
       "excelencia": {
         "weekly": [],
@@ -388,8 +27,8 @@
       },
       "ops": {
         "skip": {
-          "pct": 6.35,
-          "pts": 10
+          "pct": null,
+          "pts": 0
         },
         "unanswered": {
           "pct": null,
@@ -397,199 +36,19 @@
           "applicable": false
         },
         "transferIndevido": {
-          "pct": 0.0,
-          "pts": 10
-        },
-        "expired": {
-          "pct": 0.0,
-          "pts": 10
-        },
-        "timeSpent": {
-          "minutes": 3.36,
-          "pts": 0,
-          "applicable": false
-        },
-        "total": 30
-      },
-      "wow": {
-        "count": 0,
-        "pts": 0,
-        "chama": false
-      },
-      "engagement": {
-        "pts": 0
-      },
-      "bossBattle": {
-        "weekly": false,
-        "monthly": false,
-        "weeklyPts": 0,
-        "monthlyPts": 0
-      },
-      "estreiaTop": false
-    },
-    {
-      "agent": "marcelo.calixto",
-      "group": "geral",
-      "total": 30,
-      "level": "BRONZE",
-      "excelencia": {
-        "weekly": [],
-        "total": 0
-      },
-      "tnps": {
-        "chat": [],
-        "chatPts": 0,
-        "phone": [],
-        "phonePts": 0,
-        "applicable": {
-          "chat": true,
-          "phone": true
-        }
-      },
-      "ops": {
-        "skip": {
-          "pct": 0.0,
-          "pts": 10
-        },
-        "unanswered": {
-          "pct": 0.0,
-          "pts": 10,
-          "applicable": true
-        },
-        "transferIndevido": {
-          "pct": 5.36,
-          "pts": 0
-        },
-        "expired": {
-          "pct": 0.0,
-          "pts": 10
-        },
-        "timeSpent": {
-          "minutes": 6.94,
-          "pts": 0,
-          "applicable": false
-        },
-        "total": 30
-      },
-      "wow": {
-        "count": 0,
-        "pts": 0,
-        "chama": false
-      },
-      "engagement": {
-        "pts": 0
-      },
-      "bossBattle": {
-        "weekly": false,
-        "monthly": false,
-        "weeklyPts": 0,
-        "monthlyPts": 0
-      },
-      "estreiaTop": false
-    },
-    {
-      "agent": "caren.paraiso",
-      "group": "chat_only",
-      "total": 24,
-      "level": "BRONZE",
-      "excelencia": {
-        "weekly": [],
-        "total": 0
-      },
-      "tnps": {
-        "chat": [],
-        "chatPts": 0,
-        "phone": [],
-        "phonePts": 0,
-        "applicable": {
-          "chat": true,
-          "phone": false
-        }
-      },
-      "ops": {
-        "skip": {
-          "pct": 8.7,
-          "pts": 4
-        },
-        "unanswered": {
           "pct": null,
-          "pts": 0,
-          "applicable": false
-        },
-        "transferIndevido": {
-          "pct": 0.0,
-          "pts": 10
-        },
-        "expired": {
-          "pct": 0.0,
-          "pts": 10
-        },
-        "timeSpent": {
-          "minutes": 12.65,
-          "pts": 0,
-          "applicable": false
-        },
-        "total": 24
-      },
-      "wow": {
-        "count": 0,
-        "pts": 0,
-        "chama": false
-      },
-      "engagement": {
-        "pts": 0
-      },
-      "bossBattle": {
-        "weekly": false,
-        "monthly": false,
-        "weeklyPts": 0,
-        "monthlyPts": 0
-      },
-      "estreiaTop": false
-    },
-    {
-      "agent": "giulia.machado",
-      "group": "geral",
-      "total": 22,
-      "level": "BRONZE",
-      "excelencia": {
-        "weekly": [],
-        "total": 0
-      },
-      "tnps": {
-        "chat": [],
-        "chatPts": 0,
-        "phone": [],
-        "phonePts": 0,
-        "applicable": {
-          "chat": true,
-          "phone": true
-        }
-      },
-      "ops": {
-        "skip": {
-          "pct": 0.0,
-          "pts": 10
-        },
-        "unanswered": {
-          "pct": 5.88,
-          "pts": 2,
-          "applicable": true
-        },
-        "transferIndevido": {
-          "pct": 6.76,
           "pts": 0
         },
         "expired": {
-          "pct": 0.0,
-          "pts": 10
+          "pct": null,
+          "pts": 0
         },
         "timeSpent": {
-          "minutes": 5.71,
+          "minutes": null,
           "pts": 0,
           "applicable": false
         },
-        "total": 22
+        "total": 0
       },
       "wow": {
         "count": 0,
@@ -610,7 +69,7 @@
     {
       "agent": "kissila.oliveira",
       "group": "geral",
-      "total": 20,
+      "total": 0,
       "level": "BRONZE",
       "excelencia": {
         "weekly": [],
@@ -628,28 +87,448 @@
       },
       "ops": {
         "skip": {
-          "pct": 0.0,
-          "pts": 10
+          "pct": null,
+          "pts": 0
         },
         "unanswered": {
-          "pct": 0.0,
-          "pts": 10,
+          "pct": null,
+          "pts": 0,
           "applicable": true
         },
         "transferIndevido": {
-          "pct": 4.65,
+          "pct": null,
           "pts": 0
         },
         "expired": {
-          "pct": 4.65,
+          "pct": null,
           "pts": 0
         },
         "timeSpent": {
-          "minutes": 7.56,
+          "minutes": null,
           "pts": 0,
           "applicable": false
         },
-        "total": 20
+        "total": 0
+      },
+      "wow": {
+        "count": 0,
+        "pts": 0,
+        "chama": false
+      },
+      "engagement": {
+        "pts": 0
+      },
+      "bossBattle": {
+        "weekly": false,
+        "monthly": false,
+        "weeklyPts": 0,
+        "monthlyPts": 0
+      },
+      "estreiaTop": false
+    },
+    {
+      "agent": "lucas.cassimiro",
+      "group": "geral",
+      "total": 0,
+      "level": "BRONZE",
+      "excelencia": {
+        "weekly": [],
+        "total": 0
+      },
+      "tnps": {
+        "chat": [],
+        "chatPts": 0,
+        "phone": [],
+        "phonePts": 0,
+        "applicable": {
+          "chat": true,
+          "phone": true
+        }
+      },
+      "ops": {
+        "skip": {
+          "pct": null,
+          "pts": 0
+        },
+        "unanswered": {
+          "pct": null,
+          "pts": 0,
+          "applicable": true
+        },
+        "transferIndevido": {
+          "pct": null,
+          "pts": 0
+        },
+        "expired": {
+          "pct": null,
+          "pts": 0
+        },
+        "timeSpent": {
+          "minutes": null,
+          "pts": 0,
+          "applicable": false
+        },
+        "total": 0
+      },
+      "wow": {
+        "count": 0,
+        "pts": 0,
+        "chama": false
+      },
+      "engagement": {
+        "pts": 0
+      },
+      "bossBattle": {
+        "weekly": false,
+        "monthly": false,
+        "weeklyPts": 0,
+        "monthlyPts": 0
+      },
+      "estreiaTop": false
+    },
+    {
+      "agent": "angela.julia",
+      "group": "geral",
+      "total": 0,
+      "level": "BRONZE",
+      "excelencia": {
+        "weekly": [],
+        "total": 0
+      },
+      "tnps": {
+        "chat": [],
+        "chatPts": 0,
+        "phone": [],
+        "phonePts": 0,
+        "applicable": {
+          "chat": true,
+          "phone": true
+        }
+      },
+      "ops": {
+        "skip": {
+          "pct": null,
+          "pts": 0
+        },
+        "unanswered": {
+          "pct": null,
+          "pts": 0,
+          "applicable": true
+        },
+        "transferIndevido": {
+          "pct": null,
+          "pts": 0
+        },
+        "expired": {
+          "pct": null,
+          "pts": 0
+        },
+        "timeSpent": {
+          "minutes": null,
+          "pts": 0,
+          "applicable": false
+        },
+        "total": 0
+      },
+      "wow": {
+        "count": 0,
+        "pts": 0,
+        "chama": false
+      },
+      "engagement": {
+        "pts": 0
+      },
+      "bossBattle": {
+        "weekly": false,
+        "monthly": false,
+        "weeklyPts": 0,
+        "monthlyPts": 0
+      },
+      "estreiaTop": false
+    },
+    {
+      "agent": "gabrielle.macedo",
+      "group": "geral",
+      "total": 0,
+      "level": "BRONZE",
+      "excelencia": {
+        "weekly": [],
+        "total": 0
+      },
+      "tnps": {
+        "chat": [],
+        "chatPts": 0,
+        "phone": [],
+        "phonePts": 0,
+        "applicable": {
+          "chat": true,
+          "phone": true
+        }
+      },
+      "ops": {
+        "skip": {
+          "pct": null,
+          "pts": 0
+        },
+        "unanswered": {
+          "pct": null,
+          "pts": 0,
+          "applicable": true
+        },
+        "transferIndevido": {
+          "pct": null,
+          "pts": 0
+        },
+        "expired": {
+          "pct": null,
+          "pts": 0
+        },
+        "timeSpent": {
+          "minutes": null,
+          "pts": 0,
+          "applicable": false
+        },
+        "total": 0
+      },
+      "wow": {
+        "count": 0,
+        "pts": 0,
+        "chama": false
+      },
+      "engagement": {
+        "pts": 0
+      },
+      "bossBattle": {
+        "weekly": false,
+        "monthly": false,
+        "weeklyPts": 0,
+        "monthlyPts": 0
+      },
+      "estreiaTop": false
+    },
+    {
+      "agent": "randal.savino",
+      "group": "geral",
+      "total": 0,
+      "level": "BRONZE",
+      "excelencia": {
+        "weekly": [],
+        "total": 0
+      },
+      "tnps": {
+        "chat": [],
+        "chatPts": 0,
+        "phone": [],
+        "phonePts": 0,
+        "applicable": {
+          "chat": true,
+          "phone": true
+        }
+      },
+      "ops": {
+        "skip": {
+          "pct": null,
+          "pts": 0
+        },
+        "unanswered": {
+          "pct": null,
+          "pts": 0,
+          "applicable": true
+        },
+        "transferIndevido": {
+          "pct": null,
+          "pts": 0
+        },
+        "expired": {
+          "pct": null,
+          "pts": 0
+        },
+        "timeSpent": {
+          "minutes": null,
+          "pts": 0,
+          "applicable": false
+        },
+        "total": 0
+      },
+      "wow": {
+        "count": 0,
+        "pts": 0,
+        "chama": false
+      },
+      "engagement": {
+        "pts": 0
+      },
+      "bossBattle": {
+        "weekly": false,
+        "monthly": false,
+        "weeklyPts": 0,
+        "monthlyPts": 0
+      },
+      "estreiaTop": false
+    },
+    {
+      "agent": "caren.paraiso",
+      "group": "chat_only",
+      "total": 0,
+      "level": "BRONZE",
+      "excelencia": {
+        "weekly": [],
+        "total": 0
+      },
+      "tnps": {
+        "chat": [],
+        "chatPts": 0,
+        "phone": [],
+        "phonePts": 0,
+        "applicable": {
+          "chat": true,
+          "phone": false
+        }
+      },
+      "ops": {
+        "skip": {
+          "pct": null,
+          "pts": 0
+        },
+        "unanswered": {
+          "pct": null,
+          "pts": 0,
+          "applicable": false
+        },
+        "transferIndevido": {
+          "pct": null,
+          "pts": 0
+        },
+        "expired": {
+          "pct": null,
+          "pts": 0
+        },
+        "timeSpent": {
+          "minutes": null,
+          "pts": 0,
+          "applicable": false
+        },
+        "total": 0
+      },
+      "wow": {
+        "count": 0,
+        "pts": 0,
+        "chama": false
+      },
+      "engagement": {
+        "pts": 0
+      },
+      "bossBattle": {
+        "weekly": false,
+        "monthly": false,
+        "weeklyPts": 0,
+        "monthlyPts": 0
+      },
+      "estreiaTop": false
+    },
+    {
+      "agent": "angelica.almeida",
+      "group": "geral",
+      "total": 0,
+      "level": "BRONZE",
+      "excelencia": {
+        "weekly": [],
+        "total": 0
+      },
+      "tnps": {
+        "chat": [],
+        "chatPts": 0,
+        "phone": [],
+        "phonePts": 0,
+        "applicable": {
+          "chat": true,
+          "phone": true
+        }
+      },
+      "ops": {
+        "skip": {
+          "pct": null,
+          "pts": 0
+        },
+        "unanswered": {
+          "pct": null,
+          "pts": 0,
+          "applicable": true
+        },
+        "transferIndevido": {
+          "pct": null,
+          "pts": 0
+        },
+        "expired": {
+          "pct": null,
+          "pts": 0
+        },
+        "timeSpent": {
+          "minutes": null,
+          "pts": 0,
+          "applicable": false
+        },
+        "total": 0
+      },
+      "wow": {
+        "count": 0,
+        "pts": 0,
+        "chama": false
+      },
+      "engagement": {
+        "pts": 0
+      },
+      "bossBattle": {
+        "weekly": false,
+        "monthly": false,
+        "weeklyPts": 0,
+        "monthlyPts": 0
+      },
+      "estreiaTop": false
+    },
+    {
+      "agent": "giulia.machado",
+      "group": "geral",
+      "total": 0,
+      "level": "BRONZE",
+      "excelencia": {
+        "weekly": [],
+        "total": 0
+      },
+      "tnps": {
+        "chat": [],
+        "chatPts": 0,
+        "phone": [],
+        "phonePts": 0,
+        "applicable": {
+          "chat": true,
+          "phone": true
+        }
+      },
+      "ops": {
+        "skip": {
+          "pct": null,
+          "pts": 0
+        },
+        "unanswered": {
+          "pct": null,
+          "pts": 0,
+          "applicable": true
+        },
+        "transferIndevido": {
+          "pct": null,
+          "pts": 0
+        },
+        "expired": {
+          "pct": null,
+          "pts": 0
+        },
+        "timeSpent": {
+          "minutes": null,
+          "pts": 0,
+          "applicable": false
+        },
+        "total": 0
       },
       "wow": {
         "count": 0,
@@ -670,7 +549,7 @@
     {
       "agent": "guilherme.zunareli",
       "group": "geral",
-      "total": 8,
+      "total": 0,
       "level": "BRONZE",
       "excelencia": {
         "weekly": [],
@@ -688,28 +567,28 @@
       },
       "ops": {
         "skip": {
-          "pct": 10.67,
-          "pts": -2
+          "pct": null,
+          "pts": 0
         },
         "unanswered": {
-          "pct": 13.64,
+          "pct": null,
           "pts": 0,
           "applicable": true
         },
         "transferIndevido": {
-          "pct": 1.33,
-          "pts": 10
+          "pct": null,
+          "pts": 0
         },
         "expired": {
-          "pct": 6.67,
+          "pct": null,
           "pts": 0
         },
         "timeSpent": {
-          "minutes": 5.99,
+          "minutes": null,
           "pts": 0,
           "applicable": false
         },
-        "total": 8
+        "total": 0
       },
       "wow": {
         "count": 0,
@@ -728,9 +607,9 @@
       "estreiaTop": false
     },
     {
-      "agent": "andresa.britto",
+      "agent": "lucrecia.santos",
       "group": "chat_only",
-      "total": 6,
+      "total": 0,
       "level": "BRONZE",
       "excelencia": {
         "weekly": [],
@@ -748,8 +627,8 @@
       },
       "ops": {
         "skip": {
-          "pct": 11.86,
-          "pts": -4
+          "pct": null,
+          "pts": 0
         },
         "unanswered": {
           "pct": null,
@@ -757,19 +636,79 @@
           "applicable": false
         },
         "transferIndevido": {
-          "pct": 5.08,
+          "pct": null,
           "pts": 0
         },
         "expired": {
-          "pct": 1.69,
-          "pts": 10
+          "pct": null,
+          "pts": 0
         },
         "timeSpent": {
-          "minutes": 6.13,
+          "minutes": null,
           "pts": 0,
           "applicable": false
         },
-        "total": 6
+        "total": 0
+      },
+      "wow": {
+        "count": 0,
+        "pts": 0,
+        "chama": false
+      },
+      "engagement": {
+        "pts": 0
+      },
+      "bossBattle": {
+        "weekly": false,
+        "monthly": false,
+        "weeklyPts": 0,
+        "monthlyPts": 0
+      },
+      "estreiaTop": false
+    },
+    {
+      "agent": "marcelo.calixto",
+      "group": "geral",
+      "total": 0,
+      "level": "BRONZE",
+      "excelencia": {
+        "weekly": [],
+        "total": 0
+      },
+      "tnps": {
+        "chat": [],
+        "chatPts": 0,
+        "phone": [],
+        "phonePts": 0,
+        "applicable": {
+          "chat": true,
+          "phone": true
+        }
+      },
+      "ops": {
+        "skip": {
+          "pct": null,
+          "pts": 0
+        },
+        "unanswered": {
+          "pct": null,
+          "pts": 0,
+          "applicable": true
+        },
+        "transferIndevido": {
+          "pct": null,
+          "pts": 0
+        },
+        "expired": {
+          "pct": null,
+          "pts": 0
+        },
+        "timeSpent": {
+          "minutes": null,
+          "pts": 0,
+          "applicable": false
+        },
+        "total": 0
       },
       "wow": {
         "count": 0,
@@ -789,6 +728,66 @@
     },
     {
       "agent": "maycon.cardoso",
+      "group": "geral",
+      "total": 0,
+      "level": "BRONZE",
+      "excelencia": {
+        "weekly": [],
+        "total": 0
+      },
+      "tnps": {
+        "chat": [],
+        "chatPts": 0,
+        "phone": [],
+        "phonePts": 0,
+        "applicable": {
+          "chat": true,
+          "phone": true
+        }
+      },
+      "ops": {
+        "skip": {
+          "pct": null,
+          "pts": 0
+        },
+        "unanswered": {
+          "pct": null,
+          "pts": 0,
+          "applicable": true
+        },
+        "transferIndevido": {
+          "pct": null,
+          "pts": 0
+        },
+        "expired": {
+          "pct": null,
+          "pts": 0
+        },
+        "timeSpent": {
+          "minutes": null,
+          "pts": 0,
+          "applicable": false
+        },
+        "total": 0
+      },
+      "wow": {
+        "count": 0,
+        "pts": 0,
+        "chama": false
+      },
+      "engagement": {
+        "pts": 0
+      },
+      "bossBattle": {
+        "weekly": false,
+        "monthly": false,
+        "weeklyPts": 0,
+        "monthlyPts": 0
+      },
+      "estreiaTop": false
+    },
+    {
+      "agent": "thiago.guedes",
       "group": "geral",
       "total": 0,
       "level": "BRONZE",
