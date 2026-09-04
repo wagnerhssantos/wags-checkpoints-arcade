@@ -1,8 +1,25 @@
 name: Atualizar placar WAGS CHECKPOINTS
 
+# ATENCAO: o cron foi REMOVIDO de proposito (04/09/2026).
+#
+# O fluxo principal de atualizacao do placar e a tarefa agendada do Cowork
+# (uai-modo-turbo-daily-refresh), que roda com acesso a Databricks, Google
+# Sheets e Slack e escreve data/scoreboard.json direto no repo.
+#
+# Enquanto este workflow rodava em cron, ele sobrescrevia o placar real com
+# um placar ZERADO: sem os secrets abaixo configurados, generate_scoreboard.py
+# falha nas queries, engole a excecao com um print de aviso, sai com codigo 0
+# e grava todo mundo com 0 pts -- e o passo de commit empurrava isso por cima
+# do resultado bom (aconteceu em 04/09/2026, commits f81f45e e f2af703).
+#
+# Deixe este workflow SOMENTE em workflow_dispatch (execucao manual). Antes de
+# reativar o cron, e preciso: (1) cadastrar os secrets DATABRICKS_HOST,
+# DATABRICKS_TOKEN, DATABRICKS_WAREHOUSE_ID e GOOGLE_SERVICE_ACCOUNT_JSON;
+# (2) fazer o script sair com codigo != 0 quando uma fonte falhar, em vez de
+# gravar zeros; e (3) decidir quem manda no arquivo, ja que o script nao tem
+# acesso ao Slack (o campo de Engajamento depende do Cowork).
+
 on:
-  schedule:
-    - cron: "0 11,17 * * 1-5"
   workflow_dispatch: {}
 
 permissions:
@@ -22,6 +39,23 @@ jobs:
 
       - name: Instalar dependencias
         run: pip install google-api-python-client google-auth
+
+      - name: Conferir secrets antes de gerar
+        env:
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+          DATABRICKS_WAREHOUSE_ID: ${{ secrets.DATABRICKS_WAREHOUSE_ID }}
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: |
+          faltando=""
+          for v in DATABRICKS_HOST DATABRICKS_TOKEN DATABRICKS_WAREHOUSE_ID GOOGLE_SERVICE_ACCOUNT_JSON; do
+            if [ -z "${!v}" ]; then faltando="$faltando $v"; fi
+          done
+          if [ -n "$faltando" ]; then
+            echo "::error::Secrets faltando:$faltando"
+            echo "Sem esses secrets o script gera um placar ZERADO e sobrescreve os dados reais. Abortando."
+            exit 1
+          fi
 
       - name: Gerar scoreboard.json
         env:
