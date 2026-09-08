@@ -8,7 +8,8 @@ fechamentos semanais (toda segunda-feira) para Excelência, tNPS e Engajamento, 
 do mês para Skip, Unanswered Calls, Transfer indevido, Expired jobs e Time Spent. Na v4, os tetos
 de pontos foram recalibrados pra ficarem iguais entre os grupos de agente (geral / só chat / só
 phone / backoffice). Na v5, o Boss Battle passou a valer de verdade, com um critério de qualidade
-por média dos canais de cada grupo — ver "Regras do jogo" abaixo.
+por média dos canais de cada grupo. Na **v6**, o Engajamento deixou de ser "quem mais postou leva
+tudo" e passou a contar as três formas de engajar — ver "Regras do jogo" abaixo.
 
 ## Como funciona
 
@@ -20,7 +21,7 @@ O topo da página sempre mostra **até que data os dados são** ("Dados até DD/
 porque nem toda métrica fecha no mesmo ritmo (semanal vs. mensal), e o ETL do Databricks tem um
 dia de atraso natural.
 
-## Regras do jogo (v4) — setembro/2026
+## Regras do jogo (v6) — setembro/2026
 
 **v4 recalibra os tetos de pontos pra ficarem IGUAIS nos 3 grupos** — 75 pts/semana e 40 pts/mês
 no máximo, não importa quantos canais o agente atende. Na v3, quem atendia só um canal (ou nenhum)
@@ -68,8 +69,13 @@ regra geral.
 ### Para todos
 
 - **WoW**: +10 pts por WoW aprovada. **Chama do Encantamento**: 3+ WoWs no mês = +40, +10/extra.
-- **Engajamento nos canais** (semanal): quem mais comentou e incentivou o time na semana nos canais
-  #os_incríveis_csi, #wow_csi e #cx-csi-informa ganha +10 pts.
+- **Engajamento nos canais (v6 — semanal, fecha toda segunda): +10 pts para QUEM ENGAJOU DE
+  QUALQUER FORMA na semana**, nos canais #os_incríveis_csi, #wow_csi e #cx-csi-informa. Conta
+  igualmente: (a) mensagem de nível superior no canal, (b) resposta em thread, **(c) curtida /
+  reação em post de colega**. Basta UMA dessas coisas para ganhar os 10 pts — não é ranking, não é
+  "quem mais participou". Quem não teve nenhum registro na semana fica com 0. O teto continua sendo
+  10 pts/semana (ninguém ganha 30 por fazer as três coisas), então os 75 pts/semana da v4 seguem
+  válidos.
 - **Boss Battle da semana**: Top Performer (proxy: maior soma de Excelência+tNPS na semana) que
   também cumpra o critério de qualidade daquele grupo: +20 pts. **Boss Battle do mês**: mesma
   lógica, mas com o agente de maior total acumulado no mês (incluindo Boss Battles semanais já
@@ -77,6 +83,8 @@ regra geral.
   entre tNPS chat e tNPS phone ≥85; só chat = tNPS chat ≥85; só phone = tNPS phone ≥85; backoffice
   (sem tNPS) = Time Spent na faixa máxima (<5min). Se o Top Performer da vez não cumprir o critério,
   ninguém ganha o Boss Battle naquele período. Empate no placar é resolvido alfabeticamente.
+  Engajamento fica de fora do cálculo do Boss Battle — é métrica de participação, não de qualidade
+  de atendimento.
 
 ### Badges e prêmios
 
@@ -94,15 +102,33 @@ regra geral.
 | Skip / Transfer indevido / Expired / Time Spent | `etl.br__dataset.cx_canonical_activities` (`status`, `is_transfer_indevido`, `mount_time_spent`, `net_time_spent`) | Mensal (acumulado até hoje) |
 | Unanswered Calls | `usr.cx_golden_layer.unanswered_calls` (`queue_event__actor`, `ringing`, `no_answer`) | Mensal (acumulado até hoje) |
 | WoW | Planilha "Base Faísca H22026" | Mensal (acumulado) |
-| Engajamento nos canais | Slack — #os_incríveis_csi (`C0AK68688EQ`), #wow_csi (`C090RS3739N`), #cx-csi-informa (`C0209GG9GQ7`) | Semanal |
+| Engajamento nos canais | Slack — #os_incríveis_csi (`C0AK68688EQ`), #wow_csi (`C090RS3739N`), #cx-csi-informa (`C0209GG9GQ7`). Mensagens via `slack_read_channel`, respostas via `slack_read_thread`, reações via `slack_get_reactions` | Semanal |
+
+### Como coletar o Engajamento (v6) — passo a passo para a tarefa agendada
+
+Para cada um dos 3 canais, na janela da semana fechada (segunda anterior 00:00 até domingo 23:59,
+America/Sao_Paulo):
+
+1. `slack_read_channel` com `response_format: "detailed"` — o detalhado é o que mostra
+   `Thread: N replies` e `Reactions:` em cada mensagem. Anote o `Message TS` de cada uma.
+2. Para cada mensagem com `Thread: N replies`, chame `slack_read_thread` e conte as respostas dos
+   agentes do roster.
+3. Para cada mensagem com `Reactions:`, chame `slack_get_reactions` e veja quais agentes do roster
+   reagiram.
+4. Grave em `data/engagement_override.json` no formato
+   `{"semana_iso": {"agente": {"msgs": N, "threads": N, "emojis": N, "postsReagidos": N, "score": N}}}`.
+   `score = 3*msgs + 2*threads + 1*postsReagidos` — serve só para ranquear intensidade no
+   acompanhamento individual, **não** define pontos.
+5. Pontuação: qualquer agente com `msgs`, `threads` ou `postsReagidos` > 0 ganha +10 na semana.
+
+Excluir sempre das contagens: o Wagner (liderança) e os bots (UAI, Faísca, Claude).
 
 ## Limitações conhecidas e decisões em aberto
 
 - **"Top Performer da semana" é um proxy**, não um campo oficial do Databricks (só existe Top
   Performer mensal em `usr.csinnovation.csiagentsmetricsoficial`). O proxy usado é o agente com
-  maior soma de Excelência+tNPS naquela semana específica (Engajamento fica de fora — é métrica de
-  participação, não de qualidade de atendimento). Vale a pena revisar se um Top Performer oficial
-  semanal passar a existir na fonte de dados.
+  maior soma de Excelência+tNPS naquela semana específica. Vale a pena revisar se um Top Performer
+  oficial semanal passar a existir na fonte de dados.
 - **Classificação de canal por agente** (geral / só chat / só phone / backoffice) é baseada no
   histórico de agosto/26 (quem tinha ou não linhas em `unanswered_calls`/tNPS phone). Hoje:
   andresa.britto, caren.paraiso e lucrecia.santos = só chat; nenhum agente identificado como
@@ -112,40 +138,45 @@ regra geral.
 - **"Alta volumetria"** (critério do Prêmio UAI de Qualidade) ainda não tem um limite numérico
   definido — hoje o badge fica pendente até definirmos o corte (ex: acima da mediana de atendimentos
   do time na semana).
-- **Engajamento nos canais**: a contagem de mensagens do Slack é feita pela tarefa agendada diária
-  (roda dentro do Cowork, com acesso ao Slack) e grava em `data/engagement_override.json`; o script
-  Python autônomo não tem acesso a essas ferramentas, então só lê esse arquivo se ele existir. Como
-  é "quem mais comentou ganha tudo" (não graduado), pode favorecer perfis mais falantes — avisar se
-  quiser trocar por uma régua graduada.
+- **Teto de 50 usuários por emoji no Slack**: a API `slack_get_reactions` lista no máximo 50 pessoas
+  por emoji (o total vem certo, a lista é que é truncada). Em posts CSI-wide muito curtidos isso
+  subestima quem reagiu. **Não afeta a pontuação da v6**, que é binária (engajou ou não) — mas
+  subestima os campos `emojis`/`postsReagidos` de quem mais reage. Só vira problema se um dia a
+  regra voltar a ser graduada.
+- **Engajamento não distingue intensidade (v6)**: como qualquer forma de engajar vale os mesmos 10
+  pts, quem responde 19 threads e quem dá uma curtida na semana pontuam igual. Foi uma escolha
+  deliberada — a métrica é de participação e serve pra puxar todo mundo pro canal, não pra
+  ranquear. O campo `score` no `engagement_override.json` preserva a intensidade caso a gente
+  queira usar num bônus separado depois.
 - **Níveis (Bronze/Prata/Ouro/Diamante)** foram recalibrados para o teto de pontos mais alto da v3
   (Diamante ≥300, Ouro ≥180, Prata ≥90), mas são provisórios — vamos ajustar depois dos primeiros
   fechamentos semanais reais de setembro.
-- **01/09/2026**: dia de início da competição. O ETL do Databricks ainda não tinha processado o
-  dia quando este snapshot foi gerado, e a 1ª segunda-feira de fechamento é 07/09/2026 — por isso
-  o placar começa zerado para todo mundo.
+- **01/09/2026**: dia de início da competição. A 1ª segunda-feira de fechamento foi 07/09/2026.
 
 ### Resolvido na v4 (não é mais uma limitação)
 
-- ~~Tetos de pontos desiguais entre grupos~~ — corrigido: 75 pts/semana e 40 pts/mês pros 3 grupos
-  (ver seção "Regras do jogo" acima e a docstring de `scripts/generate_scoreboard.py`).
-- ~~"Quem não atua em chat" (só phone) sem tabela elevada~~ — corrigido: tNPS Phone em dobro,
-  simétrico ao "só chat" (grupo ainda vazio hoje, mas a regra já existe caso alguém se encaixe).
+- ~~Tetos de pontos desiguais entre grupos~~ — corrigido: 75 pts/semana e 40 pts/mês pros 3 grupos.
+- ~~"Quem não atua em chat" (só phone) sem tabela elevada~~ — corrigido: tNPS Phone em dobro.
 - ~~Excelência em dobro só pro backoffice, sem justificativa clara~~ — corrigido: Excelência agora
-  vale igual pra todo mundo; a compensação do backoffice vive inteira no Skip (dobrado) e no Time
-  Spent (que ocupa o espaço do tNPS).
+  vale igual pra todo mundo.
 
 ### Resolvido na v5 (não é mais uma limitação)
 
-- ~~Boss Battle não implementado no motor de pontos~~ — corrigido: `compute_boss_battle()` em
-  `scripts/generate_scoreboard.py` calcula semana a semana (e o fechamento mensal) quem é o Top
-  Performer (proxy) e se cumpre o critério de qualidade do seu grupo, preenchendo
-  `bossBattle.weekly`/`bossBattle.monthly` com valores reais.
+- ~~Boss Battle não implementado no motor de pontos~~ — corrigido: `compute_boss_battle()` calcula
+  semana a semana (e o fechamento mensal) quem é o Top Performer e se cumpre o critério do grupo.
 - ~~Critério "tNPS chat E phone ≥85" impossível pra quem só tem um canal~~ — corrigido: o critério
-  agora é a MÉDIA dos canais aplicáveis ao grupo (ver seção "Regras do jogo" acima), o que unifica
-  a exigência do mesmo jeito que a v4 unificou os tetos de pontos.
-- Testado com dados sintéticos (não há fechamento real ainda — o primeiro é 07/09/2026): critério
-  de qualidade por média, substituição por Time Spent no backoffice, e desempate alfabético em caso
-  de empate no placar — todos verificados antes da publicação.
+  agora é a MÉDIA dos canais aplicáveis ao grupo.
+
+### Resolvido na v6 (não é mais uma limitação)
+
+- ~~Engajamento contava só mensagens de nível superior~~ — corrigido: agora conta mensagem, resposta
+  em thread E reação/curtida. A régua antiga media *quem posta*, não *quem engaja*.
+- ~~"Quem mais comentou ganha tudo" concentrava 10 pts numa pessoa só~~ — corrigido: agora todo mundo
+  que engajou de qualquer forma leva os 10 pts. **Diagnóstico que motivou a mudança (semana 36):**
+  13 dos 14 agentes engajaram na semana e apenas 1 pontuou. A agente mais engajada do time
+  (19 respostas em thread, reações em 43 posts distintos) tirava zero por não abrir tópicos novos,
+  enquanto o vencedor liderava em mensagens mas era só o 8º em posts reagidos. O pódio era artefato
+  da métrica, não do comportamento.
 
 ## Automação
 
