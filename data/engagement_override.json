@@ -1,18 +1,20 @@
 {
+  "_formato": "semana_iso -> agente -> {msgs, threads, emojis, postsReagidos, score}. REGRA v6: qualquer valor > 0 em msgs, threads ou postsReagidos ganha os +10 pts de Engajamento na semana. O campo 'score' (3*msgs + 2*threads + 1*postsReagidos) NAO define pontos — serve so para ranquear intensidade no acompanhamento individual.",
+  "_ressalva": "A API do Slack lista no maximo 50 usuarios por emoji. Na semana 36, 8 emojis de posts CSI-wide bateram esse teto, entao 'emojis' e 'postsReagidos' estao subestimados para quem mais reage (caren, kissila, angelica, andresa). Nao afeta a pontuacao, que e binaria.",
   "2026-W36": {
-    "randal.savino": 8,
-    "lucas.cassimiro": 4,
-    "marcelo.calixto": 3,
-    "caren.paraiso": 2,
-    "angelica.almeida": 2,
-    "kissila.oliveira": 2,
-    "angela.julia": 1,
-    "giulia.machado": 1,
-    "thiago.guedes": 1,
-    "andresa.britto": 0,
-    "gabrielle.macedo": 0,
-    "guilherme.zunareli": 0,
-    "lucrecia.santos": 0,
-    "maycon.cardoso": 0
+    "kissila.oliveira":   {"msgs": 2, "threads": 19, "emojis": 71, "postsReagidos": 43, "score": 87},
+    "caren.paraiso":      {"msgs": 2, "threads": 11, "emojis": 93, "postsReagidos": 38, "score": 66},
+    "randal.savino":      {"msgs": 8, "threads": 14, "emojis": 23, "postsReagidos": 12, "score": 64},
+    "angelica.almeida":   {"msgs": 2, "threads": 10, "emojis": 56, "postsReagidos": 28, "score": 54},
+    "marcelo.calixto":    {"msgs": 3, "threads": 3,  "emojis": 32, "postsReagidos": 28, "score": 43},
+    "giulia.machado":     {"msgs": 1, "threads": 10, "emojis": 17, "postsReagidos": 11, "score": 34},
+    "gabrielle.macedo":   {"msgs": 0, "threads": 6,  "emojis": 29, "postsReagidos": 20, "score": 32},
+    "angela.julia":       {"msgs": 1, "threads": 3,  "emojis": 14, "postsReagidos": 14, "score": 23},
+    "lucas.cassimiro":    {"msgs": 4, "threads": 2,  "emojis": 8,  "postsReagidos": 6,  "score": 22},
+    "andresa.britto":     {"msgs": 0, "threads": 4,  "emojis": 20, "postsReagidos": 13, "score": 21},
+    "guilherme.zunareli": {"msgs": 0, "threads": 2,  "emojis": 15, "postsReagidos": 11, "score": 15},
+    "thiago.guedes":      {"msgs": 1, "threads": 1,  "emojis": 10, "postsReagidos": 9,  "score": 14},
+    "lucrecia.santos":    {"msgs": 0, "threads": 3,  "emojis": 17, "postsReagidos": 6,  "score": 12},
+    "maycon.cardoso":     {"msgs": 0, "threads": 0,  "emojis": 0,  "postsReagidos": 0,  "score": 0}
   }
 }
