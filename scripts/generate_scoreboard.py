@@ -2,139 +2,108 @@
 """
 Gera data/scoreboard.json para o site UAI MODO TURBO (Time Wags).
 
-MOTOR DE PONTOS v5 -- competicao valida SOMENTE para setembro/2026.
+MOTOR DE PONTOS v6 -- competicao valida SOMENTE para setembro/2026.
 Fechamentos semanais sempre na segunda-feira (semana de referencia = a que
 acabou de fechar). Metricas mensais (Skip/Unanswered/Transfer/Expired/Time
-Spent) usam o resultado acumulado do mes corrente até hoje (nao ha streak
-semanal nessas 4/5).
+Spent) usam o resultado acumulado do mes corrente ate hoje.
 
-## v5 -- Boss Battle implementado com criterio por media de canais (01/09/2026)
+## v6 -- Engajamento deixa de ser "quem mais postou leva tudo" (07/09/2026)
 
-Boss Battle (semana +20, mes +50) estava documentado desde a v3 mas nunca
-foi implementado (campo sempre False) -- e o criterio original ("tNPS chat
-E phone >=85") so era atingivel por quem tem os dois canais, o que
-recriaria a mesma injustica que a v4 corrigiu nos pontos normais.
+Ate a v5, Engajamento contava SO mensagens de nivel superior nos 3 canais e
+dava +10 para UMA pessoa por semana (a que mais postou). Isso media "quem
+posta", nao "quem engaja".
 
-v5 implementa o Boss Battle com um criterio de qualidade por MEDIA dos
+Diagnostico da semana 36 (31/08 a 06/09) que motivou a mudanca: 13 dos 14
+agentes engajaram nos canais e apenas 1 pontuou. A agente mais engajada do
+time (2 mensagens, 19 respostas em thread e reacoes em 43 posts distintos)
+tirava ZERO, porque nao abre topicos novos. O vencedor liderava em mensagens
+de nivel superior (8) mas era so o 8o colocado em posts reagidos (12). O
+podio era artefato da metrica, nao do comportamento.
+
+Regra v6: **+10 pts por semana para quem engajou de QUALQUER forma** --
+mensagem no canal, resposta em thread OU reacao/curtida em post de colega.
+Basta uma dessas coisas. Nao e ranking, nao e winner-takes-all. Quem nao
+teve nenhum registro na semana fica com 0. O teto continua 10 pts/semana
+(ninguem ganha 30 por fazer as tres coisas), entao os 75 pts/semana da v4
+seguem validos e nada mais precisou ser recalibrado.
+
+Trade-off assumido: a v6 nao distingue intensidade -- quem responde 19
+threads e quem da uma curtida pontuam igual. Foi deliberado (metrica de
+participacao, serve pra puxar o time pro canal). O campo "score" no
+engagement_override.json preserva a intensidade caso a gente queira um
+bonus graduado depois.
+
+## v5 -- Boss Battle com criterio por media de canais (01/09/2026)
+
+Boss Battle (semana +20, mes +50) usa criterio de qualidade por MEDIA dos
 canais aplicaveis ao grupo do agente, em vez de exigir os dois:
 - GERAL: media(tNPS chat, tNPS phone) da semana/mes >= 85.
-- SO CHAT: tNPS chat da semana/mes >= 85 (media de 1 valor = o proprio).
-- SO PHONE: tNPS phone da semana/mes >= 85 (idem).
-- BACKOFFICE: nao tem tNPS -- usa a faixa maxima de Time Spent (<5min,
-  o mesmo corte que vale +40 pts/semana no motor normal) como equivalente.
+- SO CHAT: tNPS chat >= 85. SO PHONE: tNPS phone >= 85.
+- BACKOFFICE: sem tNPS -- usa a faixa maxima de Time Spent (<5min).
 
-"Top Performer da semana" continua sem existir oficialmente no Databricks
-(so ha Top Performer mensal em usr.csinnovation.csiagentsmetricsoficial);
-o proxy usado e o agente com maior soma de Excelencia+tNPS naquela semana
-especifica (Engajamento fica de fora do calculo do Boss Battle -- e uma
-metrica de participacao, nao de qualidade de atendimento, e ja e premiada
-por si so). "Top Performer do mes" e o agente com maior total acumulado
-(incluindo os pontos de Boss Battle da semana ja conquistados). Em caso de
-empate, desempate alfabetico (deterministico, nao aleatorio).
+"Top Performer da semana" nao existe oficialmente no Databricks (so ha Top
+Performer mensal em usr.csinnovation.csiagentsmetricsoficial); o proxy e o
+agente com maior soma de Excelencia+tNPS naquela semana. Engajamento fica
+FORA do calculo do Boss Battle -- e metrica de participacao, nao de
+qualidade de atendimento, e ja e premiada por si so. "Top Performer do mes"
+e o agente com maior total acumulado (incluindo Boss Battles semanais ja
+conquistadas). Empate: desempate alfabetico (deterministico).
 
 ## v4 -- recalibracao de justica entre grupos (01/09/2026)
 
-A v3 dava a cada grupo (geral / so chat / backoffice) um teto MAXIMO de
-pontos diferente por semana e por mes -- quem atuava nos dois canais podia
-chegar a 75 pts/semana e 40 pts/mes, enquanto "so chat" parava em 60/31 e
-"backoffice" em 55/30, mesmo com nota perfeita. Ou seja, o grupo que faz o
-trabalho mais "invisivel" tinha o teto mais baixo, o que nao e justo se
-todo mundo disputa o mesmo placar.
-
-Principio da v4: "redistribuicao de canal" -- cada agente tem uma cota
-FIXA de pontos por metrica-familia (qualidade de atendimento / skip) e,
-se ele so opera em UM canal daquela familia, o canal que ele tem passa a
-valer o DOBRO (equivalente a soma dos dois canais de quem atua nos dois).
-Isso fecha o teto exatamente, sem inventar um "bonus" solto e sem mexer
-na logica de Excelencia (que agora e igual pra todo mundo, pois nao tem
-nada a ver com canal).
+Principio: "redistribuicao de canal" -- cada agente tem uma cota FIXA de
+pontos por metrica-familia (qualidade de atendimento / skip) e, se ele so
+opera em UM canal daquela familia, o canal que ele tem passa a valer o
+DOBRO (equivalente a soma dos dois canais de quem atua nos dois).
 
 Tetos unificados (todos os grupos, mesmos valores):
-  SEMANAL: Excelencia (25 max) + tNPS (40 max, dividido ou nao entre
-  canais) + Engajamento (10) = 75 pts/semana.
+  SEMANAL: Excelencia (25 max) + tNPS (40 max) + Engajamento (10) = 75.
   MENSAL: Skip (20 max, dividido ou nao com Unanswered) + Transfer (10)
-  + Expired (10) = 40 pts/mes (+ Unanswered 10 max embutido no Skip pra
-  quem nao atende phone).
+  + Expired (10) = 40 pts/mes.
 
 - GERAL (chat + phone): tNPS chat (max 20) + tNPS phone (max 20) = 40.
   Skip (max 10) + Unanswered (max 10) = 20 "familia skip".
-- SO CHAT (nao atua phone): tNPS chat DOBRADO (max 40, bandas
-  10/20/30/40). Skip DOBRADO (max 20, bandas 20/10/4/-4) pra compensar a
-  ausencia de Unanswered.
-- SO PHONE (nao atua chat) [grupo hoje vazio, mantido por simetria]: tNPS
-  phone DOBRADO (max 40). Skip padrao (mantem Unanswered normal).
-- BACKOFFICE (nao atua chat nem phone): tNPS nao se aplica -- o espaco de
-  40 pts/semana vira Time Spent com bandas graduadas (<5min=40,
-  5-7min=25, 7-9min=10, >=9min=0). Skip DOBRADO (max 20) pra compensar a
-  ausencia de Unanswered. Excelencia deixa de ser "em dobro" (agora e
-  igual à geral -- Excelencia mede conduta, nao canal).
-
-Badges (Estreia Top, Prêmio UAI de Qualidade, Desbravador de Desafios,
-Prêmio UAI Sô) permanecem como estavam na v3 -- ainda nao implementados
-no motor (ver README, secao "Limitacoes conhecidas").
+- SO CHAT: tNPS chat DOBRADO (max 40). Skip DOBRADO (max 20).
+- SO PHONE [grupo hoje vazio]: tNPS phone DOBRADO (max 40). Skip padrao.
+- BACKOFFICE: tNPS nao se aplica -- o espaco de 40 pts/semana vira Time
+  Spent graduado. Skip DOBRADO. Excelencia igual a geral.
 
 ## Fontes de dados
 
 - Excelencia / streak: planilha "Central de Inteligencia de CSI 2026"
-  (abas 4.Qualidade, 5.Reclamacoes, 6.Erros Ops) -- mesma logica da v2/v3.
-- tNPS chat / tNPS phone (SEMANAL, fecha segunda): etl.br__dataset.cx_metrics_tnps_resolutivity
+  (abas 4.Qualidade, 5.Reclamacoes, 6.Erros Ops).
+- tNPS chat / phone (SEMANAL, fecha segunda): etl.br__dataset.cx_metrics_tnps_resolutivity
   join etl.br__dataset.cx_canonical_activities (last_agent), filtrando
-  channel = 'chat' ou channel = 'inbound_call', survey_type='Human',
-  fl_nps_answered=1, actor_affiliation='nubank'. Query baseada na skill
-  tnps-weekly-dm-time-wags (fonte oficial ja usada pro DM semanal do time).
-- Skip / Transfer indevido / Expired / Time Spent (MENSAL, resultado final
-  do mes corrente): etl.br__dataset.cx_canonical_activities (colunas
-  status, is_transfer_indevido, mount_time_spent, net_time_spent).
-  Formula de Time Spent confirmada em cx-analyst/references/metrics-targets.md:
-  AVG(CASE WHEN mount_time_spent>0 THEN mount_time_spent ELSE net_time_spent END).
-  Time Spent so tem grao mensal (nao ha query semanal real ainda) -- o
-  valor semanal e uma media do mes ate hoje, multiplicada pelo numero de
-  segundas ja fechadas (mesma limitacao ja documentada na v3).
-- Unanswered Calls (MENSAL): usr.cx_golden_layer.unanswered_calls
-  (queue_event__actor, ringing, no_answer). So conta pra quem atua em phone.
+  channel = 'chat' ou 'inbound_call', survey_type='Human',
+  fl_nps_answered=1, actor_affiliation='nubank'.
+- Skip / Transfer indevido / Expired / Time Spent (MENSAL):
+  etl.br__dataset.cx_canonical_activities.
+- Unanswered Calls (MENSAL): usr.cx_golden_layer.unanswered_calls.
 - WoW: planilha "Base Faisca H22026", aba "(Automatizacao) WoWs Faisca".
-- Engajamento nos canais (SEMANAL): contagem de mensagens/comentarios do
-  agente nos 3 canais Slack do time -- #os_incriveis_csi (C0AK68688EQ),
-  #wow_csi (C090RS3739N) e #cx-csi-informa (C0209GG9GQ7).
-  O agente com mais interacoes na semana ganha +10. Este script NAO tem
-  acesso as ferramentas MCP de Slack (roda fora do Cowork) -- espera um
-  arquivo `data/engagement_override.json` com {"semana_iso": {"agent": qtd}}
-  gerado pela tarefa agendada (que roda dentro do Cowork, com acesso ao
-  Slack). Se o arquivo nao existir, o campo fica pendente.
+- Engajamento (SEMANAL, v6): Slack -- #os_incriveis_csi (C0AK68688EQ),
+  #wow_csi (C090RS3739N) e #cx-csi-informa (C0209GG9GQ7). Precisa de TRES
+  chamadas por canal: slack_read_channel (detailed) para as mensagens,
+  slack_read_thread para as respostas em thread, e slack_get_reactions para
+  quem reagiu. Este script NAO tem acesso as ferramentas MCP de Slack (roda
+  fora do Cowork) -- espera o arquivo `data/engagement_override.json` no
+  formato {"semana_iso": {"agente": {"msgs": N, "threads": N, "emojis": N,
+  "postsReagidos": N, "score": N}}}, gerado pela tarefa agendada. Aceita
+  tambem o formato antigo ({"agente": N}) por retrocompatibilidade. Chaves
+  que comecam com "_" sao metadados e sao ignoradas.
+  ATENCAO: a API do Slack lista no maximo 50 usuarios por emoji, entao
+  "emojis"/"postsReagidos" ficam subestimados em posts CSI-wide muito
+  curtidos. Nao afeta a pontuacao v6, que e binaria.
 
 ## Classificacao de canal por agente (revalidar mensalmente)
 
 Com base no historico de agosto/26: andresa.britto, caren.paraiso e
 lucrecia.santos nao tem nenhuma linha em unanswered_calls nem tNPS phone
 -- classificados como "so atua em chat". Nenhum agente identificado hoje
-como "so atua em phone" ou "nao atua em chat e phone" (backoffice puro);
-os grupos existem no motor e ficam vazios até algum agente se encaixar.
-
-## Regras por grupo (ver README.md para o detalhamento completo)
-
-- GERAL (atua em chat e phone): Excelencia +10/sem (streak 10/15/20/25 cap
-  25); tNPS chat e tNPS phone (bandas 5/10/15/20 por semana, faixas
-  70-74.99/75-80/80.01-85/85-100); Skip mensal (+10/+5/+2/-2); Unanswered
-  mensal (+10/+5/+2/0); Transfer indevido mensal (+10 se <3%); Expired
-  mensal (+10 se <3%).
-- SO CHAT (nao atua phone): desconsidera Unanswered e tNPS Phone; tNPS
-  Chat DOBRADO (10/20/30/40); Skip DOBRADO (20/10/4/-4); mantem
-  Transfer/Expired gerais.
-- SO PHONE (nao atua chat): desconsidera tNPS Chat; tNPS Phone DOBRADO
-  (10/20/30/40); Skip padrao (mantem Unanswered normal); mantem
-  Transfer/Expired gerais.
-- BACKOFFICE PURO (nao atua chat nem phone): Excelencia igual a geral
-  (streak 10/15/20/25); desconsidera tNPS e Unanswered; Skip DOBRADO
-  (20/10/4/-4); Time Spent semanal com bandas graduadas
-  (<5min=40, <7min=25, <9min=10, >=9min=0); mantem Transfer/Expired gerais.
-- TODOS: Chama do Encantamento (3+ WoWs no mes = +40, +10/extra);
-  Engajamento nos canais (+10/semana para quem mais participou); Boss
-  Battle semana (+20) e mes (+50) -- criterio de qualidade por MEDIA dos
-  canais do grupo (ver secao v5 acima), implementado a partir da v5.
+como "so atua em phone" ou backoffice puro.
 
 Secrets/variaveis de ambiente esperadas (GitHub Secrets), caso rodado via
-Actions (fluxo alternativo -- o fluxo principal agora e a tarefa agendada
-no Cowork, que usa as ferramentas MCP diretamente em vez deste script):
+Actions (fluxo alternativo -- o fluxo principal e a tarefa agendada no
+Cowork, que usa as ferramentas MCP diretamente):
   DATABRICKS_HOST, DATABRICKS_TOKEN, DATABRICKS_WAREHOUSE_ID,
   GOOGLE_SERVICE_ACCOUNT_JSON, XFORCE_EMAIL
 """
@@ -173,43 +142,38 @@ CHANNEL_WOW = "C090RS3739N"        # #wow_csi
 CHANNEL_INFORMA = "C0209GG9GQ7"    # #cx-csi-informa
 
 # ---- Bandas de tNPS semanal (v4: tetos unificados em 75 pts/semana) ----
-# Geral: tNPS chat (max 20) + tNPS phone (max 20) = 40 "familia tNPS".
 TNPS_BANDS_GERAL = [(70, 5), (75, 10), (80.01, 15), (85, 20)]
-# So chat / so phone: um unico canal cobre a familia inteira -> bandas em
-# dobro (compensacao exata, nao um bonus solto).
 TNPS_BANDS_UM_CANAL = [(70, 10), (75, 20), (80.01, 30), (85, 40)]
 
 STREAK_PTS = [10, 15, 20, 25]  # semana 1,2,3,4+ (cap) -- igual pra todo mundo
 EXCELENCIA_BASE = 10
 
 # ---- Bandas de Skip mensal (v4: familia skip unificada em 20 pts/mes) ----
-# Geral: Skip (max 10) + Unanswered (max 10) = 20 "familia skip".
 SKIP_BANDS_GERAL = [(5, 10), (7, 5), (9, 2), (9, -2)]
-# Quem nao tem Unanswered (so chat / backoffice): Skip cobre a familia
-# inteira -> bandas em dobro.
 SKIP_BANDS_DOBRADO = [(5, 20), (7, 10), (9, 4), (9, -4)]
 UNANSWERED_BANDS = [(2, 10), (5, 5), (8, 2)]  # acima de 8% = 0 (sem penalidade)
 TRANSFER_THRESHOLD = 3
 EXPIRED_THRESHOLD = 3
 
-# Time Spent (so backoffice): bandas graduadas que ocupam o espaco de 40
-# pts/semana que os outros grupos tiram do tNPS. Minutos = media do mes
-# corrente (proxy semanal -- ver limitacao na docstring).
+# Time Spent (so backoffice)
 TIME_SPENT_BANDS = [(5, 40), (7, 25), (9, 10)]  # >=9min = 0
+
+# ---- Engajamento (v6): binario, +10 por semana pra quem engajou ----
+ENGAGEMENT_PTS = 10
+# Campos do override que contam como "engajou". Reacao entra igual a
+# mensagem: a metrica e de participacao, nao de intensidade.
+ENGAGEMENT_FIELDS = ("msgs", "threads", "postsReagidos")
 
 BOSS_WEEKLY_PTS = 20
 BOSS_MONTHLY_PTS = 50
-BOSS_TNPS_THRESHOLD = 85  # media dos canais aplicaveis >= 85 (faixa maxima)
-BOSS_TIME_SPENT_MAX_MIN = TIME_SPENT_BANDS[0][0]  # 5min -- equivalente pro backoffice (sem tNPS)
+BOSS_TNPS_THRESHOLD = 85
+BOSS_TIME_SPENT_MAX_MIN = TIME_SPENT_BANDS[0][0]
 
 LEVELS = [(300, "DIAMANTE"), (180, "OURO"), (90, "PRATA"), (0, "BRONZE")]
-# Thresholds provisorios para a 1a semana de competicao -- recalibrar
-# depois que houver pelo menos 1-2 fechamentos semanais reais.
 
 
 def tnps_band_points(pct, bands):
-    """bands: lista de (limite_inferior_ou_igual, pts) em ordem crescente de
-    faixa. Retorna os pontos da MAIOR faixa atingida (nao cumulativo)."""
+    """Retorna os pontos da MAIOR faixa atingida (nao cumulativo)."""
     if pct is None:
         return 0
     pts = 0
@@ -220,9 +184,8 @@ def tnps_band_points(pct, bands):
 
 
 def tiered_points(pct, bands):
-    """bands: lista de (limite, pts) em ordem do mais restrito pro mais
-    frouxo, seguida opcionalmente de (limite_penalidade, pts_penalidade)
-    com pts negativo."""
+    """bands: (limite, pts) do mais restrito pro mais frouxo, seguido
+    opcionalmente de (limite_penalidade, pts_negativo)."""
     if pct is None:
         return 0
     for limit, pts in bands:
@@ -232,6 +195,38 @@ def tiered_points(pct, bands):
         if pts < 0 and pct > limit:
             return pts
     return 0
+
+
+def engajou_na_semana(entry):
+    """v6: True se o agente teve QUALQUER forma de engajamento na semana --
+    mensagem no canal, resposta em thread ou reacao em post de colega.
+
+    Aceita o formato v6 (dict com msgs/threads/postsReagidos) e o formato
+    antigo (int com a contagem de mensagens), por retrocompatibilidade."""
+    if entry is None:
+        return False
+    if isinstance(entry, dict):
+        return any((entry.get(f) or 0) > 0 for f in ENGAGEMENT_FIELDS)
+    try:
+        return float(entry) > 0
+    except (TypeError, ValueError):
+        return False
+
+
+def load_engagement_override(path="data/engagement_override.json"):
+    """Le o arquivo gerado pela tarefa agendada. Ignora chaves de metadado
+    (que comecam com '_'). Se o arquivo nao existir, Engajamento fica zerado
+    pra todo mundo e o script avisa."""
+    try:
+        with open(path, encoding="utf-8") as f:
+            raw = json.load(f)
+    except FileNotFoundError:
+        print("aviso: data/engagement_override.json nao encontrado -- "
+              "Engajamento vai ficar zerado (rode a tarefa agendada no Cowork, "
+              "que e quem tem acesso ao Slack)")
+        return {}
+    return {k: v for k, v in raw.items()
+            if not k.startswith("_") and isinstance(v, dict)}
 
 
 def databricks_query(sql):
@@ -313,10 +308,7 @@ def level_of(total):
 
 
 def week_quality_pct(grp, chat_entry, phone_entry):
-    """Media de tNPS dos canais aplicaveis ao grupo, numa semana especifica.
-    chat_entry/phone_entry: {"tnps": pct, "pts": ..., "week_index": i} ou None.
-    Retorna None se o grupo nao tem nenhum canal com dado nessa semana
-    (ex: backoffice, ou geral sem nenhuma survey na semana)."""
+    """Media de tNPS dos canais aplicaveis ao grupo, numa semana especifica."""
     vals = []
     if grp in ("geral", "chat_only") and chat_entry is not None:
         vals.append(chat_entry["tnps"])
@@ -328,8 +320,7 @@ def week_quality_pct(grp, chat_entry, phone_entry):
 
 
 def month_quality_pct(grp, chat_entries, phone_entries):
-    """Mesma logica de week_quality_pct, mas juntando todas as semanas do
-    mes (cada semana pesa igual, sem ponderar por volume de atendimentos)."""
+    """Mesma logica, juntando todas as semanas do mes (cada semana pesa igual)."""
     vals = []
     if grp in ("geral", "chat_only"):
         vals += [e["tnps"] for e in chat_entries]
@@ -341,11 +332,7 @@ def month_quality_pct(grp, chat_entries, phone_entries):
 
 
 def compute_boss_battle(records, n_weeks):
-    """records: lista de dicts intermediarios por agente (ver main()), com
-    'agent', 'group', 'weekly_excelencia', 'tnps_chat_entries',
-    'tnps_phone_entries', 'time_spent_min' e 'base_total'.
-    Retorna (weekly_pts, weekly_won, monthly_pts, monthly_won), cada um
-    {agent: valor}."""
+    """Retorna (weekly_pts, weekly_won, monthly_pts, monthly_won)."""
     by_agent = {r["agent"]: r for r in records}
     weekly_pts = {r["agent"]: 0 for r in records}
     weekly_won = {r["agent"]: False for r in records}
@@ -408,7 +395,7 @@ def main():
     roster_emails = [f"{a}@nubank.com.br" for a in ROSTER]
     email_list_sql = ",".join(f"'{e}'" for e in roster_emails)
 
-    # ---- 1) Metricas mensais (resultado final do mes corrente até hoje) ----
+    # ---- 1) Metricas mensais (resultado do mes corrente ate hoje) ----
     ops_by_agent = {}
     unanswered_by_agent = {}
     try:
@@ -450,7 +437,7 @@ def main():
         print(f"aviso: nao consegui consultar metricas mensais no Databricks ({e})")
 
     # ---- 2) tNPS semanal (chat e phone), por segunda-feira ja fechada ----
-    tnps_weekly = {}  # {agent: {"chat": [pts_por_semana], "phone": [...]}}
+    tnps_weekly = {}
     for agent in ROSTER:
         tnps_weekly[agent] = {"chat": [], "phone": []}
     try:
@@ -534,15 +521,10 @@ def main():
     except Exception as e:
         print(f"aviso: nao consegui ler Google Sheets ({e})")
 
-    # ---- 4) Engajamento nos canais (override gerado pela tarefa agendada) ----
-    engagement_override = {}
-    try:
-        with open("data/engagement_override.json", encoding="utf-8") as f:
-            engagement_override = json.load(f)
-    except FileNotFoundError:
-        pass  # pendente -- a tarefa agendada no Cowork popula isso via Slack MCP
+    # ---- 4) Engajamento (override gerado pela tarefa agendada) ----
+    engagement_override = load_engagement_override()
 
-    # ---- 5) Montar dados intermediarios por agente (sem total nem Boss Battle ainda) ----
+    # ---- 5) Montar dados intermediarios por agente ----
     records = []
     for agent in ROSTER:
         grp = group_of(agent)
@@ -573,7 +555,6 @@ def main():
         time_spent_min = ops.get("avg_time_spent_min")
         unanswered_pct = None if grp in ("chat_only", "backoffice") else unanswered_by_agent.get(agent)
 
-        # Skip dobrado pra quem nao tem Unanswered (compensacao exata da familia "skip")
         skip_bands = SKIP_BANDS_DOBRADO if grp in ("chat_only", "backoffice") else SKIP_BANDS_GERAL
         skip_pts = tiered_points(skip_pct, skip_bands)
         unanswered_pts = tiered_points(unanswered_pct, UNANSWERED_BANDS) if unanswered_pct is not None else 0
@@ -587,13 +568,16 @@ def main():
         chama = wow_count >= 3
         wow_pts = (40 + (wow_count - 3) * 10) if chama else wow_count * 10
 
+        # v6: +10 por semana em que o agente engajou de qualquer forma.
+        # Nao e mais winner-takes-all -- ver docstring, secao v6.
         engagement_pts = 0
+        engagement_detail = {}
         for week_key, counts in engagement_override.items():
-            if not counts:
-                continue
-            top_agent = max(counts, key=counts.get)
-            if top_agent == agent:
-                engagement_pts += 10
+            entry = counts.get(agent)
+            if engajou_na_semana(entry):
+                engagement_pts += ENGAGEMENT_PTS
+            if isinstance(entry, dict):
+                engagement_detail[week_key] = entry
 
         ops_total = skip_pts + unanswered_pts + transfer_pts + expired_pts + time_spent_pts
         base_total = excelencia_total + tnps_chat_pts + tnps_phone_pts + ops_total + wow_pts + engagement_pts
@@ -614,11 +598,12 @@ def main():
             "time_spent_min": time_spent_min, "time_spent_pts": time_spent_pts,
             "wow_count": wow_count, "wow_pts": wow_pts, "chama": chama,
             "engagement_pts": engagement_pts,
+            "engagement_detail": engagement_detail,
             "ops_total": ops_total,
             "base_total": base_total,
         })
 
-    # ---- 6) Boss Battle (semana +20, mes +50) -- criterio por media de canais ----
+    # ---- 6) Boss Battle (semana +20, mes +50) ----
     boss_weekly_pts, boss_weekly_won, boss_monthly_pts, boss_monthly_won = compute_boss_battle(
         records, len(closed_mondays)
     )
@@ -652,7 +637,7 @@ def main():
                 "total": r["ops_total"],
             },
             "wow": {"count": r["wow_count"], "pts": r["wow_pts"], "chama": r["chama"]},
-            "engagement": {"pts": r["engagement_pts"]},
+            "engagement": {"pts": r["engagement_pts"], "detail": r["engagement_detail"]},
             "bossBattle": {
                 "weekly": boss_weekly_won[agent],
                 "monthly": boss_monthly_won[agent],
