@@ -93,6 +93,7 @@
   .rules-list b{ color:var(--cyan); }
   .rules-list h3{ font-size:13px; color:var(--magenta); margin:18px 0 8px; }
   .pending{ color:#8a86a8; font-style:italic; font-size:16px; }
+  .rule-flag{ color:var(--yellow); font-size:16px; border-left:3px solid var(--panel-border); padding-left:10px; display:block; margin:10px 0; }
   footer{ text-align:center; color:#8a86a8; font-size:15px; margin-top:30px; }
   #errorBox, #loadingBox{ text-align:center; color:var(--yellow); font-size:20px; margin-top:60px; }
   .change-name{ background:none; border:none; color:#8a86a8; text-decoration:underline; cursor:pointer; font-family:'VT323',monospace; font-size:16px; }
@@ -149,6 +150,7 @@
           <tbody id="fullTableBody"></tbody>
         </table>
       </div>
+      <p class="pending">A coluna <b>Transfer</b> aparece como “—” porque a métrica está em modo monitoramento neste momento — ela é apurada, mas não soma pontos até o fechamento do mês.</p>
     </div>
 
     <div class="panel">
@@ -159,28 +161,31 @@
     <div class="panel">
       <h2>REGRAS DO JOGO — SETEMBRO/2026</h2>
       <div class="rules-list">
-        <p><span class="pending">Competição válida apenas para setembro/2026. Fechamentos semanais sempre na segunda-feira. Métricas mensais (Skip, Unanswered Calls, Transfer indevido, Expired jobs, Time Spent) usam o resultado acumulado do mês até hoje.</span></p>
-        <p><span class="pending">v4: os tetos de pontos foram recalibrados pra ficarem IGUAIS nos 3 grupos — 75 pts/semana e 40 pts/mês no máximo, não importa em quantos canais você atua. Quem só tem um canal disponível numa família de métrica (tNPS ou Skip/Unanswered) tem esse canal valendo em dobro, pra cobrir exatamente o espaço do canal que falta.</span></p>
+        <p><span class="pending">Competição válida apenas para setembro/2026. Fechamentos semanais sempre na segunda-feira. Métricas mensais (Skip, Unanswered Calls, Expired jobs, Time Spent) usam o resultado acumulado do mês até hoje.</span></p>
+        <p><span class="pending">Os tetos de pontos são IGUAIS nos 3 grupos — 75 pts/semana e 40 pts/mês no máximo, não importa em quantos canais você atua. Quem só tem um canal disponível numa família de métrica (tNPS ou Skip/Unanswered) tem esse canal valendo em dobro, pra cobrir exatamente o espaço do canal que falta.</span></p>
+
+        <span class="rule-flag">ATUALIZADO EM 09/09: o <b>Transfer indevido</b> saiu da pontuação e virou só monitoramento — volta a valer pontos no fechamento do mês. Os 10 pts dele foram pro <b>Expired jobs</b>, que agora vale +20. E o <b>Skip</b> passou a contar apenas atendimentos de chat e backoffice.</span>
 
         <h3>Regras gerais (quem atua em chat e phone)</h3>
         <p><b>Excelência</b> — semana sem apontamento de qualidade, complaint ou erro operacional: +10 pts. <b>Streak</b>: semana 2 = 15, semana 3 = 20, semana 4+ = 25 (cap 25). Um apontamento zera a sequência. Vale igual pra todo mundo, em qualquer grupo.</p>
         <p><b>tNPS Chat</b> e <b>tNPS Phone</b> (fechamento semanal, toda segunda) — 70 a 74,99 = +5; 75 a 80 = +10; 80,01 a 85 = +15; 85 a 100 = +20 (vale a maior faixa da semana). Máximo 40 pts/semana somando os dois canais.</p>
-        <p><b>Skip</b> (resultado final do mês) — abaixo de 5% = +10; 5,01% a 7% = +5; 7,01% a 9% = +2; acima de 9% = -2.</p>
+        <p><b>Skip</b> (resultado final do mês) — abaixo de 5% = +10; 5,01% a 7% = +5; 7,01% a 9% = +2; acima de 9% = -2. <span class="pending">Conta apenas atendimentos de <b>chat</b> e <b>backoffice</b>, tanto em cima quanto embaixo da conta — skips de e-mail e de ligação ficam de fora.</span></p>
         <p><b>Unanswered Calls</b> (resultado final do mês, só quem atua em phone) — abaixo de 2% = +10; 2,01% a 5% = +5; 5,01% a 8% = +2; acima de 8% = 0. Máximo 20 pts/mês somando Skip + Unanswered.</p>
-        <p><b>Transfer indevido</b> (mês) — abaixo de 3% = +10. <b>Expired jobs</b> (mês) — abaixo de 3% = +10.</p>
+        <p><b>Expired jobs</b> (mês) — abaixo de 3% = <b>+20</b>.</p>
+        <p><b>Transfer indevido</b> (mês) — <b>0 pts por enquanto</b>. A métrica continua sendo apurada e aparece no seu acompanhamento individual, mas não soma nem tira ponto do placar até o fechamento do mês.</p>
 
         <h3>Quem não atua em phone (só chat)</h3>
-        <p>Desconsidera Unanswered Calls e tNPS Phone. Como só tem um canal pra provar qualidade de atendimento, esse canal vale em dobro. <b>tNPS Chat em dobro</b>: 70 a 74,99 = +10; 75 a 80 = +20; 80,01 a 85 = +30; 85 a 100 = +40 (mesmo teto de 40 pts/semana que geral tira de dois canais). <b>Skip em dobro</b> (cobre o espaço do Unanswered que não existe): abaixo de 5% = +20; 5,01% a 7% = +10; 7,01% a 9% = +4; acima de 9% = -4. Transfer indevido e Expired seguem a regra geral.</p>
+        <p>Desconsidera Unanswered Calls e tNPS Phone. Como só tem um canal pra provar qualidade de atendimento, esse canal vale em dobro. <b>tNPS Chat em dobro</b>: 70 a 74,99 = +10; 75 a 80 = +20; 80,01 a 85 = +30; 85 a 100 = +40 (mesmo teto de 40 pts/semana que geral tira de dois canais). <b>Skip em dobro</b> (cobre o espaço do Unanswered que não existe): abaixo de 5% = +20; 5,01% a 7% = +10; 7,01% a 9% = +4; acima de 9% = -4 — também contando só chat e backoffice. Expired segue a regra geral (+20) e Transfer indevido não pontua.</p>
 
         <h3>Quem não atua em chat (só phone)</h3>
-        <p>Simétrico ao "só chat": desconsidera tNPS Chat. <b>tNPS Phone em dobro</b> (mesmas faixas do tNPS Chat em dobro acima). Skip segue a regra geral (mantém Unanswered normal, já que atua em phone). Transfer indevido e Expired seguem a regra geral. Hoje nenhum agente do time está classificado neste grupo.</p>
+        <p>Simétrico ao "só chat": desconsidera tNPS Chat. <b>tNPS Phone em dobro</b> (mesmas faixas do tNPS Chat em dobro acima). Skip segue a regra geral e Expired também (+20). Hoje nenhum agente do time está classificado neste grupo.</p>
 
         <h3>Quem não atua em chat nem phone (backoffice)</h3>
-        <p><b>Excelência</b> igual à regra geral (não é mais em dobro — Excelência mede conduta, não canal). Desconsidera tNPS e Unanswered Calls. <b>Skip em dobro</b> (mesma lógica do "só chat", cobre o espaço do Unanswered). <b>Time Spent</b> ocupa o espaço de 40 pts/semana que os outros tiram do tNPS, com faixas graduadas: média de atendimento abaixo de 5min = +40; abaixo de 7min = +25; abaixo de 9min = +10; 9min ou mais = 0. Transfer indevido e Expired seguem a regra geral.</p>
+        <p><b>Excelência</b> igual à regra geral (não é mais em dobro — Excelência mede conduta, não canal). Desconsidera tNPS e Unanswered Calls. <b>Skip em dobro</b> (mesma lógica do "só chat"). <b>Time Spent</b> ocupa o espaço de 40 pts/semana que os outros tiram do tNPS, com faixas graduadas: média de atendimento abaixo de 5min = +40; abaixo de 7min = +25; abaixo de 9min = +10; 9min ou mais = 0. Expired segue a regra geral (+20) e Transfer indevido não pontua.</p>
 
         <h3>Regras para todos</h3>
         <p><b>WoW</b> — cada WoW aprovada: +10 pts. <b>Chama do Encantamento</b> — 3+ WoWs no mês: +40, +10 por WoW extra.</p>
-        <p><b>Engajamento nos canais</b> — quem mais comentou e incentivou o time na semana nos canais #os_incríveis_csi, #wow_csi e #cx-csi-informa ganha +10 pts.</p>
+        <p><b>Engajamento nos canais</b> — <b>+10 pts pra quem engajou de qualquer forma na semana</b> nos canais #os_incríveis_csi, #wow_csi e #cx-csi-informa. Conta igual: mensagem no canal, resposta em thread OU curtida/reação em post de colega. Basta uma dessas coisas. <span class="pending">Não é ranking e não é “quem mais postou leva” — a ideia é puxar todo mundo pro canal. Quem não teve nenhum registro na semana fica com 0.</span></p>
         <p><b>Boss Battle da semana</b> — o Top Performer da semana (maior soma de Excelência+tNPS) que também cumprir o critério de qualidade do seu grupo: +20 pts. <b>Boss Battle do mês</b> — mesma lógica, com o maior total acumulado no mês: +50 pts. <span class="pending">Critério de qualidade por média dos canais do grupo: geral = média entre tNPS chat e tNPS phone ≥85; só chat = tNPS chat ≥85; só phone = tNPS phone ≥85; backoffice (sem tNPS) = Time Spent na faixa máxima (abaixo de 5min). Se o Top Performer não cumprir o critério, ninguém ganha o Boss Battle naquele período. Empate no placar é resolvido alfabeticamente.</span></p>
 
         <h3>Badges e prêmios</h3>
@@ -323,7 +328,7 @@ function render(data){
     if(r.bossBattle && r.bossBattle.monthly){ any = true; const li = document.createElement('li'); li.innerHTML = `<span class="badge-tag">👑 BOSS BATTLE DO MÊS</span> ${titleCase(r.agent)}`; badgesList.appendChild(li); }
   });
   if(!any){
-    badgesList.innerHTML = '<li>Nenhum badge conquistado ainda em setembro — a competição começou hoje! Primeiro fechamento semanal: 07/09/2026.</li>';
+    badgesList.innerHTML = '<li>Nenhum badge conquistado ainda em setembro.</li>';
   }
 }
 
