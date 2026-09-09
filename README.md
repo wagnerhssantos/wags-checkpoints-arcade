@@ -9,8 +9,9 @@ do mês para Skip, Unanswered Calls, Expired jobs e Time Spent. Na v4, os tetos
 de pontos foram recalibrados pra ficarem iguais entre os grupos de agente (geral / só chat / só
 phone / backoffice). Na v5, o Boss Battle passou a valer de verdade, com um critério de qualidade
 por média dos canais de cada grupo. Na v6, o Engajamento deixou de ser "quem mais postou leva
-tudo". Na **v7**, o Transfer indevido saiu da pontuação e o Skip passou a contar só chat e
-backoffice — ver "Regras do jogo" abaixo.
+tudo". Na v7, o Transfer indevido saiu da pontuação e o Skip passou a contar só chat e
+backoffice. Na **v8**, o Boss Battle do mês foi removido (ficou só o da semana) e o painel deixou
+de exibir as colunas de Transfer indevido e Time Spent — ver "Regras do jogo" abaixo.
 
 ## Como funciona
 
@@ -22,14 +23,40 @@ O topo da página sempre mostra **até que data os dados são** ("Dados até DD/
 porque nem toda métrica fecha no mesmo ritmo (semanal vs. mensal), e o ETL do Databricks tem um
 dia de atraso natural.
 
+## Mudanças da v8 — decidido pelo Wagner em 09/09/2026
+
+### 1. Boss Battle agora é só o da semana
+
+O **Boss Battle do mês (+50 pts) foi removido**. Fica valendo apenas o **Boss Battle da semana
+(+20 pts)**, com o mesmo critério de qualidade da v5 (média dos canais aplicáveis ao grupo ≥85).
+
+O efeito foi aplicado **retroativamente** no `scoreboard.json` de 09/09: a Angelica Almeida tinha
++50 de Boss Battle do mês e passou de 155 para **105 pts** — segue em 1º lugar (a 2ª colocada,
+Andresa Britto, tem 96). O Boss Battle da semana já conquistado pela Andresa (+20) foi mantido.
+
+Nos campos do JSON, `bossBattle.monthly` fica sempre `false` e `bossBattle.monthlyPts` sempre `0`.
+O site não renderiza mais o badge "BOSS BATTLE DO MÊS".
+
+### 2. O painel não mostra mais Transfer indevido nem Time Spent
+
+As duas colunas saíram da tabela do placar no site:
+
+- **Transfer indevido** está em modo monitoramento desde a v7 (0 pts até o fechamento do mês), então
+  a coluna só exibia "—" para todo mundo.
+- **Time Spent** só pontua para o grupo backoffice, que está vazio hoje — a coluna também era "—"
+  para os 14 agentes.
+
+As duas métricas **continuam sendo apuradas e publicadas** no `scoreboard.json`
+(`ops.transferIndevido.pct` e `ops.timeSpent.minutes`) para o acompanhamento individual com a
+liderança. Só a visualização do painel mudou; o cálculo de pontos não.
+
 ## Mudanças da v7 — decidido pelo Wagner em 09/09/2026
 
 ### 1. Transfer indevido sai da pontuação (vira só monitoramento)
 
 O Transfer indevido **não vale mais pontos** durante o mês. O percentual continua sendo apurado e
 publicado no `scoreboard.json` (campo `ops.transferIndevido.pct`) para acompanhamento individual
-com a liderança, mas com `pts: 0`, `applicable: false` e `monitoringOnly: true` — o site renderiza
-a coluna como "—".
+com a liderança, mas com `pts: 0`, `applicable: false` e `monitoringOnly: true`.
 
 **A métrica volta a pontuar no fechamento do mês**, quando o resultado final estiver consolidado.
 Até lá é só termômetro.
@@ -64,7 +91,7 @@ volume relevante deles estava em `email` — no caso da Lucrecia, 25 dos 28 skip
 e-mail, o que jogava o Skip dela pra 8,46% quando o número real de chat+backoffice é 1,63%.
 Manter o denominador restrito também evita diluir o percentual de quem atende muito fone.
 
-## Regras do jogo (v7) — setembro/2026
+## Regras do jogo (v8) — setembro/2026
 
 **Tetos de pontos IGUAIS nos 3 grupos** — 75 pts/semana e 40 pts/mês no máximo, não importa
 quantos canais o agente atende. A regra é sempre a mesma: se você só tem UM canal disponível numa
@@ -85,7 +112,8 @@ exatamente o espaço do canal que falta. Ver detalhamento e a matemática comple
 - **Unanswered Calls** (mês, só quem atua em phone): <2% = +10; 2,01–5% = +5; 5,01–8% = +2; >8% = 0.
   Máximo 20 pts/mês somando Skip + Unanswered.
 - **Expired jobs** (mês): <3% = **+20**.
-- **Transfer indevido** (mês): **0 pts — só monitoramento na v7**, retomado no fechamento do mês.
+- **Transfer indevido** (mês): **0 pts — só monitoramento desde a v7**, retomado no fechamento do
+  mês. Não aparece como coluna do painel (v8).
 
 ### Quem não atua em phone (só chat)
 
@@ -108,7 +136,9 @@ caso alguém mude de canal. **Revisar essa interação antes de classificar algu
 **Excelência** igual à regra geral. Desconsidera tNPS e Unanswered Calls. **Skip em dobro** (mesma
 lógica do "só chat"). **Time Spent** (semanal) ocupa o espaço de 40 pts/semana que os outros tiram
 do tNPS, com faixas graduadas: <5min = +40; <7min = +25; <9min = +10; ≥9min = 0. Expired segue a
-regra geral (+20). Transfer indevido não pontua.
+regra geral (+20). Transfer indevido não pontua. O grupo está vazio hoje, e por isso o Time Spent
+também não aparece como coluna do painel (v8) — se alguém for classificado como backoffice, a
+coluna precisa voltar.
 
 ### Para todos
 
@@ -119,15 +149,14 @@ regra geral (+20). Transfer indevido não pontua.
   reação em post de colega**. Basta UMA dessas coisas para ganhar os 10 pts — não é ranking, não é
   "quem mais participou". Quem não teve nenhum registro na semana fica com 0. O teto continua sendo
   10 pts/semana (ninguém ganha 30 por fazer as três coisas).
-- **Boss Battle da semana**: Top Performer (proxy: maior soma de Excelência+tNPS na semana) que
-  também cumpra o critério de qualidade daquele grupo: +20 pts. **Boss Battle do mês**: mesma
-  lógica, mas com o agente de maior total acumulado no mês (incluindo Boss Battles semanais já
-  ganhas): +50 pts. **Critério de qualidade (v5, por média dos canais do grupo)**: geral = média
-  entre tNPS chat e tNPS phone ≥85; só chat = tNPS chat ≥85; só phone = tNPS phone ≥85; backoffice
-  (sem tNPS) = Time Spent na faixa máxima (<5min). Se o Top Performer da vez não cumprir o critério,
-  ninguém ganha o Boss Battle naquele período. Empate no placar é resolvido alfabeticamente.
-  Engajamento fica de fora do cálculo do Boss Battle — é métrica de participação, não de qualidade
-  de atendimento.
+- **Boss Battle da semana (v8 — único que existe)**: Top Performer da semana (proxy: maior soma de
+  Excelência+tNPS na semana) que também cumpra o critério de qualidade daquele grupo: +20 pts.
+  **Critério de qualidade (v5, por média dos canais do grupo)**: geral = média entre tNPS chat e
+  tNPS phone ≥85; só chat = tNPS chat ≥85; só phone = tNPS phone ≥85; backoffice (sem tNPS) = Time
+  Spent na faixa máxima (<5min). Se o Top Performer da semana não cumprir o critério, ninguém ganha
+  o Boss Battle naquela semana. Empate no placar é resolvido alfabeticamente. Engajamento fica de
+  fora do cálculo do Boss Battle — é métrica de participação, não de qualidade de atendimento.
+  **Não existe mais Boss Battle do mês** (era +50 pts até a v7).
 
 ### Badges e prêmios
 
@@ -172,8 +201,18 @@ Excluir sempre das contagens: o Wagner (liderança) e os bots (UAI, Faísca, Cla
 
 ## Limitações conhecidas e decisões em aberto
 
+- **`scripts/generate_scoreboard.py` está DEFASADO em relação à v7/v8** e não deve ser executado
+  como está: ele ainda implementa o Boss Battle do mês (+50), o Transfer indevido valendo 10 pts, o
+  Expired em 10 (não 20) e o Skip sobre todos os canais. O workflow do GitHub Actions está em
+  `workflow_dispatch` (manual) de propósito. Antes de rodar o script ou reativar o cron, atualizar:
+  `BOSS_MONTHLY_PTS` → remover, `TRANSFER_THRESHOLD`/pts → 0, Expired → 20, e o filtro de
+  `activity_type` do Skip. Quem manda no placar hoje é a tarefa agendada do Cowork, que segue este
+  README.
 - **Transfer indevido está congelado** (v7). Precisa ser retomado no fechamento de setembro: voltar
-  `TRANSFER_PTS` para 10 e `EXPIRED_PTS` para 10 em `scripts/generate_scoreboard.py`.
+  Transfer para 10 pts e Expired para 10 pts, e devolver a coluna dele ao painel.
+- **Colunas removidas do painel na v8**: se o Transfer voltar a pontuar, ou se algum agente for
+  classificado como backoffice (Time Spent), as colunas correspondentes precisam voltar ao
+  `index.html`.
 - **Skip para agente "só phone"**: com o Skip restrito a chat+backoffice, um agente 100% phone
   ficaria sem base de cálculo. O grupo está vazio hoje, mas a interação precisa ser resolvida antes
   de classificar alguém nele.
@@ -199,7 +238,8 @@ Excluir sempre das contagens: o Wagner (liderança) e os bots (UAI, Faísca, Cla
   semana pontuam igual. Escolha deliberada — a métrica é de participação. O campo `score` no
   `engagement_override.json` preserva a intensidade caso a gente queira um bônus separado depois.
 - **Níveis (Bronze/Prata/Ouro/Diamante)** foram recalibrados para o teto de pontos mais alto da v3
-  (Diamante ≥300, Ouro ≥180, Prata ≥90), mas são provisórios.
+  (Diamante ≥300, Ouro ≥180, Prata ≥90), mas são provisórios. Com o Boss Battle do mês fora (v8), o
+  teto do mês caiu 50 pts — recalibrar os cortes se o placar ficar concentrado no Bronze/Prata.
 - **01/09/2026**: dia de início da competição. A 1ª segunda-feira de fechamento foi 07/09/2026.
 
 ### Resolvido na v4
@@ -228,14 +268,22 @@ Excluir sempre das contagens: o Wagner (liderança) e os bots (UAI, Faísca, Cla
 - ~~Transfer indevido pontuando com dado ainda em movimento no meio do mês~~ — congelado como
   monitoramento até o fechamento.
 
+### Resolvido na v8
+
+- ~~Boss Battle do mês (+50) concentrava meio nível de pontuação numa única pessoa~~ — removido;
+  ficou só o da semana (+20).
+- ~~Painel com duas colunas que só mostravam "—" pra todo mundo (Transfer e Time Spent)~~ —
+  removidas da visualização; as métricas seguem apuradas no `scoreboard.json`.
+
 ## Automação
 
 A atualização diária às 9h roda como uma **tarefa agendada no Cowork** (não GitHub Actions): um
 agente Claude executa o pipeline (Databricks, Google Sheets, Slack, e o push pro GitHub) usando as
 credenciais já usadas pela skill `daily-briefing-wags`. O script `scripts/generate_scoreboard.py`
-documenta as fórmulas e pode ser rodado manualmente/via GitHub Actions se os secrets abaixo forem
-configurados — mas ele não tem acesso a Slack, por isso o campo de Engajamento depende do arquivo
-`data/engagement_override.json` gerado pela tarefa agendada.
+documenta as fórmulas das versões até a v6 e **está defasado** (ver Limitações) — pode ser rodado
+manualmente/via GitHub Actions se os secrets abaixo forem configurados, mas ele não tem acesso a
+Slack, por isso o campo de Engajamento depende do arquivo `data/engagement_override.json` gerado
+pela tarefa agendada.
 
 | Secret (uso opcional/manual) | O que é |
 |---|---|
