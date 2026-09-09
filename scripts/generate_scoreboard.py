@@ -197,8 +197,11 @@ def tiered_points(pct, bands):
     opcionalmente de (limite_penalidade, pts_negativo)."""
     if pct is None:
         return 0
+    # Faixa positiva e INCLUSIVA no limite: pct == 9.00 cai em "7,01 a 9 = +2",
+    # nao em zero. Com `<` estrito, os valores exatos de fronteira (9.00 no Skip,
+    # 8.00 no Unanswered) caiam num buraco entre os dois laços e retornavam 0.
     for limit, pts in bands:
-        if pts > 0 and pct < limit:
+        if pts > 0 and pct <= limit:
             return pts
     for limit, pts in bands:
         if pts < 0 and pct > limit:
@@ -580,6 +583,13 @@ def main():
         # v7: TRANSFER_PTS = 0 -- a metrica e so monitoramento ate o fechamento.
         transfer_pts = TRANSFER_PTS if (transfer_pct is not None and transfer_pct < TRANSFER_THRESHOLD) else 0
         expired_pts = EXPIRED_PTS if (expired_pct is not None and expired_pct < EXPIRED_THRESHOLD) else 0
+        # ATENCAO (bug conhecido, sem impacto hoje): Time Spent e uma metrica
+        # SEMANAL -- ocupa o espaco de 40 pts/semana que os outros grupos tiram
+        # do tNPS. Mas o resultado entra em `ops_total`, que e o balde MENSAL de
+        # 40 pts. Com 4 segundas fechadas, um agente backoffice chegaria a 160
+        # pts so de Time Spent dentro de um teto que deveria ser 40. NO_CHANNEL
+        # esta vazio, entao nenhum agente e afetado hoje -- resolver antes de
+        # classificar alguem como backoffice puro.
         time_spent_pts = 0
         if grp == "backoffice" and time_spent_min is not None:
             time_spent_pts = tiered_points(time_spent_min, TIME_SPENT_BANDS) * len(closed_mondays)
@@ -674,12 +684,28 @@ def main():
 
     results.sort(key=lambda r: -r["total"])
 
+    if closed_mondays:
+        ref_week_start = closed_mondays[-1] - datetime.timedelta(days=7)
+        ref_week_end = closed_mondays[-1] - datetime.timedelta(days=1)
+    else:
+        ref_week_start = ref_week_end = None
+
     out = {
         "month": COMPETITION_MONTH,
         "monthLabel": f"{month:02d}/{str(year)[2:]}",
         "competitionScope": "Competição válida apenas para setembro/2026",
         "closedMondays": [m.strftime("%Y-%m-%d") for m in closed_mondays],
         "dataAsOf": today.strftime("%Y-%m-%d"),
+        # Banner do site: SO data + semana de referencia. Ressalvas tecnicas
+        # (ETL atrasado, fonte fora do ar, agente sem dado) vao no resumo do
+        # Slack, nunca aqui.
+        "dataAsOfNote": (
+            f"Atualizado em {today.strftime('%d/%m/%Y')} — dados referentes à semana de "
+            f"{ref_week_start.strftime('%d/%m')} a {ref_week_end.strftime('%d/%m')} "
+            f"(semana ISO {ref_week_start.isocalendar()[1]})."
+            if closed_mondays else
+            f"Atualizado em {today.strftime('%d/%m/%Y')} — nenhuma semana fechada ainda."
+        ),
         "generatedAt": datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC"),
         "results": results,
     }
