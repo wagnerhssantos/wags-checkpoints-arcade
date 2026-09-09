@@ -2,36 +2,58 @@
 """
 Gera data/scoreboard.json para o site UAI MODO TURBO (Time Wags).
 
-MOTOR DE PONTOS v6 -- competicao valida SOMENTE para setembro/2026.
+MOTOR DE PONTOS v7 -- competicao valida SOMENTE para setembro/2026.
 Fechamentos semanais sempre na segunda-feira (semana de referencia = a que
-acabou de fechar). Metricas mensais (Skip/Unanswered/Transfer/Expired/Time
-Spent) usam o resultado acumulado do mes corrente ate hoje.
+acabou de fechar). Metricas mensais (Skip/Unanswered/Expired/Time Spent) usam
+o resultado acumulado do mes corrente ate hoje.
+
+## v7 -- Transfer sai da pontuacao e Skip vira chat+backoffice (09/09/2026)
+
+Decisao do Wagner em 09/09/2026, duas mudancas independentes:
+
+1. **Transfer indevido nao pontua mais durante o mes.** Continua sendo apurado
+   e publicado (ops.transferIndevido.pct) para acompanhamento individual, mas
+   com pts=0, applicable=False e monitoringOnly=True -- o site renderiza a
+   coluna como "--". A metrica volta a pontuar no FECHAMENTO do mes, quando o
+   resultado final estiver consolidado. Pra retomar: colocar TRANSFER_PTS=10 e
+   EXPIRED_PTS=10 (ver item 2).
+
+2. **Skip conta apenas atendimentos de chat e backoffice** -- numerador E
+   denominador (SKIP_ACTIVITY_TYPES). email e inbound_call ficam fora da conta.
+   Motivo: na apuracao de 01-07/09 nenhum skip do time aconteceu em
+   inbound_call, e um volume relevante estava em email. No caso da
+   lucrecia.santos, 25 dos 28 skips do mes eram de e-mail -- o Skip dela
+   aparecia como 8,46% quando o numero real de chat+backoffice e 1,63%.
+   Restringir tambem o denominador evita diluir o percentual de quem atende
+   muito fone.
+
+Pra manter o teto mensal de 40 pts da v4 sem redesenhar nada, os 10 pts que o
+Transfer deixou vago foram para o Expired, que passou de +10 para +20 (mesmo
+corte de <3%). Tetos mensais continuam identicos nos tres grupos:
+
+  GERAL:       Skip 10 + Unanswered 10 + Expired 20 = 40
+  SO CHAT:     Skip 20 (dobrado)        + Expired 20 = 40
+  BACKOFFICE:  Skip 20 (dobrado)        + Expired 20 = 40
+
+ATENCAO -- interacao nao resolvida: com o Skip restrito a chat+backoffice, um
+agente classificado como "so phone" (PHONE_ONLY) ficaria sem base de calculo de
+Skip. O grupo esta vazio hoje; resolver antes de classificar alguem nele.
 
 ## v6 -- Engajamento deixa de ser "quem mais postou leva tudo" (07/09/2026)
 
-Ate a v5, Engajamento contava SO mensagens de nivel superior nos 3 canais e
-dava +10 para UMA pessoa por semana (a que mais postou). Isso media "quem
-posta", nao "quem engaja".
+Regra: **+10 pts por semana para quem engajou de QUALQUER forma** -- mensagem
+no canal, resposta em thread OU reacao/curtida em post de colega. Basta uma
+dessas coisas. Nao e ranking, nao e winner-takes-all. Quem nao teve nenhum
+registro na semana fica com 0. O teto continua 10 pts/semana.
 
-Diagnostico da semana 36 (31/08 a 06/09) que motivou a mudanca: 13 dos 14
-agentes engajaram nos canais e apenas 1 pontuou. A agente mais engajada do
-time (2 mensagens, 19 respostas em thread e reacoes em 43 posts distintos)
-tirava ZERO, porque nao abre topicos novos. O vencedor liderava em mensagens
-de nivel superior (8) mas era so o 8o colocado em posts reagidos (12). O
-podio era artefato da metrica, nao do comportamento.
+Diagnostico da semana 36 que motivou a mudanca: 13 dos 14 agentes engajaram nos
+canais e apenas 1 pontuava. A agente mais engajada do time (2 mensagens, 19
+respostas em thread e reacoes em 43 posts distintos) tirava ZERO por nao abrir
+topicos novos. O podio era artefato da metrica, nao do comportamento.
 
-Regra v6: **+10 pts por semana para quem engajou de QUALQUER forma** --
-mensagem no canal, resposta em thread OU reacao/curtida em post de colega.
-Basta uma dessas coisas. Nao e ranking, nao e winner-takes-all. Quem nao
-teve nenhum registro na semana fica com 0. O teto continua 10 pts/semana
-(ninguem ganha 30 por fazer as tres coisas), entao os 75 pts/semana da v4
-seguem validos e nada mais precisou ser recalibrado.
-
-Trade-off assumido: a v6 nao distingue intensidade -- quem responde 19
-threads e quem da uma curtida pontuam igual. Foi deliberado (metrica de
-participacao, serve pra puxar o time pro canal). O campo "score" no
-engagement_override.json preserva a intensidade caso a gente queira um
-bonus graduado depois.
+Trade-off assumido: a v6 nao distingue intensidade. Foi deliberado (metrica de
+participacao). O campo "score" no engagement_override.json preserva a
+intensidade caso a gente queira um bonus graduado depois.
 
 ## v5 -- Boss Battle com criterio por media de canais (01/09/2026)
 
@@ -41,32 +63,19 @@ canais aplicaveis ao grupo do agente, em vez de exigir os dois:
 - SO CHAT: tNPS chat >= 85. SO PHONE: tNPS phone >= 85.
 - BACKOFFICE: sem tNPS -- usa a faixa maxima de Time Spent (<5min).
 
-"Top Performer da semana" nao existe oficialmente no Databricks (so ha Top
-Performer mensal em usr.csinnovation.csiagentsmetricsoficial); o proxy e o
-agente com maior soma de Excelencia+tNPS naquela semana. Engajamento fica
-FORA do calculo do Boss Battle -- e metrica de participacao, nao de
-qualidade de atendimento, e ja e premiada por si so. "Top Performer do mes"
-e o agente com maior total acumulado (incluindo Boss Battles semanais ja
-conquistadas). Empate: desempate alfabetico (deterministico).
+"Top Performer da semana" nao existe oficialmente no Databricks; o proxy e o
+agente com maior soma de Excelencia+tNPS naquela semana. Engajamento fica FORA
+do calculo do Boss Battle. Empate: desempate alfabetico (deterministico).
 
 ## v4 -- recalibracao de justica entre grupos (01/09/2026)
 
-Principio: "redistribuicao de canal" -- cada agente tem uma cota FIXA de
-pontos por metrica-familia (qualidade de atendimento / skip) e, se ele so
-opera em UM canal daquela familia, o canal que ele tem passa a valer o
-DOBRO (equivalente a soma dos dois canais de quem atua nos dois).
+Principio: "redistribuicao de canal" -- cada agente tem uma cota FIXA de pontos
+por metrica-familia e, se ele so opera em UM canal daquela familia, o canal que
+ele tem passa a valer o DOBRO.
 
-Tetos unificados (todos os grupos, mesmos valores):
+Tetos unificados (todos os grupos):
   SEMANAL: Excelencia (25 max) + tNPS (40 max) + Engajamento (10) = 75.
-  MENSAL: Skip (20 max, dividido ou nao com Unanswered) + Transfer (10)
-  + Expired (10) = 40 pts/mes.
-
-- GERAL (chat + phone): tNPS chat (max 20) + tNPS phone (max 20) = 40.
-  Skip (max 10) + Unanswered (max 10) = 20 "familia skip".
-- SO CHAT: tNPS chat DOBRADO (max 40). Skip DOBRADO (max 20).
-- SO PHONE [grupo hoje vazio]: tNPS phone DOBRADO (max 40). Skip padrao.
-- BACKOFFICE: tNPS nao se aplica -- o espaco de 40 pts/semana vira Time
-  Spent graduado. Skip DOBRADO. Excelencia igual a geral.
+  MENSAL: ver tabela da v7 acima = 40 pts/mes.
 
 ## Fontes de dados
 
@@ -76,23 +85,16 @@ Tetos unificados (todos os grupos, mesmos valores):
   join etl.br__dataset.cx_canonical_activities (last_agent), filtrando
   channel = 'chat' ou 'inbound_call', survey_type='Human',
   fl_nps_answered=1, actor_affiliation='nubank'.
-- Skip / Transfer indevido / Expired / Time Spent (MENSAL):
-  etl.br__dataset.cx_canonical_activities.
+- Skip (MENSAL, v7): etl.br__dataset.cx_canonical_activities filtrando
+  activity_type IN ('chat','backoffice').
+- Transfer indevido / Expired / Time Spent (MENSAL): mesma tabela, base
+  completa (chat, email, inbound_call, backoffice).
 - Unanswered Calls (MENSAL): usr.cx_golden_layer.unanswered_calls.
 - WoW: planilha "Base Faisca H22026", aba "(Automatizacao) WoWs Faisca".
 - Engajamento (SEMANAL, v6): Slack -- #os_incriveis_csi (C0AK68688EQ),
-  #wow_csi (C090RS3739N) e #cx-csi-informa (C0209GG9GQ7). Precisa de TRES
-  chamadas por canal: slack_read_channel (detailed) para as mensagens,
-  slack_read_thread para as respostas em thread, e slack_get_reactions para
-  quem reagiu. Este script NAO tem acesso as ferramentas MCP de Slack (roda
-  fora do Cowork) -- espera o arquivo `data/engagement_override.json` no
-  formato {"semana_iso": {"agente": {"msgs": N, "threads": N, "emojis": N,
-  "postsReagidos": N, "score": N}}}, gerado pela tarefa agendada. Aceita
-  tambem o formato antigo ({"agente": N}) por retrocompatibilidade. Chaves
-  que comecam com "_" sao metadados e sao ignoradas.
-  ATENCAO: a API do Slack lista no maximo 50 usuarios por emoji, entao
-  "emojis"/"postsReagidos" ficam subestimados em posts CSI-wide muito
-  curtidos. Nao afeta a pontuacao v6, que e binaria.
+  #wow_csi (C090RS3739N) e #cx-csi-informa (C0209GG9GQ7). Este script NAO tem
+  acesso as ferramentas MCP de Slack -- espera o arquivo
+  `data/engagement_override.json` gerado pela tarefa agendada no Cowork.
 
 ## Classificacao de canal por agente (revalidar mensalmente)
 
@@ -133,7 +135,7 @@ ROSTER = [
 
 # Classificacao de canal (revalidar mensalmente -- ver docstring acima)
 CHAT_ONLY = {"andresa.britto", "caren.paraiso", "lucrecia.santos"}
-PHONE_ONLY = set()          # nenhum agente hoje
+PHONE_ONLY = set()          # nenhum agente hoje -- ver ATENCAO na secao v7
 NO_CHANNEL = set()          # nenhum agente hoje (backoffice puro)
 
 # Canais Slack usados no calculo de Engajamento
@@ -148,20 +150,27 @@ TNPS_BANDS_UM_CANAL = [(70, 10), (75, 20), (80.01, 30), (85, 40)]
 STREAK_PTS = [10, 15, 20, 25]  # semana 1,2,3,4+ (cap) -- igual pra todo mundo
 EXCELENCIA_BASE = 10
 
-# ---- Bandas de Skip mensal (v4: familia skip unificada em 20 pts/mes) ----
+# ---- Bandas mensais (v7: familia skip + expired = 40 pts/mes) ----
 SKIP_BANDS_GERAL = [(5, 10), (7, 5), (9, 2), (9, -2)]
 SKIP_BANDS_DOBRADO = [(5, 20), (7, 10), (9, 4), (9, -4)]
 UNANSWERED_BANDS = [(2, 10), (5, 5), (8, 2)]  # acima de 8% = 0 (sem penalidade)
+
+# v7: Skip conta so chat e backoffice (numerador E denominador).
+SKIP_ACTIVITY_TYPES = ("chat", "backoffice")
+
+# v7: Transfer indevido congelado como monitoramento. Pra retomar no fechamento
+# do mes: TRANSFER_PTS = 10 e EXPIRED_PTS = 10 (o teto de 40 se mantem nos dois
+# cenarios).
 TRANSFER_THRESHOLD = 3
+TRANSFER_PTS = 0            # <-- v7: nao pontua
 EXPIRED_THRESHOLD = 3
+EXPIRED_PTS = 20            # <-- v7: herdou os 10 pts do Transfer
 
 # Time Spent (so backoffice)
 TIME_SPENT_BANDS = [(5, 40), (7, 25), (9, 10)]  # >=9min = 0
 
 # ---- Engajamento (v6): binario, +10 por semana pra quem engajou ----
 ENGAGEMENT_PTS = 10
-# Campos do override que contam como "engajou". Reacao entra igual a
-# mensagem: a metrica e de participacao, nao de intensidade.
 ENGAGEMENT_FIELDS = ("msgs", "threads", "postsReagidos")
 
 BOSS_WEEKLY_PTS = 20
@@ -198,11 +207,7 @@ def tiered_points(pct, bands):
 
 
 def engajou_na_semana(entry):
-    """v6: True se o agente teve QUALQUER forma de engajamento na semana --
-    mensagem no canal, resposta em thread ou reacao em post de colega.
-
-    Aceita o formato v6 (dict com msgs/threads/postsReagidos) e o formato
-    antigo (int com a contagem de mensagens), por retrocompatibilidade."""
+    """v6: True se o agente teve QUALQUER forma de engajamento na semana."""
     if entry is None:
         return False
     if isinstance(entry, dict):
@@ -214,9 +219,6 @@ def engajou_na_semana(entry):
 
 
 def load_engagement_override(path="data/engagement_override.json"):
-    """Le o arquivo gerado pela tarefa agendada. Ignora chaves de metadado
-    (que comecam com '_'). Se o arquivo nao existir, Engajamento fica zerado
-    pra todo mundo e o script avisa."""
     try:
         with open(path, encoding="utf-8") as f:
             raw = json.load(f)
@@ -394,14 +396,16 @@ def main():
 
     roster_emails = [f"{a}@nubank.com.br" for a in ROSTER]
     email_list_sql = ",".join(f"'{e}'" for e in roster_emails)
+    skip_types_sql = ",".join(f"'{t}'" for t in SKIP_ACTIVITY_TYPES)
 
     # ---- 1) Metricas mensais (resultado do mes corrente ate hoje) ----
     ops_by_agent = {}
+    skip_by_agent = {}
     unanswered_by_agent = {}
     try:
+        # 1a) Transfer / Expired / Time Spent -- base COMPLETA de atendimentos.
         ops_rows = databricks_query(
             "SELECT agent, COUNT(dist_key) AS total_int, "
-            "SUM(CASE WHEN status='skipped' THEN 1 ELSE 0 END) AS skipped, "
             "SUM(CASE WHEN is_transfer_indevido=1 THEN 1 ELSE 0 END) AS transfer_indevido, "
             "SUM(CASE WHEN status='expired' THEN 1 ELSE 0 END) AS expired, "
             "AVG(CASE WHEN mount_time_spent IS NOT NULL AND mount_time_spent>0 "
@@ -417,11 +421,26 @@ def main():
             agent = r["agent"].split("@")[0]
             total = int(r["total_int"] or 0)
             ops_by_agent[agent] = {
-                "skip_pct": round(int(r["skipped"] or 0) * 100.0 / total, 2) if total else None,
                 "transfer_pct": round(int(r["transfer_indevido"] or 0) * 100.0 / total, 2) if total else None,
                 "expired_pct": round(int(r["expired"] or 0) * 100.0 / total, 2) if total else None,
                 "avg_time_spent_min": round(float(r["avg_time_spent"]) / 60.0, 2) if r.get("avg_time_spent") else None,
             }
+
+        # 1b) Skip -- v7: SO chat e backoffice, numerador E denominador.
+        skip_rows = databricks_query(
+            "SELECT agent, COUNT(dist_key) AS total_int, "
+            "SUM(CASE WHEN status='skipped' THEN 1 ELSE 0 END) AS skipped "
+            "FROM etl.br__dataset.cx_canonical_activities "
+            f"WHERE DATE(local_start_time) BETWEEN '{month_start}' AND '{month_end}' "
+            "AND actor_affiliation='nubank' AND source_id NOT LIKE '%lineu%' "
+            "AND NOT (activity_type IN ('email','backoffice') AND status='expired') "
+            f"AND activity_type IN ({skip_types_sql}) "
+            f"AND agent IN ({email_list_sql}) GROUP BY agent"
+        )
+        for r in skip_rows:
+            agent = r["agent"].split("@")[0]
+            total = int(r["total_int"] or 0)
+            skip_by_agent[agent] = round(int(r["skipped"] or 0) * 100.0 / total, 2) if total else None
 
         unanswered_rows = databricks_query(
             "SELECT queue_event__actor AS agent, SUM(ringing) AS ringing, SUM(no_answer) AS no_answer "
@@ -549,7 +568,7 @@ def main():
         tnps_phone_pts = 0 if grp in ("backoffice", "chat_only") else sum(w["pts"] for w in tnps_phone_entries)
 
         ops = ops_by_agent.get(agent, {})
-        skip_pct = ops.get("skip_pct")
+        skip_pct = skip_by_agent.get(agent)          # v7: so chat+backoffice
         transfer_pct = ops.get("transfer_pct")
         expired_pct = ops.get("expired_pct")
         time_spent_min = ops.get("avg_time_spent_min")
@@ -558,8 +577,9 @@ def main():
         skip_bands = SKIP_BANDS_DOBRADO if grp in ("chat_only", "backoffice") else SKIP_BANDS_GERAL
         skip_pts = tiered_points(skip_pct, skip_bands)
         unanswered_pts = tiered_points(unanswered_pct, UNANSWERED_BANDS) if unanswered_pct is not None else 0
-        transfer_pts = 10 if (transfer_pct is not None and transfer_pct < TRANSFER_THRESHOLD) else 0
-        expired_pts = 10 if (expired_pct is not None and expired_pct < EXPIRED_THRESHOLD) else 0
+        # v7: TRANSFER_PTS = 0 -- a metrica e so monitoramento ate o fechamento.
+        transfer_pts = TRANSFER_PTS if (transfer_pct is not None and transfer_pct < TRANSFER_THRESHOLD) else 0
+        expired_pts = EXPIRED_PTS if (expired_pct is not None and expired_pct < EXPIRED_THRESHOLD) else 0
         time_spent_pts = 0
         if grp == "backoffice" and time_spent_min is not None:
             time_spent_pts = tiered_points(time_spent_min, TIME_SPENT_BANDS) * len(closed_mondays)
@@ -568,8 +588,6 @@ def main():
         chama = wow_count >= 3
         wow_pts = (40 + (wow_count - 3) * 10) if chama else wow_count * 10
 
-        # v6: +10 por semana em que o agente engajou de qualquer forma.
-        # Nao e mais winner-takes-all -- ver docstring, secao v6.
         engagement_pts = 0
         engagement_detail = {}
         for week_key, counts in engagement_override.items():
@@ -629,9 +647,16 @@ def main():
                 "applicable": {"chat": grp not in ("backoffice", "phone_only"), "phone": grp not in ("backoffice", "chat_only")},
             },
             "ops": {
-                "skip": {"pct": r["skip_pct"], "pts": r["skip_pts"]},
+                "skip": {"pct": r["skip_pct"], "pts": r["skip_pts"], "scope": "+".join(SKIP_ACTIVITY_TYPES)},
                 "unanswered": {"pct": r["unanswered_pct"], "pts": r["unanswered_pts"], "applicable": grp not in ("chat_only", "backoffice")},
-                "transferIndevido": {"pct": r["transfer_pct"], "pts": r["transfer_pts"]},
+                # v7: transfer entra so como monitoramento -- applicable=False faz
+                # o site renderizar a coluna como "--".
+                "transferIndevido": {
+                    "pct": r["transfer_pct"],
+                    "pts": r["transfer_pts"],
+                    "applicable": TRANSFER_PTS > 0,
+                    "monitoringOnly": TRANSFER_PTS == 0,
+                },
                 "expired": {"pct": r["expired_pct"], "pts": r["expired_pts"]},
                 "timeSpent": {"minutes": r["time_spent_min"], "pts": r["time_spent_pts"], "applicable": grp == "backoffice"},
                 "total": r["ops_total"],
