@@ -32,7 +32,7 @@ com a liderança, mas com `pts: 0`, `applicable: false` e `monitoringOnly: true`
 a coluna como "—".
 
 **A métrica volta a pontuar no fechamento do mês**, quando o resultado final estiver consolidado.
-Até lá é só termo´metro.
+Até lá é só termômetro.
 
 ### 2. Os 10 pts do Transfer foram para o Expired
 
@@ -43,6 +43,7 @@ Pra manter o teto mensal de 40 pts da v4 sem redesenhar nada, o **Expired jobs p
 |---|---|---|---|---|
 | Geral (chat + phone) | 10 | 10 | 20 | **40** |
 | Só chat | 20 (dobrado) | — | 20 | **40** |
+| Só phone (grupo vazio hoje) | 10 | 10 | 20 | **40** |
 | Backoffice | 20 (dobrado) | — | 20 | **40** |
 
 Quando o Transfer voltar a pontuar no fechamento, o Expired volta pra 10 e o Transfer retoma os
@@ -172,10 +173,16 @@ Excluir sempre das contagens: o Wagner (liderança) e os bots (UAI, Faísca, Cla
 ## Limitações conhecidas e decisões em aberto
 
 - **Transfer indevido está congelado** (v7). Precisa ser retomado no fechamento de setembro: voltar
-  `transfer_pts` para 10 e `EXPIRED_PTS` para 10 em `scripts/generate_scoreboard.py`.
+  `TRANSFER_PTS` para 10 e `EXPIRED_PTS` para 10 em `scripts/generate_scoreboard.py`.
 - **Skip para agente "só phone"**: com o Skip restrito a chat+backoffice, um agente 100% phone
   ficaria sem base de cálculo. O grupo está vazio hoje, mas a interação precisa ser resolvida antes
   de classificar alguém nele.
+- **Time Spent fura o teto mensal do backoffice**: `time_spent_pts` é multiplicado pelo número
+  de segundas fechadas e depois somado ao `ops_total`, que é o balde mensal de 40 pts. Com 4
+  semanas fechadas, um backoffice puro chegaria a 160 pts só de Time Spent. `NO_CHANNEL` está
+  vazio, então ninguém é afetado hoje — mas resolver antes de classificar alguém no grupo.
+  A raiz é conceitual: Time Spent é métrica SEMANAL (ocupa os 40 pts/semana do tNPS) e não
+  deveria estar no balde mensal.
 - **"Top Performer da semana" é um proxy**, não um campo oficial do Databricks (só existe Top
   Performer mensal em `usr.csinnovation.csiagentsmetricsoficial`). O proxy usado é o agente com
   maior soma de Excelência+tNPS naquela semana específica.
