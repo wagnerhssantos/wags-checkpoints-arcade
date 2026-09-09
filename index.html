@@ -143,14 +143,14 @@
             <tr>
               <th>#</th><th>Xmart</th><th>Nível</th><th>Total</th>
               <th>Excelência</th><th>tNPS Chat</th><th>tNPS Phone</th>
-              <th>Skip</th><th>Unans.</th><th>Transfer</th><th>Expired</th>
-              <th>Time Spent</th><th>Engaj.</th><th>WoW</th>
+              <th>Skip</th><th>Unans.</th><th>Expired</th>
+              <th>Engaj.</th><th>WoW</th>
             </tr>
           </thead>
           <tbody id="fullTableBody"></tbody>
         </table>
       </div>
-      <p class="pending">A coluna <b>Transfer</b> aparece como “—” porque a métrica está em modo monitoramento neste momento — ela é apurada, mas não soma pontos até o fechamento do mês.</p>
+      <p class="pending">O <b>Transfer indevido</b> e o <b>Time Spent</b> saíram do placar: o Transfer está em modo monitoramento (é apurado, mas não soma pontos até o fechamento do mês) e o Time Spent só vale para o grupo backoffice, hoje vazio. Os dois continuam sendo apurados e aparecem no seu acompanhamento individual.</p>
     </div>
 
     <div class="panel">
@@ -161,10 +161,10 @@
     <div class="panel">
       <h2>REGRAS DO JOGO — SETEMBRO/2026</h2>
       <div class="rules-list">
-        <p><span class="pending">Competição válida apenas para setembro/2026. Fechamentos semanais sempre na segunda-feira. Métricas mensais (Skip, Unanswered Calls, Expired jobs, Time Spent) usam o resultado acumulado do mês até hoje.</span></p>
+        <p><span class="pending">Competição válida apenas para setembro/2026. Fechamentos semanais sempre na segunda-feira. Métricas mensais (Skip, Unanswered Calls, Expired jobs) usam o resultado acumulado do mês até hoje.</span></p>
         <p><span class="pending">Os tetos de pontos são IGUAIS nos 3 grupos — 75 pts/semana e 40 pts/mês no máximo, não importa em quantos canais você atua. Quem só tem um canal disponível numa família de métrica (tNPS ou Skip/Unanswered) tem esse canal valendo em dobro, pra cobrir exatamente o espaço do canal que falta.</span></p>
 
-        <span class="rule-flag">ATUALIZADO EM 09/09: o <b>Transfer indevido</b> saiu da pontuação e virou só monitoramento — volta a valer pontos no fechamento do mês. Os 10 pts dele foram pro <b>Expired jobs</b>, que agora vale +20. E o <b>Skip</b> passou a contar apenas atendimentos de chat e backoffice.</span>
+        <span class="rule-flag">ATUALIZADO EM 09/09: o <b>Boss Battle</b> agora é só o da <b>semana</b> (+20) — o do mês (+50) saiu. O <b>Transfer indevido</b> segue como monitoramento (0 pts até o fechamento do mês) e os 10 pts dele estão no <b>Expired jobs</b>, que vale +20. O <b>Skip</b> conta apenas atendimentos de chat e backoffice. <b>Transfer indevido</b> e <b>Time Spent</b> não aparecem mais como colunas do placar.</span>
 
         <h3>Regras gerais (quem atua em chat e phone)</h3>
         <p><b>Excelência</b> — semana sem apontamento de qualidade, complaint ou erro operacional: +10 pts. <b>Streak</b>: semana 2 = 15, semana 3 = 20, semana 4+ = 25 (cap 25). Um apontamento zera a sequência. Vale igual pra todo mundo, em qualquer grupo.</p>
@@ -181,12 +181,12 @@
         <p>Simétrico ao "só chat": desconsidera tNPS Chat. <b>tNPS Phone em dobro</b> (mesmas faixas do tNPS Chat em dobro acima). Skip segue a regra geral e Expired também (+20). Hoje nenhum agente do time está classificado neste grupo.</p>
 
         <h3>Quem não atua em chat nem phone (backoffice)</h3>
-        <p><b>Excelência</b> igual à regra geral (não é mais em dobro — Excelência mede conduta, não canal). Desconsidera tNPS e Unanswered Calls. <b>Skip em dobro</b> (mesma lógica do "só chat"). <b>Time Spent</b> ocupa o espaço de 40 pts/semana que os outros tiram do tNPS, com faixas graduadas: média de atendimento abaixo de 5min = +40; abaixo de 7min = +25; abaixo de 9min = +10; 9min ou mais = 0. Expired segue a regra geral (+20) e Transfer indevido não pontua.</p>
+        <p><b>Excelência</b> igual à regra geral (não é mais em dobro — Excelência mede conduta, não canal). Desconsidera tNPS e Unanswered Calls. <b>Skip em dobro</b> (mesma lógica do "só chat"). <b>Time Spent</b> ocupa o espaço de 40 pts/semana que os outros tiram do tNPS, com faixas graduadas: média de atendimento abaixo de 5min = +40; abaixo de 7min = +25; abaixo de 9min = +10; 9min ou mais = 0. <span class="pending">Não aparece como coluna do placar porque o grupo está vazio hoje.</span> Expired segue a regra geral (+20) e Transfer indevido não pontua.</p>
 
         <h3>Regras para todos</h3>
         <p><b>WoW</b> — cada WoW aprovada: +10 pts. <b>Chama do Encantamento</b> — 3+ WoWs no mês: +40, +10 por WoW extra.</p>
         <p><b>Engajamento nos canais</b> — <b>+10 pts pra quem engajou de qualquer forma na semana</b> nos canais #os_incríveis_csi, #wow_csi e #cx-csi-informa. Conta igual: mensagem no canal, resposta em thread OU curtida/reação em post de colega. Basta uma dessas coisas. <span class="pending">Não é ranking e não é “quem mais postou leva” — a ideia é puxar todo mundo pro canal. Quem não teve nenhum registro na semana fica com 0.</span></p>
-        <p><b>Boss Battle da semana</b> — o Top Performer da semana (maior soma de Excelência+tNPS) que também cumprir o critério de qualidade do seu grupo: +20 pts. <b>Boss Battle do mês</b> — mesma lógica, com o maior total acumulado no mês: +50 pts. <span class="pending">Critério de qualidade por média dos canais do grupo: geral = média entre tNPS chat e tNPS phone ≥85; só chat = tNPS chat ≥85; só phone = tNPS phone ≥85; backoffice (sem tNPS) = Time Spent na faixa máxima (abaixo de 5min). Se o Top Performer não cumprir o critério, ninguém ganha o Boss Battle naquele período. Empate no placar é resolvido alfabeticamente.</span></p>
+        <p><b>Boss Battle da semana</b> — o Top Performer da semana (maior soma de Excelência+tNPS) que também cumprir o critério de qualidade do seu grupo: +20 pts. <span class="pending">Critério de qualidade por média dos canais do grupo: geral = média entre tNPS chat e tNPS phone ≥85; só chat = tNPS chat ≥85; só phone = tNPS phone ≥85; backoffice (sem tNPS) = Time Spent na faixa máxima (abaixo de 5min). Se o Top Performer não cumprir o critério, ninguém ganha o Boss Battle naquela semana. Empate no placar é resolvido alfabeticamente. Não existe mais Boss Battle do mês.</span></p>
 
         <h3>Badges e prêmios</h3>
         <p><b>Estreia Top</b> — 1ª vez na carreira do agente como Top Performer (evento único, sem pontos).</p>
@@ -309,9 +309,7 @@ function render(data){
       ${tnpsPhoneCell}
       ${opsCell(r.ops.skip)}
       ${opsCell({...r.ops.unanswered})}
-      ${opsCell(r.ops.transferIndevido)}
       ${opsCell(r.ops.expired)}
-      ${opsCell(r.ops.timeSpent)}
       <td>${r.engagement.pts}</td>
       <td>${r.wow.pts}</td>
     `;
@@ -325,7 +323,6 @@ function render(data){
     if(r.estreiaTop){ any = true; const li = document.createElement('li'); li.innerHTML = `<span class="badge-tag">★ ESTREIA TOP</span> ${titleCase(r.agent)}`; badgesList.appendChild(li); }
     if(r.wow.chama){ any = true; const li = document.createElement('li'); li.innerHTML = `<span class="badge-tag">⚡ CHAMA DO ENCANTAMENTO</span> ${titleCase(r.agent)}`; badgesList.appendChild(li); }
     if(r.bossBattle && r.bossBattle.weekly){ any = true; const li = document.createElement('li'); li.innerHTML = `<span class="badge-tag">👑 BOSS BATTLE DA SEMANA</span> ${titleCase(r.agent)}`; badgesList.appendChild(li); }
-    if(r.bossBattle && r.bossBattle.monthly){ any = true; const li = document.createElement('li'); li.innerHTML = `<span class="badge-tag">👑 BOSS BATTLE DO MÊS</span> ${titleCase(r.agent)}`; badgesList.appendChild(li); }
   });
   if(!any){
     badgesList.innerHTML = '<li>Nenhum badge conquistado ainda em setembro.</li>';
