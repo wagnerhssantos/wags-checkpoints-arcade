@@ -164,7 +164,9 @@
         <p><span class="pending">Competição válida apenas para setembro/2026. Fechamentos semanais sempre na segunda-feira. Métricas mensais (Skip, Unanswered Calls, Expired jobs) usam o resultado acumulado do mês até hoje.</span></p>
         <p><span class="pending">Os tetos de pontos são IGUAIS nos 3 grupos — 75 pts/semana e 40 pts/mês no máximo, não importa em quantos canais você atua. Quem só tem um canal disponível numa família de métrica (tNPS ou Skip/Unanswered) tem esse canal valendo em dobro, pra cobrir exatamente o espaço do canal que falta.</span></p>
 
-        <span class="rule-flag">ATUALIZADO EM 09/09: o <b>Boss Battle</b> agora é só o da <b>semana</b> (+20) — o do mês (+50) saiu. O <b>Transfer indevido</b> segue como monitoramento (0 pts até o fechamento do mês) e os 10 pts dele estão no <b>Expired jobs</b>, que vale +20. O <b>Skip</b> conta apenas atendimentos de chat e backoffice. <b>Transfer indevido</b> e <b>Time Spent</b> não aparecem mais como colunas do placar.</span>
+        <span class="rule-flag">ATUALIZADO EM 14/09: o <b>Boss Battle da semana</b> agora é <b>compartilhado</b> — todo mundo que empatar no topo e cumprir o critério de qualidade ganha (+20 se for um só, +10 pra cada se forem dois ou mais). <b>Acabou o desempate alfabético.</b> Os <b>níveis</b> também foram recalibrados pro teto real de um mês de 4 semanas: Diamante ≥320, Ouro ≥240, Prata ≥150. As duas mudanças valem retroativamente pra setembro inteiro.</span>
+
+        <span class="rule-flag">ATUALIZADO EM 09/09: o <b>Boss Battle</b> agora é só o da <b>semana</b> — o do mês (+50) saiu. O <b>Transfer indevido</b> segue como monitoramento (0 pts até o fechamento do mês) e os 10 pts dele estão no <b>Expired jobs</b>, que vale +20. O <b>Skip</b> conta apenas atendimentos de chat e backoffice. <b>Transfer indevido</b> e <b>Time Spent</b> não aparecem mais como colunas do placar.</span>
 
         <h3>Regras gerais (quem atua em chat e phone)</h3>
         <p><b>Excelência</b> — semana sem apontamento de qualidade, complaint ou erro operacional: +10 pts. <b>Streak</b>: semana 2 = 15, semana 3 = 20, semana 4+ = 25 (cap 25). Um apontamento zera a sequência. Vale igual pra todo mundo, em qualquer grupo.</p>
@@ -186,7 +188,8 @@
         <h3>Regras para todos</h3>
         <p><b>WoW</b> — cada WoW aprovada: +10 pts. <b>Chama do Encantamento</b> — 3+ WoWs no mês: +40, +10 por WoW extra.</p>
         <p><b>Engajamento nos canais</b> — <b>+10 pts pra quem engajou de qualquer forma na semana</b> nos canais #os_incríveis_csi, #wow_csi e #cx-csi-informa. Conta igual: mensagem no canal, resposta em thread OU curtida/reação em post de colega. Basta uma dessas coisas. <span class="pending">Não é ranking e não é “quem mais postou leva” — a ideia é puxar todo mundo pro canal. Quem não teve nenhum registro na semana fica com 0.</span></p>
-        <p><b>Boss Battle da semana</b> — o Top Performer da semana (maior soma de Excelência+tNPS) que também cumprir o critério de qualidade do seu grupo: +20 pts. <span class="pending">Critério de qualidade por média dos canais do grupo: geral = média entre tNPS chat e tNPS phone ≥85; só chat = tNPS chat ≥85; só phone = tNPS phone ≥85; backoffice (sem tNPS) = Time Spent na faixa máxima (abaixo de 5min). Se o Top Performer não cumprir o critério, ninguém ganha o Boss Battle naquela semana. Empate no placar é resolvido alfabeticamente. Não existe mais Boss Battle do mês.</span></p>
+        <p><b>Boss Battle da semana</b> — os Top Performers da semana (maior soma de Excelência+tNPS) que também cumprirem o critério de qualidade do seu grupo. <b>+20 pts se houver um único vencedor; +10 pts pra cada um se houver dois ou mais.</b> <span class="pending">Critério de qualidade por média dos canais do grupo: geral = média entre tNPS chat e tNPS phone ≥85; só chat = tNPS chat ≥85; só phone = tNPS phone ≥85; backoffice (sem tNPS) = Time Spent na faixa máxima (abaixo de 5min). Cada empatado no topo é avaliado individualmente — quem passa leva, quem não passa fica de fora, e se ninguém do topo passar, ninguém ganha naquela semana. Não existe mais desempate alfabético nem Boss Battle do mês.</span></p>
+        <p><b>Níveis</b> — <b>DIAMANTE</b> a partir de 320 pts; <b>OURO</b> a partir de 240; <b>PRATA</b> a partir de 150; <b>BRONZE</b> abaixo de 150. <span class="pending">O nível é calculado sobre o total acumulado do mês, então ele sobe conforme as segundas vão fechando — no começo do mês é normal o placar inteiro estar em Bronze.</span></p>
 
         <h3>Badges e prêmios</h3>
         <p><b>Estreia Top</b> — 1ª vez na carreira do agente como Top Performer (evento único, sem pontos).</p>
@@ -322,7 +325,7 @@ function render(data){
   results.forEach(r=>{
     if(r.estreiaTop){ any = true; const li = document.createElement('li'); li.innerHTML = `<span class="badge-tag">★ ESTREIA TOP</span> ${titleCase(r.agent)}`; badgesList.appendChild(li); }
     if(r.wow.chama){ any = true; const li = document.createElement('li'); li.innerHTML = `<span class="badge-tag">⚡ CHAMA DO ENCANTAMENTO</span> ${titleCase(r.agent)}`; badgesList.appendChild(li); }
-    if(r.bossBattle && r.bossBattle.weekly){ any = true; const li = document.createElement('li'); li.innerHTML = `<span class="badge-tag">👑 BOSS BATTLE DA SEMANA</span> ${titleCase(r.agent)}`; badgesList.appendChild(li); }
+    if(r.bossBattle && r.bossBattle.weekly){ any = true; const li = document.createElement('li'); li.innerHTML = `<span class="badge-tag">👑 BOSS BATTLE DA SEMANA</span> ${titleCase(r.agent)} <span class="pending">(${r.bossBattle.weeklyPts} pts)</span>`; badgesList.appendChild(li); }
   });
   if(!any){
     badgesList.innerHTML = '<li>Nenhum badge conquistado ainda em setembro.</li>';
