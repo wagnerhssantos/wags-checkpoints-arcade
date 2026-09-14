@@ -10,8 +10,11 @@ de pontos foram recalibrados pra ficarem iguais entre os grupos de agente (geral
 phone / backoffice). Na v5, o Boss Battle passou a valer de verdade, com um critério de qualidade
 por média dos canais de cada grupo. Na v6, o Engajamento deixou de ser "quem mais postou leva
 tudo". Na v7, o Transfer indevido saiu da pontuação e o Skip passou a contar só chat e
-backoffice. Na **v8**, o Boss Battle do mês foi removido (ficou só o da semana) e o painel deixou
-de exibir as colunas de Transfer indevido e Time Spent — ver "Regras do jogo" abaixo.
+backoffice. Na v8, o Boss Battle do mês foi removido (ficou só o da semana) e o painel deixou
+de exibir as colunas de Transfer indevido e Time Spent. Na **v9**, o Boss Battle da semana passou
+a ser **compartilhado entre todos os empatados no topo** (acabou o desempate alfabético) e os
+cortes de nível foram recalibrados para o teto real de um mês de 4 semanas — ver "Regras do jogo"
+abaixo.
 
 ## Como funciona
 
@@ -23,16 +26,99 @@ O topo da página sempre mostra **até que data os dados são** ("Dados até DD/
 porque nem toda métrica fecha no mesmo ritmo (semanal vs. mensal), e o ETL do Databricks tem um
 dia de atraso natural.
 
+## Mudanças da v9 — decidido pelo Wagner em 14/09/2026
+
+### 1. Boss Battle da semana agora é compartilhado
+
+O Boss Battle deixou de ter um único vencedor por semana. **Todos os agentes que empatarem no topo
+do score da semana E cumprirem o critério de qualidade do seu grupo ganham o Boss Battle.**
+
+- **1 vencedor sozinho: +20 pts** (valor da v8, inalterado).
+- **2 ou mais vencedores: +10 pts para cada um.**
+
+O desempate alfabético **foi eliminado**. Ele era o mecanismo que decidia de fato quem ganhava, e
+tinha um viés permanente e indefensável: nomes começados em A (Andresa, Angela, Angelica) venciam
+praticamente todo empate, para sempre.
+
+**Por que a mudança:** empate no topo não é exceção, é a norma — e é estrutural, não azar. O score
+do Boss Battle é Excelência (idêntica para todo mundo, 10/15/20/25 conforme o streak) + tNPS
+convertido em faixas com teto de 40 pts/semana. O teto semanal é baixo e a granularidade é grossa,
+então quanto melhor o time fica, mais gente encosta no teto.
+
+Nas duas primeiras semanas de setembro, **8 pessoas-semana cumpriram integralmente o critério e só
+2 recebiam os pontos**:
+
+| Semana | Empatados no topo | Passaram no critério | Pagos na v8 | Pagos na v9 |
+|---|---|---|---|---|
+| 36 (teto 50) | Andresa, Angelica, Giulia | os 3 | só Andresa | os 3 (+10 cada) |
+| 37 (teto 55) | Angelica, Caren, Gabrielle, Giulia, Guilherme | os 5 | só Angelica | os 5 (+10 cada) |
+
+Repare na semana 37: o teto era 15 (Excelência) + 40 (tNPS) = **55**, e cinco pessoas cravaram 55.
+Não foi empate apertado — foi **nota máxima batida por cinco agentes**.
+
+Aplicado **retroativamente** a setembro inteiro. Efeito no placar de 14/09:
+
+| Agente | v8 | v9 | Δ |
+|---|---|---|---|
+| angelica.almeida | 195 | 195 | — |
+| giulia.machado | 160 | 180 | +20 |
+| andresa.britto | 165 | 155 | -10 |
+| caren.paraiso | 145 | 155 | +10 |
+| guilherme.zunareli | 127 | 137 | +10 |
+| gabrielle.macedo | 120 | 130 | +10 |
+
+O badge "BOSS BATTLE DA SEMANA" passa a aparecer para 6 agentes em vez de 2 — o site já renderiza
+isso automaticamente, um item por agente com `bossBattle.weekly = true`.
+
+**Atenção ao ler o JSON:** `bossBattle.weeklyPts` agora pode ser 10, 20, 30 ou 40 no acumulado do
+mês, dependendo de quantas semanas o agente venceu e se venceu sozinho ou dividido. `weekly` é
+booleano e só indica "ganhou pelo menos uma vez no mês".
+
+### 2. Níveis recalibrados para o teto real de 4 semanas
+
+Os cortes antigos (Diamante ≥300, Ouro ≥180, Prata ≥90) foram calibrados no teto da v3 e o próprio
+README já os marcava como provisórios. O problema que apareceu foi o oposto do previsto: em vez de
+travar todo mundo no Bronze, **o placar dispara para o Ouro no meio do mês**. Na semana 2, 11 dos
+14 agentes já estavam em Prata e o 1º lugar estava a 15 pts do Ouro.
+
+A causa é o acúmulo semanal. Setembro tem 4 segundas de fechamento (07, 14, 21, 28) e cada uma
+adiciona até 75 pts (Excelência até 25 + tNPS até 40 + Engajamento 10), fora o balde mensal de 40.
+Projeção de um agente mantendo forma perfeita:
+
+```
+Excelência   10+15+20+25 =  70
+tNPS         40 x 4      = 160
+Engajamento  10 x 4      =  40
+Ops (teto mensal)        =  40
+WoW                      =  10
+                          ----
+                           320   <- Diamante SEM nenhum Boss Battle
+```
+
+Cortes novos, escalados para o teto realista de ~390 pts no mês fechado:
+
+| Nível | Corte antigo | **Corte novo (v9)** |
+|---|---|---|
+| DIAMANTE | ≥300 | **≥320** |
+| OURO | ≥180 | **≥240** |
+| PRATA | ≥90 | **≥150** |
+| BRONZE | <90 | **<150** |
+
+Com isso, o placar de 14/09 (metade do mês) fica com 4 agentes em Prata e 10 em Bronze — e o nível
+sobe conforme o mês avança, que é a progressão que um arcade deve dar. Os cortes são calculados no
+`level_of()` a partir do `total`; **o site não tem os valores hardcoded**, ele só renderiza o campo
+`level` do JSON.
+
 ## Mudanças da v8 — decidido pelo Wagner em 09/09/2026
 
 ### 1. Boss Battle agora é só o da semana
 
-O **Boss Battle do mês (+50 pts) foi removido**. Fica valendo apenas o **Boss Battle da semana
-(+20 pts)**, com o mesmo critério de qualidade da v5 (média dos canais aplicáveis ao grupo ≥85).
+O **Boss Battle do mês (+50 pts) foi removido**. Fica valendo apenas o **Boss Battle da semana**,
+com o mesmo critério de qualidade da v5 (média dos canais aplicáveis ao grupo ≥85). O valor do
+prêmio semanal passou a variar na v9 (ver acima).
 
 O efeito foi aplicado **retroativamente** no `scoreboard.json` de 09/09: a Angelica Almeida tinha
-+50 de Boss Battle do mês e passou de 155 para **105 pts** — segue em 1º lugar (a 2ª colocada,
-Andresa Britto, tem 96). O Boss Battle da semana já conquistado pela Andresa (+20) foi mantido.
++50 de Boss Battle do mês e passou de 155 para **105 pts**.
 
 Nos campos do JSON, `bossBattle.monthly` fica sempre `false` e `bossBattle.monthlyPts` sempre `0`.
 O site não renderiza mais o badge "BOSS BATTLE DO MÊS".
@@ -91,7 +177,7 @@ volume relevante deles estava em `email` — no caso da Lucrecia, 25 dos 28 skip
 e-mail, o que jogava o Skip dela pra 8,46% quando o número real de chat+backoffice é 1,63%.
 Manter o denominador restrito também evita diluir o percentual de quem atende muito fone.
 
-## Regras do jogo (v8) — setembro/2026
+## Regras do jogo (v9) — setembro/2026
 
 **Tetos de pontos IGUAIS nos 3 grupos** — 75 pts/semana e 40 pts/mês no máximo, não importa
 quantos canais o agente atende. A regra é sempre a mesma: se você só tem UM canal disponível numa
@@ -149,14 +235,16 @@ coluna precisa voltar.
   reação em post de colega**. Basta UMA dessas coisas para ganhar os 10 pts — não é ranking, não é
   "quem mais participou". Quem não teve nenhum registro na semana fica com 0. O teto continua sendo
   10 pts/semana (ninguém ganha 30 por fazer as três coisas).
-- **Boss Battle da semana (v8 — único que existe)**: Top Performer da semana (proxy: maior soma de
-  Excelência+tNPS na semana) que também cumpra o critério de qualidade daquele grupo: +20 pts.
+- **Boss Battle da semana (v9 — compartilhado)**: Top Performers da semana (proxy: maior soma de
+  Excelência+tNPS na semana) que também cumpram o critério de qualidade do seu grupo.
+  **+20 pts se houver um único vencedor; +10 pts para cada um se houver 2 ou mais.**
   **Critério de qualidade (v5, por média dos canais do grupo)**: geral = média entre tNPS chat e
   tNPS phone ≥85; só chat = tNPS chat ≥85; só phone = tNPS phone ≥85; backoffice (sem tNPS) = Time
-  Spent na faixa máxima (<5min). Se o Top Performer da semana não cumprir o critério, ninguém ganha
-  o Boss Battle naquela semana. Empate no placar é resolvido alfabeticamente. Engajamento fica de
-  fora do cálculo do Boss Battle — é métrica de participação, não de qualidade de atendimento.
-  **Não existe mais Boss Battle do mês** (era +50 pts até a v7).
+  Spent na faixa máxima (<5min). Cada empatado no topo é avaliado **individualmente** no critério —
+  quem passa leva, quem não passa fica de fora, e se ninguém do topo passar, ninguém ganha naquela
+  semana. **Não existe mais desempate alfabético** (v9) nem Boss Battle do mês (v8).
+- **Níveis (v9)**: DIAMANTE ≥320, OURO ≥240, PRATA ≥150, BRONZE <150. Calculados sobre o `total`
+  acumulado do mês, então o nível sobe conforme as segundas vão fechando.
 
 ### Badges e prêmios
 
@@ -176,6 +264,14 @@ coluna precisa voltar.
 | Unanswered Calls | `usr.cx_golden_layer.unanswered_calls` (`queue_event__actor`, `ringing`, `no_answer`) | Mensal (acumulado até hoje) |
 | WoW | Planilha "Base Faísca H22026" | Mensal (acumulado) |
 | Engajamento nos canais | Slack — #os_incríveis_csi (`C0AK68688EQ`), #wow_csi (`C090RS3739N`), #cx-csi-informa (`C0209GG9GQ7`). Mensagens via `slack_read_channel`, respostas via `slack_read_thread`, reações via `slack_get_reactions` | Semanal |
+
+### Convenção da coluna de semana nas planilhas de Excelência
+
+As abas `4. Qualidade` e `5. Reclamações.` usam o formato `"Semana N"` com a **numeração ISO da
+semana do ano** (ex.: `"Semana 36"` = 31/08 a 06/09; `"Semana 37"` = 07/09 a 13/09). A aba
+`6. Erros Ops (Vigente)` tem layout diferente e **não tem coluna de semana**: B = e-mail de quem
+reportou, C = data do erro em `DD/MM/AAAA`, D = Customer ID/Ticket, **E = e-mail do analista que
+cometeu o erro** (é essa coluna que deve ser cruzada com o roster).
 
 ### Como coletar o Engajamento (v6) — passo a passo para a tarefa agendada
 
@@ -201,13 +297,15 @@ Excluir sempre das contagens: o Wagner (liderança) e os bots (UAI, Faísca, Cla
 
 ## Limitações conhecidas e decisões em aberto
 
-- **`scripts/generate_scoreboard.py` está DEFASADO em relação à v7/v8** e não deve ser executado
-  como está: ele ainda implementa o Boss Battle do mês (+50), o Transfer indevido valendo 10 pts, o
-  Expired em 10 (não 20) e o Skip sobre todos os canais. O workflow do GitHub Actions está em
+- **`scripts/generate_scoreboard.py` está DEFASADO em relação à v7/v8/v9** e não deve ser executado
+  como está: ele ainda implementa o Boss Battle do mês (+50), o Boss Battle da semana com vencedor
+  único e desempate alfabético, o Transfer indevido valendo 10 pts, o Expired em 10 (não 20), o Skip
+  sobre todos os canais e os níveis antigos (300/180/90). O workflow do GitHub Actions está em
   `workflow_dispatch` (manual) de propósito. Antes de rodar o script ou reativar o cron, atualizar:
-  `BOSS_MONTHLY_PTS` → remover, `TRANSFER_THRESHOLD`/pts → 0, Expired → 20, e o filtro de
-  `activity_type` do Skip. Quem manda no placar hoje é a tarefa agendada do Cowork, que segue este
-  README.
+  `BOSS_MONTHLY_PTS` → remover, `compute_boss_battle()` → premiar todos os empatados que passarem no
+  critério (+20 solo / +10 compartilhado), `TRANSFER_THRESHOLD`/pts → 0, Expired → 20, o filtro de
+  `activity_type` do Skip e `LEVELS` → 320/240/150. Quem manda no placar hoje é a tarefa agendada do
+  Cowork, que segue este README.
 - **Transfer indevido está congelado** (v7). Precisa ser retomado no fechamento de setembro: voltar
   Transfer para 10 pts e Expired para 10 pts, e devolver a coluna dele ao painel.
 - **Colunas removidas do painel na v8**: se o Transfer voltar a pontuar, ou se algum agente for
@@ -224,7 +322,12 @@ Excluir sempre das contagens: o Wagner (liderança) e os bots (UAI, Faísca, Cla
   deveria estar no balde mensal.
 - **"Top Performer da semana" é um proxy**, não um campo oficial do Databricks (só existe Top
   Performer mensal em `usr.csinnovation.csiagentsmetricsoficial`). O proxy usado é o agente com
-  maior soma de Excelência+tNPS naquela semana específica.
+  maior soma de Excelência+tNPS naquela semana.
+- **O proxy do Boss Battle tem granularidade grossa** (v9 mitigou, não resolveu): o score usa os
+  PONTOS de faixa do tNPS, não o tNPS bruto, então 88,9 e 100 valem os mesmos 20 pts. Somado à
+  Excelência, que é idêntica para todos, o empate no teto é o resultado esperado — a v9 assume isso
+  e premia todos os empatados em vez de sortear um. Se um dia a gente quiser Boss Battle exclusivo
+  de novo, a alternativa é usar tNPS bruto no cálculo do Top Performer.
 - **Classificação de canal por agente** (geral / só chat / só phone / backoffice) é baseada no
   histórico de agosto/26. Hoje: andresa.britto, caren.paraiso e lucrecia.santos = só chat; nenhum
   agente backoffice puro ou só phone. Revalidar mensalmente — se alguém mudar de canal, atualizar
@@ -233,14 +336,18 @@ Excluir sempre das contagens: o Wagner (liderança) e os bots (UAI, Faísca, Cla
   definido — hoje o badge fica pendente até definirmos o corte.
 - **Teto de 50 usuários por emoji no Slack**: a API `slack_get_reactions` lista no máximo 50 pessoas
   por emoji. **Não afeta a pontuação da v6**, que é binária — mas subestima os campos
-  `emojis`/`postsReagidos` de quem mais reage.
+  `emojis`/`postsReagidos` de quem mais reage. Na mesma linha, reações deixadas DENTRO de respostas
+  de thread não são contabilizadas (só as de mensagens de nível superior).
 - **Engajamento não distingue intensidade (v6)**: quem responde 19 threads e quem dá uma curtida na
   semana pontuam igual. Escolha deliberada — a métrica é de participação. O campo `score` no
   `engagement_override.json` preserva a intensidade caso a gente queira um bônus separado depois.
-- **Níveis (Bronze/Prata/Ouro/Diamante)** foram recalibrados para o teto de pontos mais alto da v3
-  (Diamante ≥300, Ouro ≥180, Prata ≥90), mas são provisórios. Com o Boss Battle do mês fora (v8), o
-  teto do mês caiu 50 pts — recalibrar os cortes se o placar ficar concentrado no Bronze/Prata.
+- **Agentes sem base de dados**: `maycon.cardoso` está sem nenhum registro no Databricks em setembro
+  (sem atendimento, sem tNPS, sem unanswered) e sem engajamento no Slack — só pontua Excelência.
+  `lucrecia.santos` está sem nenhuma pesquisa de tNPS no mês, o que a deixa sem os 40 pts/semana a
+  que o grupo só-chat tem direito. Nos dois casos o placar reflete ausência de base, não performance
+  ruim — confirmar situação cadastral antes do fechamento do mês.
 - **01/09/2026**: dia de início da competição. A 1ª segunda-feira de fechamento foi 07/09/2026.
+  Setembro tem 4 fechamentos: 07, 14, 21 e 28.
 
 ### Resolvido na v4
 
@@ -271,38 +378,15 @@ Excluir sempre das contagens: o Wagner (liderança) e os bots (UAI, Faísca, Cla
 ### Resolvido na v8
 
 - ~~Boss Battle do mês (+50) concentrava meio nível de pontuação numa única pessoa~~ — removido;
-  ficou só o da semana (+20).
+  ficou só o da semana.
 - ~~Painel com duas colunas que só mostravam "—" pra todo mundo (Transfer e Time Spent)~~ —
   removidas da visualização; as métricas seguem apuradas no `scoreboard.json`.
 
-## Automação
+### Resolvido na v9
 
-A atualização diária às 9h roda como uma **tarefa agendada no Cowork** (não GitHub Actions): um
-agente Claude executa o pipeline (Databricks, Google Sheets, Slack, e o push pro GitHub) usando as
-credenciais já usadas pela skill `daily-briefing-wags`. O script `scripts/generate_scoreboard.py`
-documenta as fórmulas das versões até a v6 e **está defasado** (ver Limitações) — pode ser rodado
-manualmente/via GitHub Actions se os secrets abaixo forem configurados, mas ele não tem acesso a
-Slack, por isso o campo de Engajamento depende do arquivo `data/engagement_override.json` gerado
-pela tarefa agendada.
-
-| Secret (uso opcional/manual) | O que é |
-|---|---|
-| `DATABRICKS_HOST` | host do workspace Databricks (sem `https://`) |
-| `DATABRICKS_TOKEN` | personal access token ou service principal token com leitura na tabela |
-| `DATABRICKS_WAREHOUSE_ID` | id do SQL warehouse a usar nas queries |
-| `GOOGLE_SERVICE_ACCOUNT_JSON` | conteúdo JSON de uma service account do Google com acesso de leitor nas planilhas |
-| `XFORCE_EMAIL` | (opcional) email do xforce a filtrar; default `wagner.santos@nubank.com.br` |
-
-## Como habilitar o site (uma vez)
-
-1. Vá em **Settings > Pages** deste repositório.
-2. Em **Build and deployment > Source**, escolha **Deploy from a branch**.
-3. Branch: `main`, pasta: `/ (root)`.
-4. Salve. O site fica em `https://wagnerhssantos.github.io/wags-checkpoints-arcade/`.
-
-## Identidade visual
-
-- `assets/uai-mascot.b64.txt`: mascote (pão de queijo cibernético) em base64, carregado via
-  `data:` URI no navegador.
-- `assets/emblem.svg`: emblema original da v1, não é mais usado na tela (mantido no repo por
-  histórico). A identidade visual atual usa só o mascote.
+- ~~Desempate alfabético decidindo o Boss Battle, com viés permanente pra nomes em A~~ — eliminado;
+  todos os empatados no topo que passam no critério de qualidade ganham.
+- ~~8 pessoas-semana cumpriam o critério do Boss Battle e só 2 recebiam~~ — corrigido: na semana 36
+  os 3 empatados levaram e na 37 os 5 levaram.
+- ~~Níveis provisórios calibrados no teto da v3, com o time inteiro indo pro Ouro no meio do mês~~ —
+  recalibrados pro teto real de 4 semanas: 320/240/150.
