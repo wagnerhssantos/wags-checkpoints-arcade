@@ -1,1 +1,529 @@
-{"month":"2026-09","monthLabel":"09/26","competitionScope":"Competição válida apenas para setembro/2026","closedMondays":["2026-09-07","2026-09-14"],"dataAsOf":"2026-09-15","dataAsOfNote":"Atualizado em 15/09/2026 — dados referentes à semana de 07/09 a 13/09 (semana ISO 37).","rulesVersion":"v9","generatedAt":"2026-09-15 12:28 UTC","results":[{"agent":"angelica.almeida","group":"geral","total":185,"level":"PRATA","excelencia":{"weekly":[10,15],"total":25},"tnps":{"chat":[{"tnps":100.0,"pts":20,"week_index":0},{"tnps":100.0,"pts":20,"week_index":1}],"chatPts":40,"phone":[{"tnps":100.0,"pts":20,"week_index":0},{"tnps":100.0,"pts":20,"week_index":1}],"phonePts":40,"applicable":{"chat":true,"phone":true}},"ops":{"skip":{"pct":4.43,"pts":10,"scope":"chat+backoffice"},"unanswered":{"pct":19.78,"pts":0,"applicable":true},"transferIndevido":{"pct":6.04,"pts":0,"applicable":false,"monitoringOnly":true},"expired":{"pct":0.79,"pts":20},"timeSpent":{"minutes":7.05,"pts":0,"applicable":false},"total":30},"wow":{"count":1,"pts":10,"chama":false},"engagement":{"pts":20,"detail":{"2026-W36":{"msgs":2,"threads":10,"emojis":56,"postsReagidos":28,"score":54},"2026-W37":{"msgs":1,"threads":12,"emojis":52,"postsReagidos":26,"score":53}}},"bossBattle":{"weekly":true,"monthly":false,"weeklyPts":20,"monthlyPts":0},"estreiaTop":false},{"agent":"giulia.machado","group":"geral","total":180,"level":"PRATA","excelencia":{"weekly":[10,15],"total":25},"tnps":{"chat":[{"tnps":88.9,"pts":20,"week_index":0},{"tnps":100.0,"pts":20,"week_index":1}],"chatPts":40,"phone":[{"tnps":100.0,"pts":20,"week_index":0},{"tnps":100.0,"pts":20,"week_index":1}],"phonePts":40,"applicable":{"chat":true,"phone":true}},"ops":{"skip":{"pct":2.86,"pts":10,"scope":"chat+backoffice"},"unanswered":{"pct":2.33,"pts":5,"applicable":true},"transferIndevido":{"pct":3.82,"pts":0,"applicable":false,"monitoringOnly":true},"expired":{"pct":0.0,"pts":20},"timeSpent":{"minutes":5.25,"pts":0,"applicable":false},"total":35},"wow":{"count":0,"pts":0,"chama":false},"engagement":{"pts":20,"detail":{"2026-W36":{"msgs":1,"threads":10,"emojis":17,"postsReagidos":11,"score":34},"2026-W37":{"msgs":0,"threads":3,"emojis":7,"postsReagidos":6,"score":12}}},"bossBattle":{"weekly":true,"monthly":false,"weeklyPts":20,"monthlyPts":0},"estreiaTop":false},{"agent":"andresa.britto","group":"chat_only","total":165,"level":"PRATA","excelencia":{"weekly":[10,15],"total":25},"tnps":{"chat":[{"tnps":100.0,"pts":40,"week_index":0},{"tnps":83.3,"pts":30,"week_index":1}],"chatPts":70,"phone":[],"phonePts":0,"applicable":{"chat":true,"phone":false}},"ops":{"skip":{"pct":4.35,"pts":20,"scope":"chat+backoffice"},"unanswered":{"pct":null,"pts":0,"applicable":false},"transferIndevido":{"pct":5.68,"pts":0,"applicable":false,"monitoringOnly":true},"expired":{"pct":0.85,"pts":20},"timeSpent":{"minutes":5.87,"pts":0,"applicable":false},"total":40},"wow":{"count":0,"pts":0,"chama":false},"engagement":{"pts":20,"detail":{"2026-W36":{"msgs":0,"threads":4,"emojis":20,"postsReagidos":13,"score":21},"2026-W37":{"msgs":0,"threads":1,"emojis":17,"postsReagidos":6,"score":8}}},"bossBattle":{"weekly":true,"monthly":false,"weeklyPts":10,"monthlyPts":0},"estreiaTop":false},{"agent":"caren.paraiso","group":"chat_only","total":155,"level":"PRATA","excelencia":{"weekly":[10,15],"total":25},"tnps":{"chat":[{"tnps":83.3,"pts":30,"week_index":0},{"tnps":86.7,"pts":40,"week_index":1}],"chatPts":70,"phone":[],"phonePts":0,"applicable":{"chat":true,"phone":false}},"ops":{"skip":{"pct":5.26,"pts":10,"scope":"chat+backoffice"},"unanswered":{"pct":null,"pts":0,"applicable":false},"transferIndevido":{"pct":2.83,"pts":0,"applicable":false,"monitoringOnly":true},"expired":{"pct":0.35,"pts":20},"timeSpent":{"minutes":7.88,"pts":0,"applicable":false},"total":30},"wow":{"count":0,"pts":0,"chama":false},"engagement":{"pts":20,"detail":{"2026-W36":{"msgs":2,"threads":11,"emojis":93,"postsReagidos":38,"score":66},"2026-W37":{"msgs":3,"threads":10,"emojis":82,"postsReagidos":38,"score":67}}},"bossBattle":{"weekly":true,"monthly":false,"weeklyPts":10,"monthlyPts":0},"estreiaTop":false},{"agent":"marcelo.calixto","group":"geral","total":140,"level":"BRONZE","excelencia":{"weekly":[10,15],"total":25},"tnps":{"chat":[{"tnps":82.4,"pts":15,"week_index":0},{"tnps":77.3,"pts":10,"week_index":1}],"chatPts":25,"phone":[{"tnps":75.0,"pts":10,"week_index":0},{"tnps":100.0,"pts":20,"week_index":1}],"phonePts":30,"applicable":{"chat":true,"phone":true}},"ops":{"skip":{"pct":2.93,"pts":10,"scope":"chat+backoffice"},"unanswered":{"pct":0.81,"pts":10,"applicable":true},"transferIndevido":{"pct":4.81,"pts":0,"applicable":false,"monitoringOnly":true},"expired":{"pct":1.52,"pts":20},"timeSpent":{"minutes":5.62,"pts":0,"applicable":false},"total":40},"wow":{"count":0,"pts":0,"chama":false},"engagement":{"pts":20,"detail":{"2026-W36":{"msgs":3,"threads":3,"emojis":32,"postsReagidos":28,"score":43},"2026-W37":{"msgs":0,"threads":3,"emojis":31,"postsReagidos":29,"score":35}}},"bossBattle":{"weekly":false,"monthly":false,"weeklyPts":0,"monthlyPts":0},"estreiaTop":false},{"agent":"gabrielle.macedo","group":"geral","total":137,"level":"BRONZE","excelencia":{"weekly":[10,15],"total":25},"tnps":{"chat":[{"tnps":25.0,"pts":0,"week_index":0},{"tnps":92.3,"pts":20,"week_index":1}],"chatPts":20,"phone":[{"tnps":47.4,"pts":0,"week_index":0},{"tnps":100.0,"pts":20,"week_index":1}],"phonePts":20,"applicable":{"chat":true,"phone":true}},"ops":{"skip":{"pct":4.05,"pts":10,"scope":"chat+backoffice"},"unanswered":{"pct":5.21,"pts":2,"applicable":true},"transferIndevido":{"pct":0.63,"pts":0,"applicable":false,"monitoringOnly":true},"expired":{"pct":0.31,"pts":20},"timeSpent":{"minutes":8.05,"pts":0,"applicable":false},"total":32},"wow":{"count":1,"pts":10,"chama":false},"engagement":{"pts":20,"detail":{"2026-W36":{"msgs":0,"threads":6,"emojis":29,"postsReagidos":20,"score":32},"2026-W37":{"msgs":1,"threads":2,"emojis":17,"postsReagidos":10,"score":17}}},"bossBattle":{"weekly":true,"monthly":false,"weeklyPts":10,"monthlyPts":0},"estreiaTop":false},{"agent":"guilherme.zunareli","group":"geral","total":137,"level":"BRONZE","excelencia":{"weekly":[10,15],"total":25},"tnps":{"chat":[{"tnps":100.0,"pts":20,"week_index":0},{"tnps":100.0,"pts":20,"week_index":1}],"chatPts":40,"phone":[{"tnps":62.5,"pts":0,"week_index":0},{"tnps":100.0,"pts":20,"week_index":1}],"phonePts":20,"applicable":{"chat":true,"phone":true}},"ops":{"skip":{"pct":7.5,"pts":2,"scope":"chat+backoffice"},"unanswered":{"pct":15.63,"pts":0,"applicable":true},"transferIndevido":{"pct":3.95,"pts":0,"applicable":false,"monitoringOnly":true},"expired":{"pct":1.52,"pts":20},"timeSpent":{"minutes":6.39,"pts":0,"applicable":false},"total":22},"wow":{"count":0,"pts":0,"chama":false},"engagement":{"pts":20,"detail":{"2026-W36":{"msgs":0,"threads":2,"emojis":15,"postsReagidos":11,"score":15},"2026-W37":{"msgs":1,"threads":0,"emojis":15,"postsReagidos":8,"score":11}}},"bossBattle":{"weekly":true,"monthly":false,"weeklyPts":10,"monthlyPts":0},"estreiaTop":false},{"agent":"randal.savino","group":"geral","total":132,"level":"BRONZE","excelencia":{"weekly":[10,15],"total":25},"tnps":{"chat":[{"tnps":100.0,"pts":20,"week_index":0},{"tnps":70.0,"pts":5,"week_index":1}],"chatPts":25,"phone":[{"tnps":66.7,"pts":0,"week_index":0},{"tnps":75.0,"pts":10,"week_index":1}],"phonePts":10,"applicable":{"chat":true,"phone":true}},"ops":{"skip":{"pct":1.59,"pts":10,"scope":"chat+backoffice"},"unanswered":{"pct":7.78,"pts":2,"applicable":true},"transferIndevido":{"pct":2.74,"pts":0,"applicable":false,"monitoringOnly":true},"expired":{"pct":0.0,"pts":20},"timeSpent":{"minutes":8.46,"pts":0,"applicable":false},"total":32},"wow":{"count":2,"pts":20,"chama":false},"engagement":{"pts":20,"detail":{"2026-W36":{"msgs":8,"threads":14,"emojis":23,"postsReagidos":12,"score":64},"2026-W37":{"msgs":4,"threads":4,"emojis":11,"postsReagidos":9,"score":29}}},"bossBattle":{"weekly":false,"monthly":false,"weeklyPts":0,"monthlyPts":0},"estreiaTop":false},{"agent":"thiago.guedes","group":"geral","total":122,"level":"BRONZE","excelencia":{"weekly":[10,15],"total":25},"tnps":{"chat":[{"tnps":33.3,"pts":0,"week_index":0},{"tnps":100.0,"pts":20,"week_index":1}],"chatPts":20,"phone":[{"tnps":100.0,"pts":20,"week_index":0},{"tnps":76.9,"pts":10,"week_index":1}],"phonePts":30,"applicable":{"chat":true,"phone":true}},"ops":{"skip":{"pct":6.52,"pts":5,"scope":"chat+backoffice"},"unanswered":{"pct":5.46,"pts":2,"applicable":true},"transferIndevido":{"pct":1.42,"pts":0,"applicable":false,"monitoringOnly":true},"expired":{"pct":0.85,"pts":20},"timeSpent":{"minutes":7.4,"pts":0,"applicable":false},"total":27},"wow":{"count":0,"pts":0,"chama":false},"engagement":{"pts":20,"detail":{"2026-W36":{"msgs":1,"threads":1,"emojis":10,"postsReagidos":9,"score":14},"2026-W37":{"msgs":0,"threads":1,"emojis":8,"postsReagidos":7,"score":9}}},"bossBattle":{"weekly":false,"monthly":false,"weeklyPts":0,"monthlyPts":0},"estreiaTop":false},{"agent":"lucas.cassimiro","group":"geral","total":115,"level":"BRONZE","excelencia":{"weekly":[10,15],"total":25},"tnps":{"chat":[{"tnps":66.7,"pts":0,"week_index":0},{"tnps":50.0,"pts":0,"week_index":1}],"chatPts":0,"phone":[{"tnps":45.5,"pts":0,"week_index":0},{"tnps":100.0,"pts":20,"week_index":1}],"phonePts":20,"applicable":{"chat":true,"phone":true}},"ops":{"skip":{"pct":4.55,"pts":10,"scope":"chat+backoffice"},"unanswered":{"pct":0.65,"pts":10,"applicable":true},"transferIndevido":{"pct":1.85,"pts":0,"applicable":false,"monitoringOnly":true},"expired":{"pct":0.37,"pts":20},"timeSpent":{"minutes":4.94,"pts":0,"applicable":false},"total":40},"wow":{"count":1,"pts":10,"chama":false},"engagement":{"pts":20,"detail":{"2026-W36":{"msgs":4,"threads":2,"emojis":8,"postsReagidos":6,"score":22},"2026-W37":{"msgs":3,"threads":3,"emojis":25,"postsReagidos":11,"score":26}}},"bossBattle":{"weekly":false,"monthly":false,"weeklyPts":0,"monthlyPts":0},"estreiaTop":false},{"agent":"angela.julia","group":"geral","total":105,"level":"BRONZE","excelencia":{"weekly":[10,15],"total":25},"tnps":{"chat":[{"tnps":60.0,"pts":0,"week_index":0},{"tnps":100.0,"pts":20,"week_index":1}],"chatPts":20,"phone":[{"tnps":68.8,"pts":0,"week_index":0},{"tnps":50.0,"pts":0,"week_index":1}],"phonePts":0,"applicable":{"chat":true,"phone":true}},"ops":{"skip":{"pct":1.2,"pts":10,"scope":"chat+backoffice"},"unanswered":{"pct":0.79,"pts":10,"applicable":true},"transferIndevido":{"pct":1.4,"pts":0,"applicable":false,"monitoringOnly":true},"expired":{"pct":0.47,"pts":20},"timeSpent":{"minutes":8.13,"pts":0,"applicable":false},"total":40},"wow":{"count":0,"pts":0,"chama":false},"engagement":{"pts":20,"detail":{"2026-W36":{"msgs":1,"threads":3,"emojis":14,"postsReagidos":14,"score":23},"2026-W37":{"msgs":1,"threads":3,"emojis":7,"postsReagidos":7,"score":16}}},"bossBattle":{"weekly":false,"monthly":false,"weeklyPts":0,"monthlyPts":0},"estreiaTop":false},{"agent":"lucrecia.santos","group":"chat_only","total":85,"level":"BRONZE","excelencia":{"weekly":[10,15],"total":25},"tnps":{"chat":[],"chatPts":0,"phone":[],"phonePts":0,"applicable":{"chat":true,"phone":false}},"ops":{"skip":{"pct":1.63,"pts":20,"scope":"chat+backoffice"},"unanswered":{"pct":null,"pts":0,"applicable":false},"transferIndevido":{"pct":0.6,"pts":0,"applicable":false,"monitoringOnly":true},"expired":{"pct":0.0,"pts":20},"timeSpent":{"minutes":3.76,"pts":0,"applicable":false},"total":40},"wow":{"count":0,"pts":0,"chama":false},"engagement":{"pts":20,"detail":{"2026-W36":{"msgs":0,"threads":3,"emojis":17,"postsReagidos":6,"score":12},"2026-W37":{"msgs":0,"threads":0,"emojis":2,"postsReagidos":1,"score":1}}},"bossBattle":{"weekly":false,"monthly":false,"weeklyPts":0,"monthlyPts":0},"estreiaTop":false},{"agent":"kissila.oliveira","group":"geral","total":74,"level":"BRONZE","excelencia":{"weekly":[10,15],"total":25},"tnps":{"chat":[{"tnps":44.4,"pts":0,"week_index":0},{"tnps":31.3,"pts":0,"week_index":1}],"chatPts":0,"phone":[{"tnps":55.6,"pts":0,"week_index":0},{"tnps":71.4,"pts":5,"week_index":1}],"phonePts":5,"applicable":{"chat":true,"phone":true}},"ops":{"skip":{"pct":7.26,"pts":2,"scope":"chat+backoffice"},"unanswered":{"pct":6.82,"pts":2,"applicable":true},"transferIndevido":{"pct":3.24,"pts":0,"applicable":false,"monitoringOnly":true},"expired":{"pct":1.44,"pts":20},"timeSpent":{"minutes":7.47,"pts":0,"applicable":false},"total":24},"wow":{"count":0,"pts":0,"chama":false},"engagement":{"pts":20,"detail":{"2026-W36":{"msgs":2,"threads":19,"emojis":71,"postsReagidos":43,"score":87},"2026-W37":{"msgs":0,"threads":7,"emojis":51,"postsReagidos":38,"score":52}}},"bossBattle":{"weekly":false,"monthly":false,"weeklyPts":0,"monthlyPts":0},"estreiaTop":false},{"agent":"maycon.cardoso","group":"geral","total":25,"level":"BRONZE","excelencia":{"weekly":[10,15],"total":25},"tnps":{"chat":[],"chatPts":0,"phone":[],"phonePts":0,"applicable":{"chat":true,"phone":true}},"ops":{"skip":{"pct":null,"pts":0,"scope":"chat+backoffice"},"unanswered":{"pct":null,"pts":0,"applicable":true},"transferIndevido":{"pct":null,"pts":0,"applicable":false,"monitoringOnly":true},"expired":{"pct":null,"pts":0},"timeSpent":{"minutes":null,"pts":0,"applicable":false},"total":0},"wow":{"count":0,"pts":0,"chama":false},"engagement":{"pts":0,"detail":{"2026-W36":{"msgs":0,"threads":0,"emojis":0,"postsReagidos":0,"score":0},"2026-W37":{"msgs":0,"threads":0,"emojis":0,"postsReagidos":0,"score":0}}},"bossBattle":{"weekly":false,"monthly":false,"weeklyPts":0,"monthlyPts":0},"estreiaTop":false}]}
+{
+  "month": "2026-09",
+  "monthLabel": "09/26",
+  "competitionScope": "Competição válida apenas para setembro/2026",
+  "closedMondays": [
+    "2026-09-07",
+    "2026-09-14"
+  ],
+  "dataAsOf": "2026-09-16",
+  "dataAsOfNote": "Atualizado em 16/09/2026 — dados referentes à semana de 07/09 a 13/09 (semana ISO 37).",
+  "rulesVersion": "v9",
+  "generatedAt": "2026-09-16 12:59 UTC",
+  "results": [
+    {
+      "agent": "angelica.almeida",
+      "group": "geral",
+      "total": 180,
+      "level": "PRATA",
+      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "tnps": {
+        "chat": [
+          { "tnps": 100.0, "pts": 20, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
+        "chatPts": 40,
+        "phone": [
+          { "tnps": 100.0, "pts": 20, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
+        "phonePts": 40,
+        "applicable": { "chat": true, "phone": true }
+      },
+      "ops": {
+        "skip": { "pct": 5.73, "pts": 5, "scope": "chat+backoffice" },
+        "unanswered": { "pct": 18.95, "pts": 0, "applicable": true },
+        "transferIndevido": { "pct": 5.76, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 0.69, "pts": 20 },
+        "timeSpent": { "minutes": 7.04, "pts": 0, "applicable": false },
+        "total": 25
+      },
+      "wow": { "count": 1, "pts": 10, "chama": false },
+      "engagement": {
+        "pts": 20,
+        "detail": {
+          "2026-W36": { "msgs": 2, "threads": 10, "emojis": 56, "postsReagidos": 28, "score": 54 },
+          "2026-W37": { "msgs": 1, "threads": 12, "emojis": 52, "postsReagidos": 26, "score": 53 }
+        }
+      },
+      "bossBattle": { "weekly": true, "monthly": false, "weeklyPts": 20, "monthlyPts": 0 },
+      "estreiaTop": false
+    },
+    {
+      "agent": "giulia.machado",
+      "group": "geral",
+      "total": 180,
+      "level": "PRATA",
+      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "tnps": {
+        "chat": [
+          { "tnps": 88.9, "pts": 20, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
+        "chatPts": 40,
+        "phone": [
+          { "tnps": 100.0, "pts": 20, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
+        "phonePts": 40,
+        "applicable": { "chat": true, "phone": true }
+      },
+      "ops": {
+        "skip": { "pct": 2.86, "pts": 10, "scope": "chat+backoffice" },
+        "unanswered": { "pct": 2.04, "pts": 5, "applicable": true },
+        "transferIndevido": { "pct": 4.01, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 0.0, "pts": 20 },
+        "timeSpent": { "minutes": 5.25, "pts": 0, "applicable": false },
+        "total": 35
+      },
+      "wow": { "count": 0, "pts": 0, "chama": false },
+      "engagement": {
+        "pts": 20,
+        "detail": {
+          "2026-W36": { "msgs": 1, "threads": 10, "emojis": 17, "postsReagidos": 11, "score": 34 },
+          "2026-W37": { "msgs": 0, "threads": 3, "emojis": 7, "postsReagidos": 6, "score": 12 }
+        }
+      },
+      "bossBattle": { "weekly": true, "monthly": false, "weeklyPts": 20, "monthlyPts": 0 },
+      "estreiaTop": false
+    },
+    {
+      "agent": "andresa.britto",
+      "group": "chat_only",
+      "total": 155,
+      "level": "PRATA",
+      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "tnps": {
+        "chat": [
+          { "tnps": 100.0, "pts": 40, "week_index": 0 },
+          { "tnps": 78.9, "pts": 20, "week_index": 1 }
+        ],
+        "chatPts": 60,
+        "phone": [],
+        "phonePts": 0,
+        "applicable": { "chat": true, "phone": false }
+      },
+      "ops": {
+        "skip": { "pct": 4.62, "pts": 20, "scope": "chat+backoffice" },
+        "unanswered": { "pct": null, "pts": 0, "applicable": false },
+        "transferIndevido": { "pct": 5.45, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 0.71, "pts": 20 },
+        "timeSpent": { "minutes": 5.96, "pts": 0, "applicable": false },
+        "total": 40
+      },
+      "wow": { "count": 0, "pts": 0, "chama": false },
+      "engagement": {
+        "pts": 20,
+        "detail": {
+          "2026-W36": { "msgs": 0, "threads": 4, "emojis": 20, "postsReagidos": 13, "score": 21 },
+          "2026-W37": { "msgs": 0, "threads": 1, "emojis": 17, "postsReagidos": 6, "score": 8 }
+        }
+      },
+      "bossBattle": { "weekly": true, "monthly": false, "weeklyPts": 10, "monthlyPts": 0 },
+      "estreiaTop": false
+    },
+    {
+      "agent": "marcelo.calixto",
+      "group": "geral",
+      "total": 140,
+      "level": "BRONZE",
+      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "tnps": {
+        "chat": [
+          { "tnps": 82.4, "pts": 15, "week_index": 0 },
+          { "tnps": 77.3, "pts": 10, "week_index": 1 }
+        ],
+        "chatPts": 25,
+        "phone": [
+          { "tnps": 75.0, "pts": 10, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
+        "phonePts": 30,
+        "applicable": { "chat": true, "phone": true }
+      },
+      "ops": {
+        "skip": { "pct": 2.93, "pts": 10, "scope": "chat+backoffice" },
+        "unanswered": { "pct": 0.74, "pts": 10, "applicable": true },
+        "transferIndevido": { "pct": 4.81, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 1.52, "pts": 20 },
+        "timeSpent": { "minutes": 5.62, "pts": 0, "applicable": false },
+        "total": 40
+      },
+      "wow": { "count": 0, "pts": 0, "chama": false },
+      "engagement": {
+        "pts": 20,
+        "detail": {
+          "2026-W36": { "msgs": 3, "threads": 3, "emojis": 32, "postsReagidos": 28, "score": 43 },
+          "2026-W37": { "msgs": 0, "threads": 3, "emojis": 31, "postsReagidos": 29, "score": 35 }
+        }
+      },
+      "bossBattle": { "weekly": false, "monthly": false, "weeklyPts": 0, "monthlyPts": 0 },
+      "estreiaTop": false
+    },
+    {
+      "agent": "guilherme.zunareli",
+      "group": "geral",
+      "total": 137,
+      "level": "BRONZE",
+      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "tnps": {
+        "chat": [
+          { "tnps": 100.0, "pts": 20, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
+        "chatPts": 40,
+        "phone": [
+          { "tnps": 62.5, "pts": 0, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
+        "phonePts": 20,
+        "applicable": { "chat": true, "phone": true }
+      },
+      "ops": {
+        "skip": { "pct": 7.5, "pts": 2, "scope": "chat+backoffice" },
+        "unanswered": { "pct": 15.28, "pts": 0, "applicable": true },
+        "transferIndevido": { "pct": 3.95, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 1.52, "pts": 20 },
+        "timeSpent": { "minutes": 6.39, "pts": 0, "applicable": false },
+        "total": 22
+      },
+      "wow": { "count": 0, "pts": 0, "chama": false },
+      "engagement": {
+        "pts": 20,
+        "detail": {
+          "2026-W36": { "msgs": 0, "threads": 2, "emojis": 15, "postsReagidos": 11, "score": 15 },
+          "2026-W37": { "msgs": 1, "threads": 0, "emojis": 15, "postsReagidos": 8, "score": 11 }
+        }
+      },
+      "bossBattle": { "weekly": true, "monthly": false, "weeklyPts": 10, "monthlyPts": 0 },
+      "estreiaTop": false
+    },
+    {
+      "agent": "caren.paraiso",
+      "group": "chat_only",
+      "total": 135,
+      "level": "BRONZE",
+      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "tnps": {
+        "chat": [
+          { "tnps": 83.3, "pts": 30, "week_index": 0 },
+          { "tnps": 82.4, "pts": 30, "week_index": 1 }
+        ],
+        "chatPts": 60,
+        "phone": [],
+        "phonePts": 0,
+        "applicable": { "chat": true, "phone": false }
+      },
+      "ops": {
+        "skip": { "pct": 5.26, "pts": 10, "scope": "chat+backoffice" },
+        "unanswered": { "pct": null, "pts": 0, "applicable": false },
+        "transferIndevido": { "pct": 2.83, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 0.35, "pts": 20 },
+        "timeSpent": { "minutes": 7.88, "pts": 0, "applicable": false },
+        "total": 30
+      },
+      "wow": { "count": 0, "pts": 0, "chama": false },
+      "engagement": {
+        "pts": 20,
+        "detail": {
+          "2026-W36": { "msgs": 2, "threads": 11, "emojis": 93, "postsReagidos": 38, "score": 66 },
+          "2026-W37": { "msgs": 3, "threads": 10, "emojis": 82, "postsReagidos": 38, "score": 67 }
+        }
+      },
+      "bossBattle": { "weekly": false, "monthly": false, "weeklyPts": 0, "monthlyPts": 0 },
+      "estreiaTop": false
+    },
+    {
+      "agent": "gabrielle.macedo",
+      "group": "geral",
+      "total": 132,
+      "level": "BRONZE",
+      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "tnps": {
+        "chat": [
+          { "tnps": 25.0, "pts": 0, "week_index": 0 },
+          { "tnps": 92.3, "pts": 20, "week_index": 1 }
+        ],
+        "chatPts": 20,
+        "phone": [
+          { "tnps": 47.4, "pts": 0, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
+        "phonePts": 20,
+        "applicable": { "chat": true, "phone": true }
+      },
+      "ops": {
+        "skip": { "pct": 5.23, "pts": 5, "scope": "chat+backoffice" },
+        "unanswered": { "pct": 5.13, "pts": 2, "applicable": true },
+        "transferIndevido": { "pct": 0.55, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 1.09, "pts": 20 },
+        "timeSpent": { "minutes": 7.86, "pts": 0, "applicable": false },
+        "total": 27
+      },
+      "wow": { "count": 1, "pts": 10, "chama": false },
+      "engagement": {
+        "pts": 20,
+        "detail": {
+          "2026-W36": { "msgs": 0, "threads": 6, "emojis": 29, "postsReagidos": 20, "score": 32 },
+          "2026-W37": { "msgs": 1, "threads": 2, "emojis": 17, "postsReagidos": 10, "score": 17 }
+        }
+      },
+      "bossBattle": { "weekly": true, "monthly": false, "weeklyPts": 10, "monthlyPts": 0 },
+      "estreiaTop": false
+    },
+    {
+      "agent": "randal.savino",
+      "group": "geral",
+      "total": 132,
+      "level": "BRONZE",
+      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "tnps": {
+        "chat": [
+          { "tnps": 100.0, "pts": 20, "week_index": 0 },
+          { "tnps": 72.7, "pts": 5, "week_index": 1 }
+        ],
+        "chatPts": 25,
+        "phone": [
+          { "tnps": 66.7, "pts": 0, "week_index": 0 },
+          { "tnps": 75.0, "pts": 10, "week_index": 1 }
+        ],
+        "phonePts": 10,
+        "applicable": { "chat": true, "phone": true }
+      },
+      "ops": {
+        "skip": { "pct": 1.83, "pts": 10, "scope": "chat+backoffice" },
+        "unanswered": { "pct": 7.53, "pts": 2, "applicable": true },
+        "transferIndevido": { "pct": 2.92, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 0.0, "pts": 20 },
+        "timeSpent": { "minutes": 8.32, "pts": 0, "applicable": false },
+        "total": 32
+      },
+      "wow": { "count": 2, "pts": 20, "chama": false },
+      "engagement": {
+        "pts": 20,
+        "detail": {
+          "2026-W36": { "msgs": 8, "threads": 14, "emojis": 23, "postsReagidos": 12, "score": 64 },
+          "2026-W37": { "msgs": 4, "threads": 4, "emojis": 11, "postsReagidos": 9, "score": 29 }
+        }
+      },
+      "bossBattle": { "weekly": false, "monthly": false, "weeklyPts": 0, "monthlyPts": 0 },
+      "estreiaTop": false
+    },
+    {
+      "agent": "thiago.guedes",
+      "group": "geral",
+      "total": 122,
+      "level": "BRONZE",
+      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "tnps": {
+        "chat": [
+          { "tnps": 33.3, "pts": 0, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
+        "chatPts": 20,
+        "phone": [
+          { "tnps": 100.0, "pts": 20, "week_index": 0 },
+          { "tnps": 76.9, "pts": 10, "week_index": 1 }
+        ],
+        "phonePts": 30,
+        "applicable": { "chat": true, "phone": true }
+      },
+      "ops": {
+        "skip": { "pct": 6.52, "pts": 5, "scope": "chat+backoffice" },
+        "unanswered": { "pct": 5.26, "pts": 2, "applicable": true },
+        "transferIndevido": { "pct": 1.42, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 0.85, "pts": 20 },
+        "timeSpent": { "minutes": 7.4, "pts": 0, "applicable": false },
+        "total": 27
+      },
+      "wow": { "count": 0, "pts": 0, "chama": false },
+      "engagement": {
+        "pts": 20,
+        "detail": {
+          "2026-W36": { "msgs": 1, "threads": 1, "emojis": 10, "postsReagidos": 9, "score": 14 },
+          "2026-W37": { "msgs": 0, "threads": 1, "emojis": 8, "postsReagidos": 7, "score": 9 }
+        }
+      },
+      "bossBattle": { "weekly": false, "monthly": false, "weeklyPts": 0, "monthlyPts": 0 },
+      "estreiaTop": false
+    },
+    {
+      "agent": "lucas.cassimiro",
+      "group": "geral",
+      "total": 110,
+      "level": "BRONZE",
+      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "tnps": {
+        "chat": [
+          { "tnps": 66.7, "pts": 0, "week_index": 0 },
+          { "tnps": 50.0, "pts": 0, "week_index": 1 }
+        ],
+        "chatPts": 0,
+        "phone": [
+          { "tnps": 45.5, "pts": 0, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
+        "phonePts": 20,
+        "applicable": { "chat": true, "phone": true }
+      },
+      "ops": {
+        "skip": { "pct": 5.03, "pts": 5, "scope": "chat+backoffice" },
+        "unanswered": { "pct": 0.59, "pts": 10, "applicable": true },
+        "transferIndevido": { "pct": 3.48, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 0.29, "pts": 20 },
+        "timeSpent": { "minutes": 4.85, "pts": 0, "applicable": false },
+        "total": 35
+      },
+      "wow": { "count": 1, "pts": 10, "chama": false },
+      "engagement": {
+        "pts": 20,
+        "detail": {
+          "2026-W36": { "msgs": 4, "threads": 2, "emojis": 8, "postsReagidos": 6, "score": 22 },
+          "2026-W37": { "msgs": 3, "threads": 3, "emojis": 25, "postsReagidos": 11, "score": 26 }
+        }
+      },
+      "bossBattle": { "weekly": false, "monthly": false, "weeklyPts": 0, "monthlyPts": 0 },
+      "estreiaTop": false
+    },
+    {
+      "agent": "angela.julia",
+      "group": "geral",
+      "total": 105,
+      "level": "BRONZE",
+      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "tnps": {
+        "chat": [
+          { "tnps": 60.0, "pts": 0, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
+        "chatPts": 20,
+        "phone": [
+          { "tnps": 68.8, "pts": 0, "week_index": 0 },
+          { "tnps": 50.0, "pts": 0, "week_index": 1 }
+        ],
+        "phonePts": 0,
+        "applicable": { "chat": true, "phone": true }
+      },
+      "ops": {
+        "skip": { "pct": 1.08, "pts": 10, "scope": "chat+backoffice" },
+        "unanswered": { "pct": 0.69, "pts": 10, "applicable": true },
+        "transferIndevido": { "pct": 1.27, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 0.42, "pts": 20 },
+        "timeSpent": { "minutes": 8.25, "pts": 0, "applicable": false },
+        "total": 40
+      },
+      "wow": { "count": 0, "pts": 0, "chama": false },
+      "engagement": {
+        "pts": 20,
+        "detail": {
+          "2026-W36": { "msgs": 1, "threads": 3, "emojis": 14, "postsReagidos": 14, "score": 23 },
+          "2026-W37": { "msgs": 1, "threads": 3, "emojis": 7, "postsReagidos": 7, "score": 16 }
+        }
+      },
+      "bossBattle": { "weekly": false, "monthly": false, "weeklyPts": 0, "monthlyPts": 0 },
+      "estreiaTop": false
+    },
+    {
+      "agent": "lucrecia.santos",
+      "group": "chat_only",
+      "total": 85,
+      "level": "BRONZE",
+      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "tnps": {
+        "chat": [],
+        "chatPts": 0,
+        "phone": [],
+        "phonePts": 0,
+        "applicable": { "chat": true, "phone": false }
+      },
+      "ops": {
+        "skip": { "pct": 1.63, "pts": 20, "scope": "chat+backoffice" },
+        "unanswered": { "pct": null, "pts": 0, "applicable": false },
+        "transferIndevido": { "pct": 0.6, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 0.0, "pts": 20 },
+        "timeSpent": { "minutes": 3.76, "pts": 0, "applicable": false },
+        "total": 40
+      },
+      "wow": { "count": 0, "pts": 0, "chama": false },
+      "engagement": {
+        "pts": 20,
+        "detail": {
+          "2026-W36": { "msgs": 0, "threads": 3, "emojis": 17, "postsReagidos": 6, "score": 12 },
+          "2026-W37": { "msgs": 0, "threads": 0, "emojis": 2, "postsReagidos": 1, "score": 1 }
+        }
+      },
+      "bossBattle": { "weekly": false, "monthly": false, "weeklyPts": 0, "monthlyPts": 0 },
+      "estreiaTop": false
+    },
+    {
+      "agent": "kissila.oliveira",
+      "group": "geral",
+      "total": 74,
+      "level": "BRONZE",
+      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "tnps": {
+        "chat": [
+          { "tnps": 44.4, "pts": 0, "week_index": 0 },
+          { "tnps": 31.3, "pts": 0, "week_index": 1 }
+        ],
+        "chatPts": 0,
+        "phone": [
+          { "tnps": 55.6, "pts": 0, "week_index": 0 },
+          { "tnps": 71.4, "pts": 5, "week_index": 1 }
+        ],
+        "phonePts": 5,
+        "applicable": { "chat": true, "phone": true }
+      },
+      "ops": {
+        "skip": { "pct": 7.41, "pts": 2, "scope": "chat+backoffice" },
+        "unanswered": { "pct": 5.92, "pts": 2, "applicable": true },
+        "transferIndevido": { "pct": 3.29, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 1.8, "pts": 20 },
+        "timeSpent": { "minutes": 7.28, "pts": 0, "applicable": false },
+        "total": 24
+      },
+      "wow": { "count": 0, "pts": 0, "chama": false },
+      "engagement": {
+        "pts": 20,
+        "detail": {
+          "2026-W36": { "msgs": 2, "threads": 19, "emojis": 71, "postsReagidos": 43, "score": 87 },
+          "2026-W37": { "msgs": 0, "threads": 7, "emojis": 51, "postsReagidos": 38, "score": 52 }
+        }
+      },
+      "bossBattle": { "weekly": false, "monthly": false, "weeklyPts": 0, "monthlyPts": 0 },
+      "estreiaTop": false
+    },
+    {
+      "agent": "maycon.cardoso",
+      "group": "geral",
+      "total": 25,
+      "level": "BRONZE",
+      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "tnps": {
+        "chat": [],
+        "chatPts": 0,
+        "phone": [],
+        "phonePts": 0,
+        "applicable": { "chat": true, "phone": true }
+      },
+      "ops": {
+        "skip": { "pct": null, "pts": 0, "scope": "chat+backoffice" },
+        "unanswered": { "pct": null, "pts": 0, "applicable": true },
+        "transferIndevido": { "pct": null, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": null, "pts": 0 },
+        "timeSpent": { "minutes": null, "pts": 0, "applicable": false },
+        "total": 0
+      },
+      "wow": { "count": 0, "pts": 0, "chama": false },
+      "engagement": {
+        "pts": 0,
+        "detail": {
+          "2026-W36": { "msgs": 0, "threads": 0, "emojis": 0, "postsReagidos": 0, "score": 0 },
+          "2026-W37": { "msgs": 0, "threads": 0, "emojis": 0, "postsReagidos": 0, "score": 0 }
+        }
+      },
+      "bossBattle": { "weekly": false, "monthly": false, "weeklyPts": 0, "monthlyPts": 0 },
+      "estreiaTop": false
+    }
+  ]
+}
