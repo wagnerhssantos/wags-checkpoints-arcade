@@ -2,31 +2,40 @@
   "month": "2026-09",
   "monthLabel": "09/26",
   "competitionScope": "Competição válida apenas para setembro/2026",
-  "closedMondays": ["2026-09-07", "2026-09-14"],
-  "dataAsOf": "2026-09-17",
-  "dataAsOfNote": "Atualizado em 17/09/2026 — dados referentes à semana de 07/09 a 13/09 (semana ISO 37).",
+  "closedMondays": [ "2026-09-07", "2026-09-14" ],
+  "dataAsOf": "2026-09-18",
+  "dataAsOfNote": "Atualizado em 18/09/2026 — dados referentes à semana de 07/09 a 13/09 (semana ISO 37).",
   "rulesVersion": "v9",
-  "generatedAt": "2026-09-17 20:30 UTC",
+  "generatedAt": "2026-09-18 12:27 UTC",
   "results": [
     {
       "agent": "giulia.machado",
       "group": "geral",
       "total": 185,
       "level": "PRATA",
-      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "excelencia": {
+        "weekly": [ 10, 15 ],
+        "total": 25
+      },
       "tnps": {
-        "chat": [{ "tnps": 88.9, "pts": 20, "week_index": 0 }, { "tnps": 100.0, "pts": 20, "week_index": 1 }],
+        "chat": [
+          { "tnps": 88.9, "pts": 20, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
         "chatPts": 40,
-        "phone": [{ "tnps": 100.0, "pts": 20, "week_index": 0 }, { "tnps": 100.0, "pts": 20, "week_index": 1 }],
+        "phone": [
+          { "tnps": 100.0, "pts": 20, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
         "phonePts": 40,
         "applicable": { "chat": true, "phone": true }
       },
       "ops": {
-        "skip": { "pct": 3.01, "pts": 10, "scope": "chat+backoffice" },
-        "unanswered": { "pct": 1.96, "pts": 10, "applicable": true },
-        "transferIndevido": { "pct": 3.83, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "skip": { "pct": 3.69, "pts": 10, "scope": "chat+backoffice" },
+        "unanswered": { "pct": 1.87, "pts": 10, "applicable": true },
+        "transferIndevido": { "pct": 3.65, "pts": 0, "applicable": false, "monitoringOnly": true },
         "expired": { "pct": 0.0, "pts": 20 },
-        "timeSpent": { "minutes": 5.21, "pts": 0, "applicable": false },
+        "timeSpent": { "minutes": 5.31, "pts": 0, "applicable": false },
         "total": 40
       },
       "wow": { "count": 0, "pts": 0, "chama": false },
@@ -43,25 +52,34 @@
     {
       "agent": "angelica.almeida",
       "group": "geral",
-      "total": 180,
+      "total": 175,
       "level": "PRATA",
-      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "excelencia": {
+        "weekly": [ 0, 10 ],
+        "total": 10
+      },
       "tnps": {
-        "chat": [{ "tnps": 100.0, "pts": 20, "week_index": 0 }, { "tnps": 100.0, "pts": 20, "week_index": 1 }],
+        "chat": [
+          { "tnps": 100.0, "pts": 20, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
         "chatPts": 40,
-        "phone": [{ "tnps": 100.0, "pts": 20, "week_index": 0 }, { "tnps": 100.0, "pts": 20, "week_index": 1 }],
+        "phone": [
+          { "tnps": 100.0, "pts": 20, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
         "phonePts": 40,
         "applicable": { "chat": true, "phone": true }
       },
       "ops": {
-        "skip": { "pct": 5.44, "pts": 5, "scope": "chat+backoffice" },
-        "unanswered": { "pct": 17.65, "pts": 0, "applicable": true },
-        "transferIndevido": { "pct": 5.46, "pts": 0, "applicable": false, "monitoringOnly": true },
-        "expired": { "pct": 0.66, "pts": 20 },
-        "timeSpent": { "minutes": 7.21, "pts": 0, "applicable": false },
+        "skip": { "pct": 5.97, "pts": 5, "scope": "chat+backoffice" },
+        "unanswered": { "pct": 15.52, "pts": 0, "applicable": true },
+        "transferIndevido": { "pct": 5.03, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 0.6, "pts": 20 },
+        "timeSpent": { "minutes": 7.24, "pts": 0, "applicable": false },
         "total": 25
       },
-      "wow": { "count": 1, "pts": 10, "chama": false },
+      "wow": { "count": 3, "pts": 40, "chama": true },
       "engagement": {
         "pts": 20,
         "detail": {
@@ -69,7 +87,7 @@
           "2026-W37": { "msgs": 1, "threads": 12, "emojis": 52, "postsReagidos": 26, "score": 53 }
         }
       },
-      "bossBattle": { "weekly": true, "monthly": false, "weeklyPts": 20, "monthlyPts": 0 },
+      "bossBattle": { "weekly": false, "monthly": false, "weeklyPts": 0, "monthlyPts": 0 },
       "estreiaTop": false
     },
     {
@@ -77,20 +95,26 @@
       "group": "chat_only",
       "total": 155,
       "level": "PRATA",
-      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "excelencia": {
+        "weekly": [ 10, 15 ],
+        "total": 25
+      },
       "tnps": {
-        "chat": [{ "tnps": 100.0, "pts": 40, "week_index": 0 }, { "tnps": 78.9, "pts": 20, "week_index": 1 }],
+        "chat": [
+          { "tnps": 100.0, "pts": 40, "week_index": 0 },
+          { "tnps": 78.9, "pts": 20, "week_index": 1 }
+        ],
         "chatPts": 60,
         "phone": [],
         "phonePts": 0,
         "applicable": { "chat": true, "phone": false }
       },
       "ops": {
-        "skip": { "pct": 4.86, "pts": 20, "scope": "chat+backoffice" },
+        "skip": { "pct": 4.68, "pts": 20, "scope": "chat+backoffice" },
         "unanswered": { "pct": null, "pts": 0, "applicable": false },
-        "transferIndevido": { "pct": 5.57, "pts": 0, "applicable": false, "monitoringOnly": true },
-        "expired": { "pct": 1.28, "pts": 20 },
-        "timeSpent": { "minutes": 5.99, "pts": 0, "applicable": false },
+        "transferIndevido": { "pct": 5.77, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 1.19, "pts": 20 },
+        "timeSpent": { "minutes": 6.02, "pts": 0, "applicable": false },
         "total": 40
       },
       "wow": { "count": 0, "pts": 0, "chama": false },
@@ -105,24 +129,74 @@
       "estreiaTop": false
     },
     {
+      "agent": "guilherme.zunareli",
+      "group": "geral",
+      "total": 140,
+      "level": "BRONZE",
+      "excelencia": {
+        "weekly": [ 10, 15 ],
+        "total": 25
+      },
+      "tnps": {
+        "chat": [
+          { "tnps": 100.0, "pts": 20, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
+        "chatPts": 40,
+        "phone": [
+          { "tnps": 62.5, "pts": 0, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
+        "phonePts": 20,
+        "applicable": { "chat": true, "phone": true }
+      },
+      "ops": {
+        "skip": { "pct": 6.95, "pts": 5, "scope": "chat+backoffice" },
+        "unanswered": { "pct": 12.09, "pts": 0, "applicable": true },
+        "transferIndevido": { "pct": 3.86, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 1.29, "pts": 20 },
+        "timeSpent": { "minutes": 6.79, "pts": 0, "applicable": false },
+        "total": 25
+      },
+      "wow": { "count": 0, "pts": 0, "chama": false },
+      "engagement": {
+        "pts": 20,
+        "detail": {
+          "2026-W36": { "msgs": 0, "threads": 2, "emojis": 15, "postsReagidos": 11, "score": 15 },
+          "2026-W37": { "msgs": 1, "threads": 0, "emojis": 15, "postsReagidos": 8, "score": 11 }
+        }
+      },
+      "bossBattle": { "weekly": true, "monthly": false, "weeklyPts": 10, "monthlyPts": 0 },
+      "estreiaTop": false
+    },
+    {
       "agent": "marcelo.calixto",
       "group": "geral",
       "total": 140,
       "level": "BRONZE",
-      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "excelencia": {
+        "weekly": [ 10, 15 ],
+        "total": 25
+      },
       "tnps": {
-        "chat": [{ "tnps": 82.4, "pts": 15, "week_index": 0 }, { "tnps": 77.3, "pts": 10, "week_index": 1 }],
+        "chat": [
+          { "tnps": 82.4, "pts": 15, "week_index": 0 },
+          { "tnps": 77.3, "pts": 10, "week_index": 1 }
+        ],
         "chatPts": 25,
-        "phone": [{ "tnps": 75.0, "pts": 10, "week_index": 0 }, { "tnps": 100.0, "pts": 20, "week_index": 1 }],
+        "phone": [
+          { "tnps": 75.0, "pts": 10, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
         "phonePts": 30,
         "applicable": { "chat": true, "phone": true }
       },
       "ops": {
-        "skip": { "pct": 3.0, "pts": 10, "scope": "chat+backoffice" },
-        "unanswered": { "pct": 0.67, "pts": 10, "applicable": true },
-        "transferIndevido": { "pct": 4.38, "pts": 0, "applicable": false, "monitoringOnly": true },
-        "expired": { "pct": 1.38, "pts": 20 },
-        "timeSpent": { "minutes": 5.6, "pts": 0, "applicable": false },
+        "skip": { "pct": 2.68, "pts": 10, "scope": "chat+backoffice" },
+        "unanswered": { "pct": 0.6, "pts": 10, "applicable": true },
+        "transferIndevido": { "pct": 4.34, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 1.45, "pts": 20 },
+        "timeSpent": { "minutes": 5.56, "pts": 0, "applicable": false },
         "total": 40
       },
       "wow": { "count": 0, "pts": 0, "chama": false },
@@ -137,56 +211,33 @@
       "estreiaTop": false
     },
     {
-      "agent": "guilherme.zunareli",
-      "group": "geral",
-      "total": 137,
-      "level": "BRONZE",
-      "excelencia": { "weekly": [10, 15], "total": 25 },
-      "tnps": {
-        "chat": [{ "tnps": 100.0, "pts": 20, "week_index": 0 }, { "tnps": 100.0, "pts": 20, "week_index": 1 }],
-        "chatPts": 40,
-        "phone": [{ "tnps": 62.5, "pts": 0, "week_index": 0 }, { "tnps": 100.0, "pts": 20, "week_index": 1 }],
-        "phonePts": 20,
-        "applicable": { "chat": true, "phone": true }
-      },
-      "ops": {
-        "skip": { "pct": 7.14, "pts": 2, "scope": "chat+backoffice" },
-        "unanswered": { "pct": 13.41, "pts": 0, "applicable": true },
-        "transferIndevido": { "pct": 3.66, "pts": 0, "applicable": false, "monitoringOnly": true },
-        "expired": { "pct": 1.41, "pts": 20 },
-        "timeSpent": { "minutes": 6.56, "pts": 0, "applicable": false },
-        "total": 22
-      },
-      "wow": { "count": 0, "pts": 0, "chama": false },
-      "engagement": {
-        "pts": 20,
-        "detail": {
-          "2026-W36": { "msgs": 0, "threads": 2, "emojis": 15, "postsReagidos": 11, "score": 15 },
-          "2026-W37": { "msgs": 1, "threads": 0, "emojis": 15, "postsReagidos": 8, "score": 11 }
-        }
-      },
-      "bossBattle": { "weekly": true, "monthly": false, "weeklyPts": 10, "monthlyPts": 0 },
-      "estreiaTop": false
-    },
-    {
       "agent": "gabrielle.macedo",
       "group": "geral",
       "total": 135,
       "level": "BRONZE",
-      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "excelencia": {
+        "weekly": [ 10, 15 ],
+        "total": 25
+      },
       "tnps": {
-        "chat": [{ "tnps": 25.0, "pts": 0, "week_index": 0 }, { "tnps": 92.3, "pts": 20, "week_index": 1 }],
+        "chat": [
+          { "tnps": 25.0, "pts": 0, "week_index": 0 },
+          { "tnps": 92.3, "pts": 20, "week_index": 1 }
+        ],
         "chatPts": 20,
-        "phone": [{ "tnps": 47.4, "pts": 0, "week_index": 0 }, { "tnps": 100.0, "pts": 20, "week_index": 1 }],
+        "phone": [
+          { "tnps": 47.4, "pts": 0, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
         "phonePts": 20,
         "applicable": { "chat": true, "phone": true }
       },
       "ops": {
-        "skip": { "pct": 5.95, "pts": 5, "scope": "chat+backoffice" },
-        "unanswered": { "pct": 4.74, "pts": 5, "applicable": true },
-        "transferIndevido": { "pct": 0.75, "pts": 0, "applicable": false, "monitoringOnly": true },
-        "expired": { "pct": 1.0, "pts": 20 },
-        "timeSpent": { "minutes": 7.74, "pts": 0, "applicable": false },
+        "skip": { "pct": 5.34, "pts": 5, "scope": "chat+backoffice" },
+        "unanswered": { "pct": 4.92, "pts": 5, "applicable": true },
+        "transferIndevido": { "pct": 1.13, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 0.91, "pts": 20 },
+        "timeSpent": { "minutes": 7.86, "pts": 0, "applicable": false },
         "total": 30
       },
       "wow": { "count": 1, "pts": 10, "chama": false },
@@ -205,20 +256,26 @@
       "group": "chat_only",
       "total": 135,
       "level": "BRONZE",
-      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "excelencia": {
+        "weekly": [ 10, 15 ],
+        "total": 25
+      },
       "tnps": {
-        "chat": [{ "tnps": 83.3, "pts": 30, "week_index": 0 }, { "tnps": 82.4, "pts": 30, "week_index": 1 }],
+        "chat": [
+          { "tnps": 83.3, "pts": 30, "week_index": 0 },
+          { "tnps": 82.4, "pts": 30, "week_index": 1 }
+        ],
         "chatPts": 60,
         "phone": [],
         "phonePts": 0,
         "applicable": { "chat": true, "phone": false }
       },
       "ops": {
-        "skip": { "pct": 5.18, "pts": 10, "scope": "chat+backoffice" },
+        "skip": { "pct": 5.24, "pts": 10, "scope": "chat+backoffice" },
         "unanswered": { "pct": null, "pts": 0, "applicable": false },
-        "transferIndevido": { "pct": 2.53, "pts": 0, "applicable": false, "monitoringOnly": true },
-        "expired": { "pct": 0.32, "pts": 20 },
-        "timeSpent": { "minutes": 8.02, "pts": 0, "applicable": false },
+        "transferIndevido": { "pct": 2.17, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 0.27, "pts": 20 },
+        "timeSpent": { "minutes": 7.89, "pts": 0, "applicable": false },
         "total": 30
       },
       "wow": { "count": 0, "pts": 0, "chama": false },
@@ -233,24 +290,115 @@
       "estreiaTop": false
     },
     {
-      "agent": "randal.savino",
+      "agent": "thiago.guedes",
       "group": "geral",
       "total": 132,
       "level": "BRONZE",
-      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "excelencia": {
+        "weekly": [ 10, 15 ],
+        "total": 25
+      },
       "tnps": {
-        "chat": [{ "tnps": 100.0, "pts": 20, "week_index": 0 }, { "tnps": 72.7, "pts": 5, "week_index": 1 }],
+        "chat": [
+          { "tnps": 33.3, "pts": 0, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
+        "chatPts": 20,
+        "phone": [
+          { "tnps": 100.0, "pts": 20, "week_index": 0 },
+          { "tnps": 76.9, "pts": 10, "week_index": 1 }
+        ],
+        "phonePts": 30,
+        "applicable": { "chat": true, "phone": true }
+      },
+      "ops": {
+        "skip": { "pct": 6.28, "pts": 5, "scope": "chat+backoffice" },
+        "unanswered": { "pct": 5.02, "pts": 2, "applicable": true },
+        "transferIndevido": { "pct": 1.49, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 0.75, "pts": 20 },
+        "timeSpent": { "minutes": 7.43, "pts": 0, "applicable": false },
+        "total": 27
+      },
+      "wow": { "count": 1, "pts": 10, "chama": false },
+      "engagement": {
+        "pts": 20,
+        "detail": {
+          "2026-W36": { "msgs": 1, "threads": 1, "emojis": 10, "postsReagidos": 9, "score": 14 },
+          "2026-W37": { "msgs": 0, "threads": 1, "emojis": 8, "postsReagidos": 7, "score": 9 }
+        }
+      },
+      "bossBattle": { "weekly": false, "monthly": false, "weeklyPts": 0, "monthlyPts": 0 },
+      "estreiaTop": false
+    },
+    {
+      "agent": "lucas.cassimiro",
+      "group": "geral",
+      "total": 120,
+      "level": "BRONZE",
+      "excelencia": {
+        "weekly": [ 10, 15 ],
+        "total": 25
+      },
+      "tnps": {
+        "chat": [
+          { "tnps": 66.7, "pts": 0, "week_index": 0 },
+          { "tnps": 50.0, "pts": 0, "week_index": 1 }
+        ],
+        "chatPts": 0,
+        "phone": [
+          { "tnps": 45.5, "pts": 0, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
+        "phonePts": 20,
+        "applicable": { "chat": true, "phone": true }
+      },
+      "ops": {
+        "skip": { "pct": 5.81, "pts": 5, "scope": "chat+backoffice" },
+        "unanswered": { "pct": 0.47, "pts": 10, "applicable": true },
+        "transferIndevido": { "pct": 3.6, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 0.22, "pts": 20 },
+        "timeSpent": { "minutes": 4.88, "pts": 0, "applicable": false },
+        "total": 35
+      },
+      "wow": { "count": 2, "pts": 20, "chama": false },
+      "engagement": {
+        "pts": 20,
+        "detail": {
+          "2026-W36": { "msgs": 4, "threads": 2, "emojis": 8, "postsReagidos": 6, "score": 22 },
+          "2026-W37": { "msgs": 3, "threads": 3, "emojis": 25, "postsReagidos": 11, "score": 26 }
+        }
+      },
+      "bossBattle": { "weekly": false, "monthly": false, "weeklyPts": 0, "monthlyPts": 0 },
+      "estreiaTop": false
+    },
+    {
+      "agent": "randal.savino",
+      "group": "geral",
+      "total": 117,
+      "level": "BRONZE",
+      "excelencia": {
+        "weekly": [ 10, 0 ],
+        "total": 10
+      },
+      "tnps": {
+        "chat": [
+          { "tnps": 100.0, "pts": 20, "week_index": 0 },
+          { "tnps": 72.7, "pts": 5, "week_index": 1 }
+        ],
         "chatPts": 25,
-        "phone": [{ "tnps": 66.7, "pts": 0, "week_index": 0 }, { "tnps": 75.0, "pts": 10, "week_index": 1 }],
+        "phone": [
+          { "tnps": 66.7, "pts": 0, "week_index": 0 },
+          { "tnps": 75.0, "pts": 10, "week_index": 1 }
+        ],
         "phonePts": 10,
         "applicable": { "chat": true, "phone": true }
       },
       "ops": {
-        "skip": { "pct": 2.5, "pts": 10, "scope": "chat+backoffice" },
-        "unanswered": { "pct": 7.14, "pts": 2, "applicable": true },
-        "transferIndevido": { "pct": 2.72, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "skip": { "pct": 3.02, "pts": 10, "scope": "chat+backoffice" },
+        "unanswered": { "pct": 6.45, "pts": 2, "applicable": true },
+        "transferIndevido": { "pct": 2.51, "pts": 0, "applicable": false, "monitoringOnly": true },
         "expired": { "pct": 0.0, "pts": 20 },
-        "timeSpent": { "minutes": 8.37, "pts": 0, "applicable": false },
+        "timeSpent": { "minutes": 8.4, "pts": 0, "applicable": false },
         "total": 32
       },
       "wow": { "count": 2, "pts": 20, "chama": false },
@@ -265,88 +413,33 @@
       "estreiaTop": false
     },
     {
-      "agent": "lucas.cassimiro",
-      "group": "geral",
-      "total": 125,
-      "level": "BRONZE",
-      "excelencia": { "weekly": [10, 15], "total": 25 },
-      "tnps": {
-        "chat": [{ "tnps": 66.7, "pts": 0, "week_index": 0 }, { "tnps": 50.0, "pts": 0, "week_index": 1 }],
-        "chatPts": 0,
-        "phone": [{ "tnps": 45.5, "pts": 0, "week_index": 0 }, { "tnps": 100.0, "pts": 20, "week_index": 1 }],
-        "phonePts": 20,
-        "applicable": { "chat": true, "phone": true }
-      },
-      "ops": {
-        "skip": { "pct": 4.8, "pts": 10, "scope": "chat+backoffice" },
-        "unanswered": { "pct": 0.51, "pts": 10, "applicable": true },
-        "transferIndevido": { "pct": 3.6, "pts": 0, "applicable": false, "monitoringOnly": true },
-        "expired": { "pct": 0.26, "pts": 20 },
-        "timeSpent": { "minutes": 4.86, "pts": 0, "applicable": false },
-        "total": 40
-      },
-      "wow": { "count": 2, "pts": 20, "chama": false },
-      "engagement": {
-        "pts": 20,
-        "detail": {
-          "2026-W36": { "msgs": 4, "threads": 2, "emojis": 8, "postsReagidos": 6, "score": 22 },
-          "2026-W37": { "msgs": 3, "threads": 3, "emojis": 25, "postsReagidos": 11, "score": 26 }
-        }
-      },
-      "bossBattle": { "weekly": false, "monthly": false, "weeklyPts": 0, "monthlyPts": 0 },
-      "estreiaTop": false
-    },
-    {
-      "agent": "thiago.guedes",
-      "group": "geral",
-      "total": 122,
-      "level": "BRONZE",
-      "excelencia": { "weekly": [10, 15], "total": 25 },
-      "tnps": {
-        "chat": [{ "tnps": 33.3, "pts": 0, "week_index": 0 }, { "tnps": 100.0, "pts": 20, "week_index": 1 }],
-        "chatPts": 20,
-        "phone": [{ "tnps": 100.0, "pts": 20, "week_index": 0 }, { "tnps": 76.9, "pts": 10, "week_index": 1 }],
-        "phonePts": 30,
-        "applicable": { "chat": true, "phone": true }
-      },
-      "ops": {
-        "skip": { "pct": 6.4, "pts": 5, "scope": "chat+backoffice" },
-        "unanswered": { "pct": 5.21, "pts": 2, "applicable": true },
-        "transferIndevido": { "pct": 1.59, "pts": 0, "applicable": false, "monitoringOnly": true },
-        "expired": { "pct": 0.79, "pts": 20 },
-        "timeSpent": { "minutes": 7.42, "pts": 0, "applicable": false },
-        "total": 27
-      },
-      "wow": { "count": 0, "pts": 0, "chama": false },
-      "engagement": {
-        "pts": 20,
-        "detail": {
-          "2026-W36": { "msgs": 1, "threads": 1, "emojis": 10, "postsReagidos": 9, "score": 14 },
-          "2026-W37": { "msgs": 0, "threads": 1, "emojis": 8, "postsReagidos": 7, "score": 9 }
-        }
-      },
-      "bossBattle": { "weekly": false, "monthly": false, "weeklyPts": 0, "monthlyPts": 0 },
-      "estreiaTop": false
-    },
-    {
       "agent": "angela.julia",
       "group": "geral",
       "total": 105,
       "level": "BRONZE",
-      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "excelencia": {
+        "weekly": [ 10, 15 ],
+        "total": 25
+      },
       "tnps": {
-        "chat": [{ "tnps": 60.0, "pts": 0, "week_index": 0 }, { "tnps": 100.0, "pts": 20, "week_index": 1 }],
+        "chat": [
+          { "tnps": 60.0, "pts": 0, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
         "chatPts": 20,
-        "phone": [{ "tnps": 68.8, "pts": 0, "week_index": 0 }, { "tnps": 50.0, "pts": 0, "week_index": 1 }],
+        "phone": [
+          { "tnps": 68.8, "pts": 0, "week_index": 0 },
+          { "tnps": 50.0, "pts": 0, "week_index": 1 }
+        ],
         "phonePts": 0,
         "applicable": { "chat": true, "phone": true }
       },
       "ops": {
-        "skip": { "pct": 1.56, "pts": 10, "scope": "chat+backoffice" },
-        "unanswered": { "pct": 0.61, "pts": 10, "applicable": true },
-        "transferIndevido": { "pct": 1.03, "pts": 0, "applicable": false, "monitoringOnly": true },
-        "expired": { "pct": 0.34, "pts": 20 },
-        "timeSpent": { "minutes": 8.18, "pts": 0, "applicable": false },
+        "skip": { "pct": 3.92, "pts": 10, "scope": "chat+backoffice" },
+        "unanswered": { "pct": 1.12, "pts": 10, "applicable": true },
+        "transferIndevido": { "pct": 0.9, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 0.3, "pts": 20 },
+        "timeSpent": { "minutes": 8.31, "pts": 0, "applicable": false },
         "total": 40
       },
       "wow": { "count": 0, "pts": 0, "chama": false },
@@ -365,7 +458,10 @@
       "group": "chat_only",
       "total": 85,
       "level": "BRONZE",
-      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "excelencia": {
+        "weekly": [ 10, 15 ],
+        "total": 25
+      },
       "tnps": {
         "chat": [],
         "chatPts": 0,
@@ -374,11 +470,11 @@
         "applicable": { "chat": true, "phone": false }
       },
       "ops": {
-        "skip": { "pct": 1.63, "pts": 20, "scope": "chat+backoffice" },
+        "skip": { "pct": 1.61, "pts": 20, "scope": "chat+backoffice" },
         "unanswered": { "pct": null, "pts": 0, "applicable": false },
-        "transferIndevido": { "pct": 0.6, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "transferIndevido": { "pct": 0.54, "pts": 0, "applicable": false, "monitoringOnly": true },
         "expired": { "pct": 0.0, "pts": 20 },
-        "timeSpent": { "minutes": 3.76, "pts": 0, "applicable": false },
+        "timeSpent": { "minutes": 3.7, "pts": 0, "applicable": false },
         "total": 40
       },
       "wow": { "count": 0, "pts": 0, "chama": false },
@@ -395,23 +491,32 @@
     {
       "agent": "kissila.oliveira",
       "group": "geral",
-      "total": 72,
+      "total": 75,
       "level": "BRONZE",
-      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "excelencia": {
+        "weekly": [ 10, 15 ],
+        "total": 25
+      },
       "tnps": {
-        "chat": [{ "tnps": 44.4, "pts": 0, "week_index": 0 }, { "tnps": 31.3, "pts": 0, "week_index": 1 }],
+        "chat": [
+          { "tnps": 44.4, "pts": 0, "week_index": 0 },
+          { "tnps": 31.3, "pts": 0, "week_index": 1 }
+        ],
         "chatPts": 0,
-        "phone": [{ "tnps": 55.6, "pts": 0, "week_index": 0 }, { "tnps": 71.4, "pts": 5, "week_index": 1 }],
+        "phone": [
+          { "tnps": 55.6, "pts": 0, "week_index": 0 },
+          { "tnps": 71.4, "pts": 5, "week_index": 1 }
+        ],
         "phonePts": 5,
         "applicable": { "chat": true, "phone": true }
       },
       "ops": {
-        "skip": { "pct": 7.05, "pts": 2, "scope": "chat+backoffice" },
-        "unanswered": { "pct": 9.94, "pts": 0, "applicable": true },
-        "transferIndevido": { "pct": 3.01, "pts": 0, "applicable": false, "monitoringOnly": true },
-        "expired": { "pct": 1.64, "pts": 20 },
-        "timeSpent": { "minutes": 7.22, "pts": 0, "applicable": false },
-        "total": 22
+        "skip": { "pct": 6.75, "pts": 5, "scope": "chat+backoffice" },
+        "unanswered": { "pct": 9.42, "pts": 0, "applicable": true },
+        "transferIndevido": { "pct": 2.93, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 1.46, "pts": 20 },
+        "timeSpent": { "minutes": 7.09, "pts": 0, "applicable": false },
+        "total": 25
       },
       "wow": { "count": 0, "pts": 0, "chama": false },
       "engagement": {
@@ -427,9 +532,12 @@
     {
       "agent": "maycon.cardoso",
       "group": "geral",
-      "total": 55,
+      "total": 50,
       "level": "BRONZE",
-      "excelencia": { "weekly": [10, 15], "total": 25 },
+      "excelencia": {
+        "weekly": [ 10, 15 ],
+        "total": 25
+      },
       "tnps": {
         "chat": [],
         "chatPts": 0,
@@ -438,12 +546,12 @@
         "applicable": { "chat": true, "phone": true }
       },
       "ops": {
-        "skip": { "pct": 3.7, "pts": 10, "scope": "chat+backoffice" },
+        "skip": { "pct": 6.82, "pts": 5, "scope": "chat+backoffice" },
         "unanswered": { "pct": null, "pts": 0, "applicable": true },
         "transferIndevido": { "pct": 0.0, "pts": 0, "applicable": false, "monitoringOnly": true },
         "expired": { "pct": 0.0, "pts": 20 },
-        "timeSpent": { "minutes": 5.06, "pts": 0, "applicable": false },
-        "total": 30
+        "timeSpent": { "minutes": 5.46, "pts": 0, "applicable": false },
+        "total": 25
       },
       "wow": { "count": 0, "pts": 0, "chama": false },
       "engagement": {
