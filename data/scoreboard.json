@@ -3,10 +3,10 @@
   "monthLabel": "09/26",
   "competitionScope": "Competição válida apenas para setembro/2026",
   "closedMondays": [ "2026-09-07", "2026-09-14" ],
-  "dataAsOf": "2026-09-18",
-  "dataAsOfNote": "Atualizado em 18/09/2026 — dados referentes à semana de 07/09 a 13/09 (semana ISO 37).",
+  "dataAsOf": "2026-09-19",
+  "dataAsOfNote": "Atualizado em 19/09/2026 — dados referentes à semana de 07/09 a 13/09 (semana ISO 37).",
   "rulesVersion": "v9",
-  "generatedAt": "2026-09-18 12:27 UTC",
+  "generatedAt": "2026-09-19 14:40 UTC",
   "results": [
     {
       "agent": "giulia.machado",
@@ -31,11 +31,11 @@
         "applicable": { "chat": true, "phone": true }
       },
       "ops": {
-        "skip": { "pct": 3.69, "pts": 10, "scope": "chat+backoffice" },
+        "skip": { "pct": 3.55, "pts": 10, "scope": "chat+backoffice" },
         "unanswered": { "pct": 1.87, "pts": 10, "applicable": true },
-        "transferIndevido": { "pct": 3.65, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "transferIndevido": { "pct": 3.32, "pts": 0, "applicable": false, "monitoringOnly": true },
         "expired": { "pct": 0.0, "pts": 20 },
-        "timeSpent": { "minutes": 5.31, "pts": 0, "applicable": false },
+        "timeSpent": { "minutes": 5.19, "pts": 0, "applicable": false },
         "total": 40
       },
       "wow": { "count": 0, "pts": 0, "chama": false },
@@ -72,11 +72,11 @@
         "applicable": { "chat": true, "phone": true }
       },
       "ops": {
-        "skip": { "pct": 5.97, "pts": 5, "scope": "chat+backoffice" },
+        "skip": { "pct": 5.67, "pts": 5, "scope": "chat+backoffice" },
         "unanswered": { "pct": 15.52, "pts": 0, "applicable": true },
-        "transferIndevido": { "pct": 5.03, "pts": 0, "applicable": false, "monitoringOnly": true },
-        "expired": { "pct": 0.6, "pts": 20 },
-        "timeSpent": { "minutes": 7.24, "pts": 0, "applicable": false },
+        "transferIndevido": { "pct": 4.72, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 0.57, "pts": 20 },
+        "timeSpent": { "minutes": 7.26, "pts": 0, "applicable": false },
         "total": 25
       },
       "wow": { "count": 3, "pts": 40, "chama": true },
@@ -110,11 +110,11 @@
         "applicable": { "chat": true, "phone": false }
       },
       "ops": {
-        "skip": { "pct": 4.68, "pts": 20, "scope": "chat+backoffice" },
+        "skip": { "pct": 4.49, "pts": 20, "scope": "chat+backoffice" },
         "unanswered": { "pct": null, "pts": 0, "applicable": false },
-        "transferIndevido": { "pct": 5.77, "pts": 0, "applicable": false, "monitoringOnly": true },
-        "expired": { "pct": 1.19, "pts": 20 },
-        "timeSpent": { "minutes": 6.02, "pts": 0, "applicable": false },
+        "transferIndevido": { "pct": 5.51, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 1.14, "pts": 20 },
+        "timeSpent": { "minutes": 6.09, "pts": 0, "applicable": false },
         "total": 40
       },
       "wow": { "count": 0, "pts": 0, "chama": false },
@@ -123,47 +123,6 @@
         "detail": {
           "2026-W36": { "msgs": 0, "threads": 4, "emojis": 20, "postsReagidos": 13, "score": 21 },
           "2026-W37": { "msgs": 0, "threads": 1, "emojis": 17, "postsReagidos": 6, "score": 8 }
-        }
-      },
-      "bossBattle": { "weekly": true, "monthly": false, "weeklyPts": 10, "monthlyPts": 0 },
-      "estreiaTop": false
-    },
-    {
-      "agent": "guilherme.zunareli",
-      "group": "geral",
-      "total": 140,
-      "level": "BRONZE",
-      "excelencia": {
-        "weekly": [ 10, 15 ],
-        "total": 25
-      },
-      "tnps": {
-        "chat": [
-          { "tnps": 100.0, "pts": 20, "week_index": 0 },
-          { "tnps": 100.0, "pts": 20, "week_index": 1 }
-        ],
-        "chatPts": 40,
-        "phone": [
-          { "tnps": 62.5, "pts": 0, "week_index": 0 },
-          { "tnps": 100.0, "pts": 20, "week_index": 1 }
-        ],
-        "phonePts": 20,
-        "applicable": { "chat": true, "phone": true }
-      },
-      "ops": {
-        "skip": { "pct": 6.95, "pts": 5, "scope": "chat+backoffice" },
-        "unanswered": { "pct": 12.09, "pts": 0, "applicable": true },
-        "transferIndevido": { "pct": 3.86, "pts": 0, "applicable": false, "monitoringOnly": true },
-        "expired": { "pct": 1.29, "pts": 20 },
-        "timeSpent": { "minutes": 6.79, "pts": 0, "applicable": false },
-        "total": 25
-      },
-      "wow": { "count": 0, "pts": 0, "chama": false },
-      "engagement": {
-        "pts": 20,
-        "detail": {
-          "2026-W36": { "msgs": 0, "threads": 2, "emojis": 15, "postsReagidos": 11, "score": 15 },
-          "2026-W37": { "msgs": 1, "threads": 0, "emojis": 15, "postsReagidos": 8, "score": 11 }
         }
       },
       "bossBattle": { "weekly": true, "monthly": false, "weeklyPts": 10, "monthlyPts": 0 },
@@ -192,11 +151,11 @@
         "applicable": { "chat": true, "phone": true }
       },
       "ops": {
-        "skip": { "pct": 2.68, "pts": 10, "scope": "chat+backoffice" },
+        "skip": { "pct": 2.73, "pts": 10, "scope": "chat+backoffice" },
         "unanswered": { "pct": 0.6, "pts": 10, "applicable": true },
-        "transferIndevido": { "pct": 4.34, "pts": 0, "applicable": false, "monitoringOnly": true },
-        "expired": { "pct": 1.45, "pts": 20 },
-        "timeSpent": { "minutes": 5.56, "pts": 0, "applicable": false },
+        "transferIndevido": { "pct": 4.91, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 1.32, "pts": 20 },
+        "timeSpent": { "minutes": 5.41, "pts": 0, "applicable": false },
         "total": 40
       },
       "wow": { "count": 0, "pts": 0, "chama": false },
@@ -208,6 +167,47 @@
         }
       },
       "bossBattle": { "weekly": false, "monthly": false, "weeklyPts": 0, "monthlyPts": 0 },
+      "estreiaTop": false
+    },
+    {
+      "agent": "guilherme.zunareli",
+      "group": "geral",
+      "total": 137,
+      "level": "BRONZE",
+      "excelencia": {
+        "weekly": [ 10, 15 ],
+        "total": 25
+      },
+      "tnps": {
+        "chat": [
+          { "tnps": 100.0, "pts": 20, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
+        "chatPts": 40,
+        "phone": [
+          { "tnps": 62.5, "pts": 0, "week_index": 0 },
+          { "tnps": 100.0, "pts": 20, "week_index": 1 }
+        ],
+        "phonePts": 20,
+        "applicable": { "chat": true, "phone": true }
+      },
+      "ops": {
+        "skip": { "pct": 7.39, "pts": 2, "scope": "chat+backoffice" },
+        "unanswered": { "pct": 12.09, "pts": 0, "applicable": true },
+        "transferIndevido": { "pct": 3.63, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 1.45, "pts": 20 },
+        "timeSpent": { "minutes": 6.97, "pts": 0, "applicable": false },
+        "total": 22
+      },
+      "wow": { "count": 0, "pts": 0, "chama": false },
+      "engagement": {
+        "pts": 20,
+        "detail": {
+          "2026-W36": { "msgs": 0, "threads": 2, "emojis": 15, "postsReagidos": 11, "score": 15 },
+          "2026-W37": { "msgs": 1, "threads": 0, "emojis": 15, "postsReagidos": 8, "score": 11 }
+        }
+      },
+      "bossBattle": { "weekly": true, "monthly": false, "weeklyPts": 10, "monthlyPts": 0 },
       "estreiaTop": false
     },
     {
@@ -233,11 +233,11 @@
         "applicable": { "chat": true, "phone": true }
       },
       "ops": {
-        "skip": { "pct": 5.34, "pts": 5, "scope": "chat+backoffice" },
+        "skip": { "pct": 5.38, "pts": 5, "scope": "chat+backoffice" },
         "unanswered": { "pct": 4.92, "pts": 5, "applicable": true },
-        "transferIndevido": { "pct": 1.13, "pts": 0, "applicable": false, "monitoringOnly": true },
-        "expired": { "pct": 0.91, "pts": 20 },
-        "timeSpent": { "minutes": 7.86, "pts": 0, "applicable": false },
+        "transferIndevido": { "pct": 1.28, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 0.85, "pts": 20 },
+        "timeSpent": { "minutes": 7.79, "pts": 0, "applicable": false },
         "total": 30
       },
       "wow": { "count": 1, "pts": 10, "chama": false },
@@ -271,11 +271,11 @@
         "applicable": { "chat": true, "phone": false }
       },
       "ops": {
-        "skip": { "pct": 5.24, "pts": 10, "scope": "chat+backoffice" },
+        "skip": { "pct": 5.05, "pts": 10, "scope": "chat+backoffice" },
         "unanswered": { "pct": null, "pts": 0, "applicable": false },
-        "transferIndevido": { "pct": 2.17, "pts": 0, "applicable": false, "monitoringOnly": true },
-        "expired": { "pct": 0.27, "pts": 20 },
-        "timeSpent": { "minutes": 7.89, "pts": 0, "applicable": false },
+        "transferIndevido": { "pct": 2.09, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 0.26, "pts": 20 },
+        "timeSpent": { "minutes": 7.94, "pts": 0, "applicable": false },
         "total": 30
       },
       "wow": { "count": 0, "pts": 0, "chama": false },
@@ -312,11 +312,11 @@
         "applicable": { "chat": true, "phone": true }
       },
       "ops": {
-        "skip": { "pct": 6.28, "pts": 5, "scope": "chat+backoffice" },
+        "skip": { "pct": 6.45, "pts": 5, "scope": "chat+backoffice" },
         "unanswered": { "pct": 5.02, "pts": 2, "applicable": true },
-        "transferIndevido": { "pct": 1.49, "pts": 0, "applicable": false, "monitoringOnly": true },
-        "expired": { "pct": 0.75, "pts": 20 },
-        "timeSpent": { "minutes": 7.43, "pts": 0, "applicable": false },
+        "transferIndevido": { "pct": 1.43, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 0.71, "pts": 20 },
+        "timeSpent": { "minutes": 7.54, "pts": 0, "applicable": false },
         "total": 27
       },
       "wow": { "count": 1, "pts": 10, "chama": false },
@@ -353,11 +353,11 @@
         "applicable": { "chat": true, "phone": true }
       },
       "ops": {
-        "skip": { "pct": 5.81, "pts": 5, "scope": "chat+backoffice" },
+        "skip": { "pct": 5.54, "pts": 5, "scope": "chat+backoffice" },
         "unanswered": { "pct": 0.47, "pts": 10, "applicable": true },
-        "transferIndevido": { "pct": 3.6, "pts": 0, "applicable": false, "monitoringOnly": true },
-        "expired": { "pct": 0.22, "pts": 20 },
-        "timeSpent": { "minutes": 4.88, "pts": 0, "applicable": false },
+        "transferIndevido": { "pct": 3.38, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 0.21, "pts": 20 },
+        "timeSpent": { "minutes": 4.95, "pts": 0, "applicable": false },
         "total": 35
       },
       "wow": { "count": 2, "pts": 20, "chama": false },
@@ -394,11 +394,11 @@
         "applicable": { "chat": true, "phone": true }
       },
       "ops": {
-        "skip": { "pct": 3.02, "pts": 10, "scope": "chat+backoffice" },
+        "skip": { "pct": 3.26, "pts": 10, "scope": "chat+backoffice" },
         "unanswered": { "pct": 6.45, "pts": 2, "applicable": true },
-        "transferIndevido": { "pct": 2.51, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "transferIndevido": { "pct": 2.35, "pts": 0, "applicable": false, "monitoringOnly": true },
         "expired": { "pct": 0.0, "pts": 20 },
-        "timeSpent": { "minutes": 8.4, "pts": 0, "applicable": false },
+        "timeSpent": { "minutes": 8.51, "pts": 0, "applicable": false },
         "total": 32
       },
       "wow": { "count": 2, "pts": 20, "chama": false },
@@ -435,11 +435,11 @@
         "applicable": { "chat": true, "phone": true }
       },
       "ops": {
-        "skip": { "pct": 3.92, "pts": 10, "scope": "chat+backoffice" },
+        "skip": { "pct": 3.73, "pts": 10, "scope": "chat+backoffice" },
         "unanswered": { "pct": 1.12, "pts": 10, "applicable": true },
-        "transferIndevido": { "pct": 0.9, "pts": 0, "applicable": false, "monitoringOnly": true },
-        "expired": { "pct": 0.3, "pts": 20 },
-        "timeSpent": { "minutes": 8.31, "pts": 0, "applicable": false },
+        "transferIndevido": { "pct": 0.82, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 0.27, "pts": 20 },
+        "timeSpent": { "minutes": 8.41, "pts": 0, "applicable": false },
         "total": 40
       },
       "wow": { "count": 0, "pts": 0, "chama": false },
@@ -470,11 +470,11 @@
         "applicable": { "chat": true, "phone": false }
       },
       "ops": {
-        "skip": { "pct": 1.61, "pts": 20, "scope": "chat+backoffice" },
+        "skip": { "pct": 1.32, "pts": 20, "scope": "chat+backoffice" },
         "unanswered": { "pct": null, "pts": 0, "applicable": false },
-        "transferIndevido": { "pct": 0.54, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "transferIndevido": { "pct": 0.66, "pts": 0, "applicable": false, "monitoringOnly": true },
         "expired": { "pct": 0.0, "pts": 20 },
-        "timeSpent": { "minutes": 3.7, "pts": 0, "applicable": false },
+        "timeSpent": { "minutes": 3.58, "pts": 0, "applicable": false },
         "total": 40
       },
       "wow": { "count": 0, "pts": 0, "chama": false },
@@ -511,11 +511,11 @@
         "applicable": { "chat": true, "phone": true }
       },
       "ops": {
-        "skip": { "pct": 6.75, "pts": 5, "scope": "chat+backoffice" },
+        "skip": { "pct": 6.37, "pts": 5, "scope": "chat+backoffice" },
         "unanswered": { "pct": 9.42, "pts": 0, "applicable": true },
-        "transferIndevido": { "pct": 2.93, "pts": 0, "applicable": false, "monitoringOnly": true },
-        "expired": { "pct": 1.46, "pts": 20 },
-        "timeSpent": { "minutes": 7.09, "pts": 0, "applicable": false },
+        "transferIndevido": { "pct": 2.99, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "expired": { "pct": 1.38, "pts": 20 },
+        "timeSpent": { "minutes": 7.15, "pts": 0, "applicable": false },
         "total": 25
       },
       "wow": { "count": 0, "pts": 0, "chama": false },
@@ -532,7 +532,7 @@
     {
       "agent": "maycon.cardoso",
       "group": "geral",
-      "total": 50,
+      "total": 55,
       "level": "BRONZE",
       "excelencia": {
         "weekly": [ 10, 15 ],
@@ -546,12 +546,12 @@
         "applicable": { "chat": true, "phone": true }
       },
       "ops": {
-        "skip": { "pct": 6.82, "pts": 5, "scope": "chat+backoffice" },
+        "skip": { "pct": 5.0, "pts": 10, "scope": "chat+backoffice" },
         "unanswered": { "pct": null, "pts": 0, "applicable": true },
-        "transferIndevido": { "pct": 0.0, "pts": 0, "applicable": false, "monitoringOnly": true },
+        "transferIndevido": { "pct": 1.12, "pts": 0, "applicable": false, "monitoringOnly": true },
         "expired": { "pct": 0.0, "pts": 20 },
-        "timeSpent": { "minutes": 5.46, "pts": 0, "applicable": false },
-        "total": 25
+        "timeSpent": { "minutes": 5.72, "pts": 0, "applicable": false },
+        "total": 30
       },
       "wow": { "count": 0, "pts": 0, "chama": false },
       "engagement": {
