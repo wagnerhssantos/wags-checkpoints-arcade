@@ -7,15 +7,15 @@
     "2026-09-14",
     "2026-09-21"
   ],
-  "dataAsOf": "2026-09-22",
-  "dataAsOfNote": "Atualizado em 22/09/2026 — dados referentes à semana de 14/09 a 20/09 (semana ISO 38).",
+  "dataAsOf": "2026-09-23",
+  "dataAsOfNote": "Atualizado em 23/09/2026 — dados referentes à semana de 14/09 a 20/09 (semana ISO 38).",
   "rulesVersion": "v9",
-  "generatedAt": "2026-09-22 12:12 UTC",
+  "generatedAt": "2026-09-23 12:09 UTC",
   "results": [
     {
       "agent": "giulia.machado",
       "group": "geral",
-      "total": 245,
+      "total": 240,
       "level": "OURO",
       "excelencia": {
         "weekly": [
@@ -74,12 +74,12 @@
           "scope": "chat+backoffice"
         },
         "unanswered": {
-          "pct": 1.72,
-          "pts": 10,
+          "pct": 2.36,
+          "pts": 5,
           "applicable": true
         },
         "transferIndevido": {
-          "pct": 3.36,
+          "pct": 3.5,
           "pts": 0,
           "applicable": false,
           "monitoringOnly": true
@@ -93,7 +93,7 @@
           "pts": 0,
           "applicable": false
         },
-        "total": 40
+        "total": 35
       },
       "wow": {
         "count": 0,
@@ -191,27 +191,27 @@
       },
       "ops": {
         "skip": {
-          "pct": 5.92,
+          "pct": 6.43,
           "pts": 5,
           "scope": "chat+backoffice"
         },
         "unanswered": {
-          "pct": 14.88,
+          "pct": 13.33,
           "pts": 0,
           "applicable": true
         },
         "transferIndevido": {
-          "pct": 4.55,
+          "pct": 4.39,
           "pts": 0,
           "applicable": false,
           "monitoringOnly": true
         },
         "expired": {
-          "pct": 1.22,
+          "pct": 1.14,
           "pts": 20
         },
         "timeSpent": {
-          "minutes": 7.33,
+          "minutes": 7.41,
           "pts": 0,
           "applicable": false
         },
@@ -313,7 +313,7 @@
       },
       "ops": {
         "skip": {
-          "pct": 7.89,
+          "pct": 8.08,
           "pts": 2,
           "scope": "chat+backoffice"
         },
@@ -323,17 +323,17 @@
           "applicable": true
         },
         "transferIndevido": {
-          "pct": 3.59,
+          "pct": 3.4,
           "pts": 0,
           "applicable": false,
           "monitoringOnly": true
         },
         "expired": {
-          "pct": 1.35,
+          "pct": 1.2,
           "pts": 20
         },
         "timeSpent": {
-          "minutes": 7.13,
+          "minutes": 7.15,
           "pts": 0,
           "applicable": false
         },
@@ -435,27 +435,27 @@
       },
       "ops": {
         "skip": {
-          "pct": 3.87,
+          "pct": 3.72,
           "pts": 10,
           "scope": "chat+backoffice"
         },
         "unanswered": {
-          "pct": 1.59,
+          "pct": 1.47,
           "pts": 10,
           "applicable": true
         },
         "transferIndevido": {
-          "pct": 0.66,
+          "pct": 0.78,
           "pts": 0,
           "applicable": false,
           "monitoringOnly": true
         },
         "expired": {
-          "pct": 0.22,
+          "pct": 0.39,
           "pts": 20
         },
         "timeSpent": {
-          "minutes": 8.35,
+          "minutes": 8.24,
           "pts": 0,
           "applicable": false
         },
@@ -557,27 +557,27 @@
       },
       "ops": {
         "skip": {
-          "pct": 5.69,
+          "pct": 6.74,
           "pts": 5,
           "scope": "chat+backoffice"
         },
         "unanswered": {
-          "pct": 4.23,
+          "pct": 3.98,
           "pts": 5,
           "applicable": true
         },
         "transferIndevido": {
-          "pct": 1.36,
+          "pct": 1.23,
           "pts": 0,
           "applicable": false,
           "monitoringOnly": true
         },
         "expired": {
-          "pct": 0.97,
+          "pct": 0.88,
           "pts": 20
         },
         "timeSpent": {
-          "minutes": 7.78,
+          "minutes": 7.68,
           "pts": 0,
           "applicable": false
         },
@@ -663,7 +663,7 @@
       },
       "ops": {
         "skip": {
-          "pct": 4.49,
+          "pct": 4.84,
           "pts": 20,
           "scope": "chat+backoffice"
         },
@@ -673,17 +673,17 @@
           "applicable": false
         },
         "transferIndevido": {
-          "pct": 5.35,
+          "pct": 5.64,
           "pts": 0,
           "applicable": false,
           "monitoringOnly": true
         },
         "expired": {
-          "pct": 0.94,
+          "pct": 0.87,
           "pts": 20
         },
         "timeSpent": {
-          "minutes": 6.21,
+          "minutes": 6.18,
           "pts": 0,
           "applicable": false
         },
@@ -790,7 +790,7 @@
           "scope": "chat+backoffice"
         },
         "unanswered": {
-          "pct": 5.07,
+          "pct": 5.26,
           "pts": 2,
           "applicable": true
         },
@@ -907,17 +907,17 @@
       },
       "ops": {
         "skip": {
-          "pct": 2.88,
+          "pct": 2.72,
           "pts": 10,
           "scope": "chat+backoffice"
         },
         "unanswered": {
-          "pct": 5.6,
+          "pct": 5.3,
           "pts": 2,
           "applicable": true
         },
         "transferIndevido": {
-          "pct": 2.89,
+          "pct": 3.04,
           "pts": 0,
           "applicable": false,
           "monitoringOnly": true
@@ -927,7 +927,7 @@
           "pts": 20
         },
         "timeSpent": {
-          "minutes": 8.29,
+          "minutes": 7.98,
           "pts": 0,
           "applicable": false
         },
@@ -1029,27 +1029,27 @@
       },
       "ops": {
         "skip": {
-          "pct": 4.36,
+          "pct": 4.66,
           "pts": 10,
           "scope": "chat+backoffice"
         },
         "unanswered": {
-          "pct": 0.36,
+          "pct": 0.66,
           "pts": 10,
           "applicable": true
         },
         "transferIndevido": {
-          "pct": 3.99,
+          "pct": 4.16,
           "pts": 0,
           "applicable": false,
           "monitoringOnly": true
         },
         "expired": {
-          "pct": 0.17,
+          "pct": 0.15,
           "pts": 20
         },
         "timeSpent": {
-          "minutes": 4.76,
+          "minutes": 4.77,
           "pts": 0,
           "applicable": false
         },
@@ -1156,7 +1156,7 @@
           "scope": "chat+backoffice"
         },
         "unanswered": {
-          "pct": 1.49,
+          "pct": 1.42,
           "pts": 10,
           "applicable": true
         },
@@ -1257,7 +1257,7 @@
       },
       "ops": {
         "skip": {
-          "pct": 5.2,
+          "pct": 5.32,
           "pts": 10,
           "scope": "chat+backoffice"
         },
@@ -1267,17 +1267,17 @@
           "applicable": false
         },
         "transferIndevido": {
-          "pct": 3.1,
+          "pct": 2.87,
           "pts": 0,
           "applicable": false,
           "monitoringOnly": true
         },
         "expired": {
-          "pct": 0.67,
+          "pct": 0.62,
           "pts": 20
         },
         "timeSpent": {
-          "minutes": 8.12,
+          "minutes": 8.29,
           "pts": 0,
           "applicable": false
         },
@@ -1379,27 +1379,27 @@
       },
       "ops": {
         "skip": {
-          "pct": 6.37,
+          "pct": 6.87,
           "pts": 5,
           "scope": "chat+backoffice"
         },
         "unanswered": {
-          "pct": 9.09,
+          "pct": 8.76,
           "pts": 0,
           "applicable": true
         },
         "transferIndevido": {
-          "pct": 2.99,
+          "pct": 2.94,
           "pts": 0,
           "applicable": false,
           "monitoringOnly": true
         },
         "expired": {
-          "pct": 1.38,
+          "pct": 1.47,
           "pts": 20
         },
         "timeSpent": {
-          "minutes": 7.15,
+          "minutes": 7.21,
           "pts": 0,
           "applicable": false
         },
@@ -1479,7 +1479,7 @@
           "applicable": false
         },
         "transferIndevido": {
-          "pct": 0.93,
+          "pct": 0.77,
           "pts": 0,
           "applicable": false,
           "monitoringOnly": true
@@ -1565,7 +1565,7 @@
       },
       "ops": {
         "skip": {
-          "pct": 5.65,
+          "pct": 5.96,
           "pts": 5,
           "scope": "chat+backoffice"
         },
@@ -1575,7 +1575,7 @@
           "applicable": true
         },
         "transferIndevido": {
-          "pct": 0.68,
+          "pct": 0.57,
           "pts": 0,
           "applicable": false,
           "monitoringOnly": true
@@ -1585,7 +1585,7 @@
           "pts": 20
         },
         "timeSpent": {
-          "minutes": 5.61,
+          "minutes": 5.38,
           "pts": 0,
           "applicable": false
         },
