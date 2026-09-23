@@ -97,10 +97,84 @@
   footer{ text-align:center; color:#8a86a8; font-size:15px; margin-top:30px; }
   #errorBox, #loadingBox{ text-align:center; color:var(--yellow); font-size:20px; margin-top:60px; }
   .change-name{ background:none; border:none; color:#8a86a8; text-decoration:underline; cursor:pointer; font-family:'VT323',monospace; font-size:16px; }
+
+  /* ---------- TELA DE MANUTENÇÃO (glitch) — ligada/desligada por MAINTENANCE_MODE no script ---------- */
+  #maintenance{
+    position:fixed; inset:0; z-index:1000; display:none; flex-direction:column;
+    align-items:center; justify-content:center; gap:22px; text-align:center; padding:24px;
+    background:#05030f; overflow:hidden; animation:mt-flicker 4s infinite;
+  }
+  body.maintenance-on{ overflow:hidden; }
+  body.maintenance-on #maintenance{ display:flex; }
+  body.maintenance-on #gate, body.maintenance-on #greeting, body.maintenance-on #content{ display:none !important; }
+  #maintenance::before{
+    content:''; position:absolute; inset:-50%; pointer-events:none; opacity:.09;
+    background-image:repeating-radial-gradient(circle at 17% 32%, #fff 0 1px, transparent 1px 3px),
+                     repeating-radial-gradient(circle at 73% 61%, #fff 0 1px, transparent 1px 4px);
+    animation:mt-noise .25s steps(3) infinite;
+  }
+  #maintenance::after{
+    content:''; position:absolute; left:0; right:0; height:90px; top:-100px; pointer-events:none;
+    background:linear-gradient(180deg, transparent, rgba(77,255,232,.08), transparent);
+    animation:mt-roll 3.2s linear infinite;
+  }
+  .mt-scan{ position:absolute; inset:0; pointer-events:none;
+    background:repeating-linear-gradient(0deg, rgba(0,0,0,.35) 0 1px, transparent 2px 4px); }
+  .mt-tear{ position:absolute; left:0; right:0; height:6px; background:rgba(255,77,216,.35); pointer-events:none; mix-blend-mode:screen; }
+  .mt-tear.t1{ animation:mt-tear1 2.7s steps(1) infinite; }
+  .mt-tear.t2{ height:3px; background:rgba(77,255,232,.4); animation:mt-tear2 3.9s steps(1) infinite; }
+  #maintenance img{ width:120px; image-rendering:pixelated; position:relative; z-index:1;
+    filter:drop-shadow(4px 0 0 rgba(255,77,216,.8)) drop-shadow(-4px 0 0 rgba(77,255,232,.8));
+    animation:mt-shake 1.6s infinite; }
+  .mt-code{ font-family:'Press Start 2P',monospace; font-size:11px; color:var(--red); letter-spacing:2px; position:relative; z-index:1; }
+  .glitch{
+    position:relative; z-index:1; font-family:'Press Start 2P',monospace; font-size:clamp(20px,5vw,40px);
+    color:#fff; letter-spacing:2px; line-height:1.4; text-shadow:2px 0 var(--magenta), -2px 0 var(--cyan);
+    animation:mt-skew 3s infinite;
+  }
+  .glitch::before, .glitch::after{ content:attr(data-text); position:absolute; left:0; top:0; width:100%; overflow:hidden; }
+  .glitch::before{ color:var(--cyan); left:3px; text-shadow:-2px 0 var(--magenta); animation:mt-slice1 2.2s infinite linear alternate-reverse; }
+  .glitch::after{ color:var(--magenta); left:-3px; text-shadow:2px 0 var(--cyan); animation:mt-slice2 1.7s infinite linear alternate-reverse; }
+  .mt-msg{ font-size:24px; color:var(--cyan); max-width:620px; line-height:1.35; position:relative; z-index:1; }
+  .mt-date{
+    font-family:'Press Start 2P',monospace; font-size:clamp(12px,2.6vw,16px); color:var(--yellow); position:relative; z-index:1;
+    border:3px solid var(--yellow); padding:14px 18px; line-height:1.8;
+    box-shadow:0 0 22px rgba(255,210,63,.35), inset 0 0 12px rgba(255,210,63,.2);
+  }
+  .mt-date b{ color:var(--green); font-size:1.25em; }
+  .mt-foot{ font-size:19px; color:#8a86a8; position:relative; z-index:1; }
+  .mt-foot .blink{ color:var(--green); }
+  @keyframes mt-slice1{
+    0%{clip-path:inset(12% 0 70% 0)} 20%{clip-path:inset(55% 0 20% 0)} 40%{clip-path:inset(30% 0 48% 0)}
+    60%{clip-path:inset(78% 0 5% 0)} 80%{clip-path:inset(5% 0 82% 0)} 100%{clip-path:inset(42% 0 36% 0)} }
+  @keyframes mt-slice2{
+    0%{clip-path:inset(65% 0 12% 0)} 25%{clip-path:inset(8% 0 75% 0)} 50%{clip-path:inset(40% 0 40% 0)}
+    75%{clip-path:inset(85% 0 2% 0)} 100%{clip-path:inset(20% 0 60% 0)} }
+  @keyframes mt-skew{ 0%,86%,100%{transform:none} 88%{transform:skewX(-14deg) translateX(-6px)} 90%{transform:skewX(10deg) translateX(5px)} 92%{transform:none} }
+  @keyframes mt-shake{ 0%,90%,100%{transform:translate(0,0)} 92%{transform:translate(-5px,2px)} 94%{transform:translate(4px,-3px)} 96%{transform:translate(-2px,1px)} }
+  @keyframes mt-flicker{ 0%,97%,100%{opacity:1} 97.5%{opacity:.55} 98.5%{opacity:.9} 99%{opacity:.4} }
+  @keyframes mt-noise{ 0%{transform:translate(0,0)} 33%{transform:translate(-3%,2%)} 66%{transform:translate(2%,-3%)} 100%{transform:translate(-1%,1%)} }
+  @keyframes mt-roll{ to{ top:110%; } }
+  @keyframes mt-tear1{ 0%{top:22%} 15%{top:64%} 30%{top:-10%} 55%{top:41%} 70%{top:-10%} 85%{top:83%} }
+  @keyframes mt-tear2{ 0%{top:-10%} 20%{top:35%} 35%{top:-10%} 60%{top:72%} 75%{top:12%} 90%{top:-10%} }
+  @media (prefers-reduced-motion: reduce){
+    #maintenance, #maintenance *, #maintenance::before, #maintenance::after, .glitch::before, .glitch::after{ animation:none !important; }
+  }
 </style>
 </head>
 <body>
 <div class="crt-vignette"></div>
+
+<div id="maintenance" role="alert" aria-live="assertive">
+  <div class="mt-scan"></div>
+  <div class="mt-tear t1"></div><div class="mt-tear t2"></div>
+  <img id="mascotImgMaint" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBTAA7" alt="UAI">
+  <div class="mt-code">ERRO 0x2909 — SIGNAL LOST</div>
+  <div class="glitch" data-text="FORA DO AR">FORA DO AR</div>
+  <div class="mt-msg">Eita, sô! O placar do UAI MODO TURBO saiu do ar pra apurar o fechamento de setembro.</div>
+  <div class="mt-date">RESULTADO OFICIAL<br>SAI EM <b>29/09/2026</b></div>
+  <div class="mt-foot">Seus pontos continuam sendo computados. <span class="blink">PLEASE STAND BY_</span></div>
+</div>
 
 <div id="gate">
   <img class="mascot-big" id="mascotImgGate" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBTAA7" alt="UAI">
@@ -206,6 +280,9 @@
 </div>
 
 <script>
+// Tela de manutenção ("FORA DO AR"). true = bloqueia o placar inteiro. Pra voltar o placar, troque para false.
+const MAINTENANCE_MODE = true;
+
 const STORAGE_KEY = 'uai_modo_turbo_player';
 
 function titleCase(agentLocal){
@@ -228,6 +305,7 @@ function showGreeting(name){
   document.getElementById('greetName').textContent = name.toUpperCase();
 }
 function showContent(){
+  if(MAINTENANCE_MODE) return;
   document.getElementById('gate').style.display = 'none';
   document.getElementById('greeting').style.display = 'none';
   document.getElementById('content').style.display = 'block';
@@ -249,6 +327,10 @@ document.getElementById('changeNameBtn').addEventListener('click', function(){
 });
 
 (function init(){
+  if(MAINTENANCE_MODE){
+    document.body.classList.add('maintenance-on');
+    return;
+  }
   let saved = null;
   try{ saved = localStorage.getItem(STORAGE_KEY); }catch(e){}
   if(saved){ showGreeting(saved); }else{ showGate(); }
@@ -256,7 +338,7 @@ document.getElementById('changeNameBtn').addEventListener('click', function(){
 
 fetch('assets/uai-mascot.b64.txt').then(r=>r.text()).then(b64=>{
   const src = 'data:image/png;base64,' + b64.trim();
-  ['mascotImgGate','mascotImgGreet','mascotImg'].forEach(id=>{
+  ['mascotImgGate','mascotImgGreet','mascotImg','mascotImgMaint'].forEach(id=>{
     const el = document.getElementById(id);
     if(el) el.src = src;
   });
