@@ -1,0 +1,40 @@
+name: Render vídeo UAI MODO TURBO
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'media/gerar_video.py'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: render-video
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Instalar dependências
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          pip install pillow
+      - name: Renderizar MP4
+        run: python media/gerar_video.py
+      - name: Commitar vídeo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add media/uai-modo-turbo-fase-final.mp4
+          if git diff --cached --quiet; then echo "Sem mudanças"; exit 0; fi
+          git commit -m "Vídeo UAI MODO TURBO renderizado"
+          git pull --rebase origin main
+          git push origin HEAD:main
