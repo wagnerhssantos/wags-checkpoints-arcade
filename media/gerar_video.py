@@ -11,21 +11,24 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SCORE = os.path.join(ROOT, "data", "scoreboard.json")
 OUT = os.path.join(ROOT, "media", "uai-modo-turbo-fase-final.mp4")
 FALLBACK = [
- ("GIULIA",240,"OURO"),("ANGELICA",232,"PRATA"),("GABRIELLE",197,"PRATA"),
- ("GUILHERME",192,"PRATA"),("ANGELA",185,"PRATA"),("ANDRESA",185,"PRATA"),
- ("RANDAL",180,"PRATA"),("THIAGO",179,"PRATA"),("LUCAS",175,"PRATA"),
- ("CAREN",165,"PRATA"),("MARCELO",165,"PRATA"),("KISSILA",127,"BRONZE"),
- ("LUCRECIA",115,"BRONZE"),("MAYCON",95,"BRONZE")]
-DATA_DATE = "25/09"
+ ("GIULIA",295,"OURO"),("ANGELA",275,"OURO"),("ANGELICA",272,"OURO"),
+ ("ANDRESA",240,"OURO"),("THIAGO",237,"PRATA"),("GABRIELLE",232,"PRATA"),
+ ("LUCAS",230,"PRATA"),("GUILHERME",227,"PRATA"),("CAREN",220,"PRATA"),
+ ("MARCELO",220,"PRATA"),("RANDAL",220,"PRATA"),("KISSILA",192,"PRATA"),
+ ("LUCRECIA",150,"PRATA"),("MAYCON",130,"BRONZE")]
+DATA_DATE = "28/09"
 try:  # ranking vem do placar oficial publicado no repo (não recalcula nada)
     sb = json.load(open(SCORE, encoding="utf-8"))
     res = sorted(sb["results"], key=lambda r: -r["total"])
     AGENTS = [(r["agent"].split(".")[0].upper(), r["total"], r["level"]) for r in res]
     y, m, d_ = sb["dataAsOf"].split("-"); DATA_DATE = f"{d_}/{m}"
 except Exception as e:
-    print("scoreboard.json indisponível, usando ranking de 25/09:", e); AGENTS = FALLBACK
+    print("scoreboard.json indisponível, usando ranking de 28/09:", e); AGENTS = FALLBACK
 if len(sys.argv) > 1: OUT = sys.argv[1]
-LONG = {"GIULIA","ANGELICA","GABRIELLE","ANGELA","ANDRESA","CAREN","KISSILA","LUCRECIA"}
+LONG = {"GIULIA","ANGELICA","GABRIELLE","ANDRESA","CAREN","KISSILA","LUCRECIA"}
+# visual combinado com o Wagner: (pele, cabelo)
+LOOKS = {"GIULIA":((176,118,78),(22,16,14)),"ANGELA":((250,220,196),(112,68,34)),
+         "ANGELICA":((250,218,190),(24,18,16)),"GABRIELLE":((252,222,200),(196,52,28))}
 
 # ---------- fonte 3x5 ----------
 G = {
@@ -114,6 +117,7 @@ def sprite(skin, hair, long_, frame, pose="walk"):
 HEROES=[]
 for i,(n,p,l) in enumerate(AGENTS):
     skin = SKINS[(i*3)%len(SKINS)]; hair = HAIRS[(i*5+1)%len(HAIRS)]
+    if n in LOOKS: skin, hair = LOOKS[n]
     fr = {k:sprite(skin,hair,n in LONG,k) for k in range(4)}
     fr['stand']=sprite(skin,hair,n in LONG,0,"stand")
     fr['cheer']=sprite(skin,hair,n in LONG,0,"cheer")
@@ -311,7 +315,7 @@ for f in range(TOTAL):
     d.rectangle([0,176,W,H],fill=(60,20,100)); d.rectangle([0,176,W,178],fill=YEL)
     hud(d,t,"FASE FINAL")
     ctext(d,"PARABÉNS, HERÓIS!",22,YEL,sc=3,shadow=PUR_D)
-    pods=[(1,W//2-78,40,SILV,"2"),(0,W//2,62,GOLD,"1"),(2,W//2+78,26,BRNZ,"3")]
+    pods=[(1,W//2-78,34,SILV,"2"),(0,W//2,50,GOLD,"1"),(2,W//2+78,22,BRNZ,"3")]
     for (i,cx,hgt,col,num) in pods:
         top=176-hgt
         d.rectangle([cx-30,top,cx+30,176],fill=col,outline=BLK)
@@ -327,14 +331,18 @@ for f in range(TOTAL):
             j=tp-delay-math.sqrt((land_y+50)/420)
             y = land_y - int(abs(math.sin(j*5+i))*12) if j>0.3 else land_y
             spr=HEROES[i]['cheer'] if int(j*5+i)%2==0 else HEROES[i]['stand']
-            n,pts,lvl=AGENTS[i]
-            label(d,n,cx,land_y-26,col)
-            ctext(d,f"{pts} PTS · {lvl}",land_y-15,WHT,cx=cx)
-        else: spr=HEROES[i]['stand']
+            landed=True
+        else: spr=HEROES[i]['stand']; landed=False
         sp=big(spr,3); im.paste(sp,(cx-15,int(y)),sp)
         if i==0 and y>=land_y-20:  # coroa
             cy=int(y)-6
             d.polygon([(cx-6,cy+5),(cx-6,cy),(cx-3,cy+3),(cx,cy-1),(cx+3,cy+3),(cx+6,cy),(cx+6,cy+5)],fill=GOLD,outline=BLK)
+        if landed:
+            n,pts,lvl=AGENTS[i]
+            label(d,n,cx,land_y-38,col)
+            t2=f"{pts} PTS · {lvl}"; w2=tw(t2)
+            d.rectangle([cx-w2//2-2,land_y-28,cx+w2//2+2,land_y-20],fill=BLK)
+            ctext(d,t2,land_y-26,WHT,cx=cx)
     if tp>2.2:
         for (x,y0,c,v) in CONF:
             y=(y0+(tp-2.2)*v*2)%(H+20)-10
