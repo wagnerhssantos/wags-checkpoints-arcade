@@ -17,11 +17,13 @@ FALLBACK = [
  ("MARCELO",220,"PRATA"),("RANDAL",220,"PRATA"),("KISSILA",192,"PRATA"),
  ("LUCRECIA",150,"PRATA"),("MAYCON",130,"BRONZE")]
 DATA_DATE = "28/09"
+FINAL = False
 try:  # ranking vem do placar oficial publicado no repo (não recalcula nada)
     sb = json.load(open(SCORE, encoding="utf-8"))
     res = sorted(sb["results"], key=lambda r: -r["total"])
     AGENTS = [(r["agent"].split(".")[0].upper(), r["total"], r["level"]) for r in res]
     y, m, d_ = sb["dataAsOf"].split("-"); DATA_DATE = f"{d_}/{m}"
+    FINAL = bool(sb.get("final"))
 except Exception as e:
     print("scoreboard.json indisponível, usando ranking de 28/09:", e); AGENTS = FALLBACK
 if len(sys.argv) > 1: OUT = sys.argv[1]
@@ -348,8 +350,12 @@ for f in range(TOTAL):
             y=(y0+(tp-2.2)*v*2)%(H+20)-10
             xx=x+int(4*math.sin(tp*3+x))
             d.rectangle([xx,int(y),xx+1,int(y)+2],fill=c)
-    ctext(d,f"PLACAR PARCIAL {DATA_DATE} · RESULTADO OFICIAL 29/09",196,(210,190,240))
-    if tp>7.8 and int(t*2.5)%2==0: ctext(d,"CONTINUE? MÉTRICAS FECHAM 30/09",206,YEL)
+    if FINAL:
+        ctext(d,"PLACAR FINAL · SETEMBRO 2026 · CAMPEÃS DO UAI MODO TURBO",196,(210,190,240))
+        if tp>7.8 and int(t*2.5)%2==0: ctext(d,"GAME CLEAR! OBRIGADO, TIME WAGS!",206,YEL)
+    else:
+        ctext(d,f"PLACAR PARCIAL {DATA_DATE} · RESULTADO OFICIAL 29/09",196,(210,190,240))
+        if tp>7.8 and int(t*2.5)%2==0: ctext(d,"CONTINUE? MÉTRICAS FECHAM 30/09",206,YEL)
     if t>26.3:
         im=Image.blend(im,Image.new("RGB",(W,H),BLK),min(1,(t-26.3)/0.7))
     emit(im)
